@@ -3,3 +3,4 @@ playwright
 scrapy-playwright
 rich
 click
+python-dotenv
