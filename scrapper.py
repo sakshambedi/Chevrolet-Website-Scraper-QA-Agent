@@ -6,7 +6,8 @@ import os
 from urllib.parse import urljoin
 
 from dotenv import load_dotenv
-from parsel import Selector
+
+# from parsel import Selector
 from scrapy import Request
 from scrapy.spiders import Spider
 from scrapy_playwright.page import PageMethod
@@ -19,16 +20,11 @@ class Scrapper(Spider):
     load_dotenv()
     DEV_MODE = os.getenv("DEV", "False").lower() == "true"
 
-    # Define URLs for both dev and production
-    LOCAL_URL = (
-        f"file://{os.path.join(os.getcwd(), 'samples', 'silverado_simple.html')}"
-    )
+    LOCAL_URL = f"file://{os.path.join(os.getcwd(), 'samples', 'silverado_navbar.html')}"
     PROD_URL = "https://www.chevrolet.ca/en/trucks/silverado-1500"
 
-    # Set start_urls based on DEV_MODE
     start_urls = [LOCAL_URL] if DEV_MODE else [PROD_URL]
 
-    # Define custom settings
     custom_settings = {
         "ROBOTSTXT_OBEY": True,
         "LOG_LEVEL": "WARNING",
@@ -59,6 +55,27 @@ class Scrapper(Spider):
             }
         )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.NATIVE = {
+            "a": self.serialize_a,
+            "button": self.serialize_button_like,
+            "input": self.serialize_button_like,  # gated below
+            "img": self.serialize_img,
+            "source": self.serialize_source,
+            "gb-dynamic-text": self.serialize_gb_dynamic_text,
+            "h1": self.serialize_heading,
+            "h2": self.serialize_heading,
+            "h3": self.serialize_heading,
+            "h4": self.serialize_heading,
+            "h5": self.serialize_heading,
+            "h6": self.serialize_heading,
+            "ul": self.serialize_ul,
+            "ol": self.serialize_ol,
+            "li": self.serialize_li,
+            "gb-myaccount-flyout": self.serialize_myaccount_flyout,
+        }
+
     def start_requests(self):
         for url in self.start_urls:
             if self.DEV_MODE:
@@ -83,8 +100,6 @@ class Scrapper(Spider):
 
     def parse(self, response):
         self.logger.info(f"Processing {response.url}")
-
-        # Check if playwright_page is available and close it (only in production mode)
         if not self.DEV_MODE and "playwright_page" in response.meta:
             page = response.meta["playwright_page"]
             page.close()
@@ -93,7 +108,6 @@ class Scrapper(Spider):
         parsed_navbar = self.parse_navbar(response)
         parsed_body = self.dfs_parse_body(response)
 
-        # Yield the complete parsed data with DFS results
         yield {
             "url": response.url,
             "metadata": metadata,
@@ -101,11 +115,22 @@ class Scrapper(Spider):
             "body_content": parsed_body,
         }
 
-    def parse_navbar(self, navbar):
-        root = navbar.xpath("//gb-global-nav/template[@id='gb-global-nav-content']")[0]
-        BASE = "https://www.chevrolet.ca/"
-        # tree = [n for n in (dfs(ch, BASE) for ch in root.xpath("./*")) if n is not None]
-        # return json.dumps(tree, indent=2, ensure_ascii=False)
+    def parse_navbar(self, response):
+        try:
+            root = response.xpath("//gb-global-nav/template[@id='gb-global-nav-content']")
+            if root:
+                BASE = "https://www.chevrolet.ca/"
+                tree = []
+                for ch in root[0].xpath("./*"):
+                    parsed_node = self.dfs(ch, BASE)
+                    if parsed_node is not None:
+                        tree.append(parsed_node)
+                return {"navbar_content": tree, "status": "success"}
+            else:
+                return {"error": "No navbar content found", "status": "not_found"}
+        except Exception as e:
+            self.logger.error(f"Error parsing navbar: {str(e)}")
+            return {"error": f"Navbar parsing failed: {str(e)}", "status": "error"}
 
     def dfs_parse_body(self, body_html, base_url="https://www.chevrolet.ca/"):
         """
@@ -113,10 +138,13 @@ class Scrapper(Spider):
         This method extracts structured data from the complete HTML structure
         """
 
-        return {"error": "No parseable content found", "parsing_method": "dfs"}
+        return {
+            "content": "No BODY IS PARSED RIGHT NOW",
+            "parsing_method": "dfs",
+            "status": "success",
+        }
 
     def extract_metadata(self, response):
-        # Basic metadata
         self.logger.info("Extracting metadata...")
         title = response.xpath("//title/text()").get()
         if title:
@@ -128,26 +156,15 @@ class Scrapper(Spider):
         og_meta = {}
         og_meta["type"] = response.xpath('//meta[@property="og:type"]/@content').get()
         og_meta["url"] = response.xpath('//meta[@property="og:url"]/@content').get()
-        og_meta["site_name"] = response.xpath(
-            '//meta[@name="og:site_name"]/@content'
-        ).get()
+        og_meta["site_name"] = response.xpath('//meta[@name="og:site_name"]/@content').get()
 
         # Twitter metadata
         twitter_meta = {}
-        twitter_meta["card"] = response.xpath(
-            '//meta[@name="twitter:card"]/@content'
-        ).get()
-        twitter_meta["site"] = response.xpath(
-            '//meta[@name="twitter:site"]/@content'
-        ).get()
+        twitter_meta["card"] = response.xpath('//meta[@name="twitter:card"]/@content').get()
+        twitter_meta["site"] = response.xpath('//meta[@name="twitter:site"]/@content').get()
 
-        # Language metadata
         lang = response.xpath("//html/@lang").get()
-
-        # Template information
         template = response.xpath('//meta[@name="template"]/@content').get()
-
-        # Viewport
         viewport = response.xpath('//meta[@name="viewport"]/@content').get()
 
         self.logger.info(f"Extracted metadata from {response.url}")
@@ -203,22 +220,22 @@ class Scrapper(Spider):
         else:
             kids.append(node)
 
-    def is_internal_link(u: str | None) -> bool:
+    def is_internal_link(self, u: str | None) -> bool:
         if not u:
             return False
         u = u.strip().split()[0]
         return u.startswith("/") or not u.startswith(("http://", "https://", "www."))
 
-    def _norm_url(base, u):
+    def _norm_url(self, base, u):
         if not u:
             return None
         return urljoin(base, u.strip().split()[0])
 
-    def _attrs(el):
+    def _attrs(self, el):
         # keep all attributes verbatim
         return dict(el.attrib)
 
-    def parse_json(raw):
+    def parse_json(self, raw):
         if not raw:
             return None
         s = html.unescape(raw).replace("\\/", "/")
@@ -231,14 +248,14 @@ class Scrapper(Spider):
                 return s
 
     # -------- serializers (must accept children) --------
-    def serialize_a(el, base, children):
+    def serialize_a(self, el, base, children):
         href = el.attrib.get("href")
         return {
             "a": {
-                "text": all_text(el),
+                "text": self.all_text(el),
                 "title": el.attrib.get("title", ""),
-                "href": _norm_url(base, href),
-                "link_type": ("internal" if is_internal_link(href) else "external")
+                "href": self._norm_url(base, href),
+                "link_type": ("internal" if self.is_internal_link(href) else "external")
                 if href
                 else None,
                 "classes": el.attrib.get("class", ""),
@@ -247,13 +264,13 @@ class Scrapper(Spider):
             }
         }
 
-    def serialize_button_like(el, base, children):
+    def serialize_button_like(self, el, base, children):
         act = el.attrib.get("href") or el.attrib.get("formaction")
         return {
             "button": {
-                "text": all_text(el),
-                "url": _norm_url(base, act),
-                "link_type": ("internal" if is_internal_link(act) else "external")
+                "text": self.all_text(el),
+                "url": self._norm_url(base, act),
+                "link_type": ("internal" if self.is_internal_link(act) else "external")
                 if act
                 else None,
                 "classname": el.attrib.get("class", ""),
@@ -269,29 +286,31 @@ class Scrapper(Spider):
             }
         }
 
-    def serialize_img(el, base, _children):
+    def serialize_img(self, el, base, _children):
         src = el.attrib.get("src")
         return {
             "img": {
-                "src": _norm_url(base, src),
+                "src": self._norm_url(base, src),
                 "classes": el.attrib.get("class", ""),
                 "alt": el.attrib.get("alt"),
                 "title": el.attrib.get("title"),
-                "link_type": ("internal" if is_internal_link(src) else "external")
-                if src
-                else None,
                 "loading": el.attrib.get("loading"),
-                **({k: el.attrib[k] for k in el.attrib if k.startswith("data-")}),
+                **(
+                    {"link_type": ("internal" if self.is_internal_link(src) else "external")}
+                    if "link_type" in el.attrib
+                    else {}
+                )
+                ** ({k: el.attrib[k] for k in el.attrib if k.startswith("data-")}),
             }
         }
 
-    def serialize_source(el, base, _children):
+    def serialize_source(self, el, base, _children):
         srcset = (el.attrib.get("srcset") or "").replace("\n", " ")
         urls = []
         for part in srcset.split(","):
             tok = part.strip().split()
             if tok:
-                urls.append(_norm_url(base, tok[0]))
+                urls.append(self._norm_url(base, tok[0]))
         return {
             "source": {
                 "media": el.attrib.get("media"),
@@ -303,25 +322,23 @@ class Scrapper(Spider):
             }
         }
 
-    def serialize_heading(el, _base, _children):
-        return {"heading": own_text(el)}
+    def serialize_heading(self, el, _base, _children):
+        return {"heading": self.own_text(el)}
 
-    def serialize_gb_dynamic_text(el, _base, _children):
+    def serialize_gb_dynamic_text(self, el, _base, _children):
         return {
             "gb-dynamic-text": {
-                "text": all_text(el) or None,
+                "text": self.all_text(el) or None,
                 "class": el.attrib.get("class", ""),
                 "country": el.attrib.get("country"),
-                "regional_information": parse_json(
-                    el.attrib.get("regional-information-json")
-                ),
+                "regional_information": self.parse_json(el.attrib.get("regional-information-json")),
             }
         }
 
-    def serialize_myaccount_flyout(el, base, children):
+    def serialize_myaccount_flyout(self, el, base, children):
         # reuse JSON attr parser
         def _parse(attr):
-            return parse_json(el.attrib.get(attr))
+            return self.parse_json(el.attrib.get(attr))
 
         return {
             "gb-myaccount-flyout": {
@@ -334,17 +351,17 @@ class Scrapper(Spider):
             }
         }
 
-    def _attrs_copy(el):
+    def _attrs_copy(self, el):
         return dict(el.attrib) if el.attrib else {}
 
-    def _pop_cls(attrs):
+    def _pop_cls(self, attrs):
         cls = attrs.pop("class", None)
         return cls, attrs
 
-    def serialize_li(el, _base, children):
-        attrs = _attrs_copy(el)
-        li_class, rest = _pop_cls(attrs)
-        txt = own_text(el)
+    def serialize_li(self, el, _base, children):
+        attrs = self._attrs_copy(el)
+        li_class, rest = self._pop_cls(attrs)
+        txt = self.own_text(el)
         node = {
             "item": {
                 **({"li_class": li_class} if li_class else {}),
@@ -355,7 +372,7 @@ class Scrapper(Spider):
         }
         return node
 
-    def _serialize_list(kind, el, base, children):
+    def _serialize_list(self, kind, el, base, children):
         # children already serialized by dfs; pick out only LI entries
         items = []
         other = []
@@ -364,8 +381,8 @@ class Scrapper(Spider):
                 items.append(ch["item"])
             else:
                 other.append(ch)
-        attrs = _attrs_copy(el)
-        cls, rest = _pop_cls(attrs)
+        attrs = self._attrs_copy(el)
+        cls, rest = self._pop_cls(attrs)
         node = {
             kind: {
                 **({"class": cls} if cls else {}),
@@ -376,37 +393,18 @@ class Scrapper(Spider):
         }
         return node
 
-    def serialize_ul(el, base, children):
-        return _serialize_list("ul", el, base, children)
+    def serialize_ul(self, el, base, children):
+        return self._serialize_list("ul", el, base, children)
 
-    def serialize_ol(el, base, children):
-        return _serialize_list("ol", el, base, children)
+    def serialize_ol(self, el, base, children):
+        return self._serialize_list("ol", el, base, children)
 
-    NATIVE = {
-        "a": serialize_a,
-        "button": serialize_button_like,
-        "input": serialize_button_like,  # gated below
-        "img": serialize_img,
-        "source": serialize_source,
-        "gb-dynamic-text": serialize_gb_dynamic_text,
-        "h1": serialize_heading,
-        "h2": serialize_heading,
-        "h3": serialize_heading,
-        "h4": serialize_heading,
-        "h5": serialize_heading,
-        "h6": serialize_heading,
-        "ul": serialize_ul,
-        "ol": serialize_ol,
-        "li": serialize_li,
-        "gb-myaccount-flyout": serialize_myaccount_flyout,
-    }
-
-    def serialize_generic(el, children):
+    def serialize_generic(self, el, children):
         node = {"tag": el.root.tag.lower()}
-        attrs = _attrs(el)
+        attrs = self._attrs(el)
         if attrs:
             node["attrs"] = attrs
-        txt = own_text(el)
+        txt = self.own_text(el)
         if txt:
             node["text"] = txt
         if children:
@@ -414,23 +412,23 @@ class Scrapper(Spider):
         return node
 
     # -------- unified DFS --------
-    def dfs(el, base):
+    def dfs(self, el, base):
         tag = el.root.tag.lower()
 
         # 1) drop excluded wrappers but keep their children
-        if tag in EXCLUDE:
+        if tag in self.EXCLUDE:
             kids = []
             for ch in el.xpath("./*"):
-                _append(kids, dfs(ch, base))
+                self._append(kids, self.dfs(ch, base))
             return kids or None
 
         # 2) always build children first
         children = []
         for ch in el.xpath("./*"):
-            _append(children, dfs(ch, base))
+            self._append(children, self.dfs(ch, base))
 
         # 3) special handling when needed, but never block children
-        if tag in NATIVE:
+        if tag in self.NATIVE:
             if tag == "input" and el.attrib.get("type") not in {
                 "button",
                 "submit",
@@ -440,16 +438,16 @@ class Scrapper(Spider):
                 pass
             else:
                 try:
-                    return NATIVE[tag](el, base, children)
+                    return self.NATIVE[tag](el, base, children)
                 except Exception as _:
                     # fall through to generic if a serializer fails
-                    return serialize_generic(el, children)
+                    return self.serialize_generic(el, children)
 
         # 4) flatten trivial wrappers
-        if tag in WRAPPERS:
+        if tag in self.WRAPPERS:
             cls = el.attrib.get("class", "").strip()
-            if not cls and not own_text(el) and len(children) == 1:
+            if not cls and not self.own_text(el) and len(children) == 1:
                 return children[0]
 
         # 5) generic element
-        return serialize_generic(el, children)
+        return self.serialize_generic(el, children)
