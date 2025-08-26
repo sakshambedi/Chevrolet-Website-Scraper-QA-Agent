@@ -11,312 +11,6 @@ from scrapy import Request
 from scrapy.spiders import Spider
 from scrapy_playwright.page import PageMethod
 
-DEV = True
-
-# DFS parsing configuration
-EXCLUDE = {
-    "script",
-    "style",
-    "noscript",
-    "template",
-    "gb-adv-grid",
-    "gb-wrapper",
-    "gb-responsive-image",
-    "adv-col",
-}
-
-CONTAINERS = {
-    "div",
-    "section",
-    "nav",
-    "header",
-    "footer",
-    "main",
-    "article",
-    "aside",
-    "serialize_gb_button",
-    "gb-button",
-    "picture",
-}
-
-
-# DFS parsing utility functions
-def text_of(elem):
-    """Extract cleaned text content from an element"""
-    return " ".join(
-        text for text in " ".join(elem.css("::text").getall()).strip().split()
-    )
-
-
-def parse_regional_info_json(raw):
-    """Parse regional information JSON with error handling"""
-    if not raw:
-        return None
-    s = html.unescape(raw).replace("\\/", "/")
-    try:
-        return json.loads(s)
-    except json.JSONDecodeError:
-        # try stripping NBSP; otherwise return the raw string
-        try:
-            return json.loads(s.replace("\u00a0", " ").replace("\xa0", " "))
-        except json.JSONDecodeError:
-            return s
-
-
-def serialize_dynamic_text(elem, base):
-    """Serialize gb-dynamic-text elements with regional pricing information"""
-    regional_info_json = parse_regional_info_json(
-        elem.attrib.get("regional-information-json")
-    )
-    txt = text_of(elem)
-    return {
-        "gb-dynamic-text": {
-            "text": txt if txt else "",
-            "class": elem.attrib.get("class", ""),
-            "country": elem.attrib.get("country"),
-            "regional_information": regional_info_json,
-        }
-    }
-
-
-def serialize_heading(elem):
-    """Serialize heading elements (h1-h6)"""
-    parts = [t.strip() for t in elem.xpath("./text()").getall()]
-    text = " ".join(p for p in parts if p)
-    return {
-        "heading": {
-            "classes": elem.attrib.get("class", ""),
-            "text": text,
-        }
-    }
-
-
-def serialize_a(el, base):
-    """Serialize anchor/link elements"""
-    href = el.attrib.get("href")
-    return {
-        "a": {
-            "text": text_of(el),
-            "title": el.attrib.get("title", ""),
-            "href": urljoin(base, href) if href else None,
-            "link_type": ("internal" if is_internal_link(href) else "external"),
-            "classes": el.attrib.get("class", ""),
-            **({"type": el.attrib["type"]} if "type" in el.attrib else {}),
-            **({"target": el.attrib.get("target")} if "target" in el.attrib else {}),
-        }
-    }
-
-
-def serialize_picture_source(elem, base):
-    """Serialize picture source elements"""
-    src = elem.attrib.get("srcset")
-    if src:
-        srcs = [cl_s for ech_s in src.split(",") for cl_s in ech_s.strip().split("\n")]
-    else:
-        srcs = []
-
-    return {
-        "picture_source": {
-            "media": elem.attrib.get("media"),
-            "height": elem.attrib.get("height"),
-            "width": elem.attrib.get("width"),
-            "srcset": srcs,
-            "link_type": ("internal" if is_internal_link(src) else "external"),
-            "classes": elem.attrib.get("class", ""),
-            "data_aspectratio": elem.attrib.get("data-aspectratio", "").split(",")
-            if elem.attrib.get("data-aspectratio")
-            else [],
-        }
-    }
-
-
-def serialize_button(el, base):
-    """Serialize button and input elements"""
-    act = el.attrib.get("href") or el.attrib.get("formaction")
-    full_url = urljoin(base, act) if act else None
-
-    return {
-        "button": {
-            "text": text_of(el),
-            "url": full_url,
-            "flyout": el.attrib.get("flyout"),
-            "data_dtm": el.attrib.get("data-dtm"),
-            "data_dtm2": el.attrib.get("data-dtm2"),
-            "link_type": ("internal" if is_internal_link(act) else "external")
-            if act
-            else "NA",
-            "classname": el.attrib.get("class", ""),
-            **({"type": el.attrib["type"]} if "type" in el.attrib else {}),
-            **(
-                {"disabled": "disabled"}
-                if "disabled" in el.attrib or el.attrib.get("aria-disabled") == "true"
-                else {}
-            ),
-            **({"title": el.attrib["title"]} if "title" in el.attrib else {}),
-            **(
-                {"data_hamburger_menu": el.attrib["data-hamburger-menu"]}
-                if "data-hamburger-menu" in el.attrib
-                else {}
-            ),
-            **(
-                {"data_flyout_pagetitle": el.attrib["data-flyout-pagetitle"]}
-                if "data-flyout-pagetitle" in el.attrib
-                else {}
-            ),
-            **(
-                {"aria-haspopup": el.attrib["aria-haspopup"]}
-                if "aria-haspopup" in el.attrib
-                else {}
-            ),
-            **(
-                {"aria-expanded": el.attrib["aria-expanded"]}
-                if "aria-expanded" in el.attrib
-                else {}
-            ),
-        }
-    }
-
-
-def is_internal_link(link):
-    """Check if a link is internal"""
-    if link:
-        return (
-            True
-            if link.startswith("/")
-            or not any(
-                link.startswith(prefix) for prefix in ("http://", "https://", "www.")
-            )
-            else False
-        )
-    return False
-
-
-def serialize_image(el, base):
-    """Serialize image elements"""
-    src = el.attrib.get("src")
-    return {
-        "img": {
-            "src": urljoin(base, src) if src else None,
-            "classes": el.attrib.get("class", ""),
-            "alt": el.attrib.get("alt"),
-            "title": el.attrib.get("title"),
-            "link_type": ("internal" if is_internal_link(src) else "external"),
-            **({"imwidth": el.attrib.get("imwidth")} if "imwidth" in el.attrib else {}),
-            **({"loading": el.attrib.get("loading")} if "loading" in el.attrib else {}),
-        }
-    }
-
-
-# Mapping of HTML tags to their serialization functions
-NATIVE = {
-    "a": serialize_a,
-    "button": serialize_button,
-    "input": serialize_button,  # handles type=button/submit/reset
-    "img": serialize_image,
-    "source": serialize_picture_source,
-    "gb-dynamic-text": serialize_dynamic_text,
-}
-
-
-def dfs(el, base):
-    """
-    Depth-First Search parsing of HTML elements into structured JSON
-    """
-    tag = el.root.tag.lower()
-
-    # Skip excluded elements but process their children
-    if tag in EXCLUDE:
-        kids = []
-        for ch in el.xpath("./*"):
-            node = dfs(ch, base)
-            if node is not None:
-                kids.append(node)
-        return kids if kids else None
-
-    # Handle native elements with specific serializers
-    if tag in NATIVE:
-        # Gate inputs to button-like only
-        if tag == "input" and el.attrib.get("type") not in {
-            "button",
-            "submit",
-            "reset",
-        }:
-            pass
-        else:
-            return NATIVE[tag](el, base)
-
-    # Handle lists
-    if tag == "ul":
-        items = []
-        for li in el.xpath("./li"):
-            node = dfs(li, base)
-            if node is not None:
-                items.append(node)
-        return {"ul": items} if items else None
-
-    if tag == "li":
-        kids = []
-        for ch in el.xpath("./*"):
-            node = dfs(ch, base)
-            if node is not None:
-                kids.append(node)
-        return (
-            {"li": {"text": text_of(el), "content": kids}}
-            if (kids or text_of(el))
-            else None
-        )
-
-    # Handle container elements
-    if tag in CONTAINERS:
-        kids = []
-        for ch in el.xpath("./*"):
-            node = dfs(ch, base)
-            if node is not None:
-                kids.append(node)
-        classname = el.attrib.get("class", "")
-
-        # Optional wrapper collapse: if no class and one child, return the child
-        if not classname and len(kids) == 1:
-            return kids[0]
-
-        result = {
-            "type": tag,
-            "class": classname,
-            "content": kids,
-        }
-
-        # Include common attributes if present
-        for attr in [
-            "data-hamburger-menu",
-            "data-province-selector-enabled",
-            "role",
-            "aria-hidden",
-            "aria-label",
-            "flyout-id",
-            "close-button-label",
-        ]:
-            if attr in el.attrib:
-                result[attr] = el.attrib[attr]
-        return result
-
-    # Handle headings and paragraphs
-    if tag in {"h1", "h2", "h3", "h4", "h5", "h6"}:
-        return {tag: serialize_heading(el)}
-    if tag == "p":
-        txt = text_of(el)
-        return {"p": txt} if txt else None
-
-    # Fallback for generic elements with children
-    kids = []
-    for ch in el.xpath("./*"):
-        node = dfs(ch, base)
-        if node is not None:
-            kids.append(node)
-    txt = text_of(el)
-    if kids or txt:
-        return {"tag": tag, "components": kids}
-    return None
-
 
 class Scrapper(Spider):
     name = "Chevy Silverado"
@@ -396,130 +90,30 @@ class Scrapper(Spider):
             page.close()
 
         metadata = self.extract_metadata(response)
+        parsed_navbar = self.parse_navbar(response)
         parsed_body = self.dfs_parse_body(response)
 
         # Yield the complete parsed data with DFS results
         yield {
             "url": response.url,
             "metadata": metadata,
+            "navbar": parsed_navbar,
             "body_content": parsed_body,
-            "parsing_method": "dfs_enhanced",
         }
+
+    def parse_navbar(self, navbar):
+        root = navbar.xpath("//gb-global-nav/template[@id='gb-global-nav-content']")[0]
+        BASE = "https://www.chevrolet.ca/"
+        # tree = [n for n in (dfs(ch, BASE) for ch in root.xpath("./*")) if n is not None]
+        # return json.dumps(tree, indent=2, ensure_ascii=False)
 
     def dfs_parse_body(self, body_html, base_url="https://www.chevrolet.ca/"):
         """
         Parse HTML body using DFS (Depth-First Search) algorithm
         This method extracts structured data from the complete HTML structure
         """
-        selector = Selector(text=body_html)
 
-        # Find the main navigation structure (gb-global-nav)
-        nav_elements = selector.xpath(
-            "//gb-global-nav/template[@id='gb-global-nav-content']"
-        )
-
-        if nav_elements:
-            output = dfs(nav_elements)
-
-            return {
-                "navigation": output,
-                # "main_content": content_tree,
-                # "parsing_method": "dfs",
-            }
-        else:
-            # Fallback: parse main content only
-            main_content = selector.xpath("//main | //body")
-            if main_content:
-                content_tree = []
-                for element in main_content[0].xpath("./*"):
-                    parsed_element = dfs(element, base_url)
-                    if parsed_element:
-                        content_tree.append(parsed_element)
-
-                return {"main_content": content_tree, "parsing_method": "dfs_fallback"}
-
-            return {"error": "No parseable content found", "parsing_method": "dfs"}
-
-    def semantic_parse_body(self, body_html):
-        """
-        Legacy semantic parsing method - kept for compatibility
-        Use dfs_parse_body for better results
-        """
-        sel = Selector(text=body_html)
-        grids = sel.css("gb-adv-grid")
-
-        # print(grids)
-        sections = []
-        for grid in grids:
-            section = {}
-            # Extract main heading
-            heading = grid.css(
-                "h1::text, h2::text, h3::text, h4::text, h5::text, h6::text"
-            ).get()
-            if heading:
-                section["heading"] = " ".join(
-                    h.strip() for h in heading.strip().split("\n")
-                )
-
-            links = []
-            for a in grid.css("a"):
-                href = a.attrib.get("href")
-                # text = a.css("::text").get()
-                text = a.attrib.get("data-dtm2")
-                data_link_type = a.attrib.get("data-link-type")
-                data_dtm = a.attrib.get("data-dtm")
-
-                if href and text and data_link_type:
-                    links.append(
-                        {
-                            "href": href,
-                            "link_type": data_link_type,
-                            "text": text.strip(),
-                            "data_dtm": data_dtm,
-                        }
-                    )
-            if links:
-                section["links"] = links
-            # Extract other content as needed (images, lists, etc.)
-            # Example: images
-            images = []
-            for img in grid.css("img"):
-                src = img.attrib.get("src")
-                alt = img.attrib.get("alt")
-                if src:
-                    images.append({"src": src, "alt": alt})
-            if images:
-                section["images"] = images
-            sections.append(section)
-        return sections
-
-    def get_body(self, response):
-        """Extract and parse body content using DFS algorithm"""
-        body_html = response.css("body").get()
-
-        # Use the new DFS parsing method
-        dfs_parsed_content = self.dfs_parse_body(body_html, response.url)
-
-        # Also keep legacy parsing for comparison (optional)
-        semantic_sections = self.semantic_parse_body(body_html)
-
-        # Build final output with DFS results
-        final_output = {
-            "url": response.url,
-            "dfs_content": dfs_parsed_content,
-            "legacy_sections": semantic_sections,  # Keep for comparison
-            "parsing_timestamp": json.dumps({}, default=str),  # For debugging
-        }
-
-        # Save the DFS parsed content
-        with open("dfs_scrapy_output.json", "w", encoding="utf-8") as f:
-            json.dump(final_output, f, indent=2, ensure_ascii=False)
-
-        self.logger.info(
-            "✅ DFS parsing completed. Results saved to dfs_scrapy_output.json"
-        )
-
-        return final_output
+        return {"error": "No parseable content found", "parsing_method": "dfs"}
 
     def extract_metadata(self, response):
         # Basic metadata
@@ -568,3 +162,294 @@ class Scrapper(Spider):
             "opengraph": og_meta,
             "twitter": twitter_meta,
         }
+
+    EXCLUDE = {
+        "script",
+        "style",
+        "noscript",
+        "template",
+        "gb-adv-grid",
+        "gb-wrapper",
+        "gb-responsive-image",
+        "adv-col",
+        "span",
+        "gb-tab-nav",  # usually just adds nodes in tree, wraps an unordered list
+    }
+
+    WRAPPERS = {
+        "div",
+        "section",
+        "nav",
+        "header",
+        "footer",
+        "main",
+        "article",
+        "aside",
+        "picture",
+    }
+
+    def own_text(self, el):
+        parts = [t.strip() for t in el.xpath("./text()").getall()]
+        return " ".join(p for p in parts if p)
+
+    def all_text(self, el):
+        return " ".join(" ".join(el.css("::text").getall()).split())
+
+    def _append(self, kids, node):
+        if node is None:
+            return
+        if isinstance(node, list):
+            kids.extend(node)
+        else:
+            kids.append(node)
+
+    def is_internal_link(u: str | None) -> bool:
+        if not u:
+            return False
+        u = u.strip().split()[0]
+        return u.startswith("/") or not u.startswith(("http://", "https://", "www."))
+
+    def _norm_url(base, u):
+        if not u:
+            return None
+        return urljoin(base, u.strip().split()[0])
+
+    def _attrs(el):
+        # keep all attributes verbatim
+        return dict(el.attrib)
+
+    def parse_json(raw):
+        if not raw:
+            return None
+        s = html.unescape(raw).replace("\\/", "/")
+        try:
+            return json.loads(s)
+        except json.JSONDecodeError:
+            try:
+                return json.loads(s.replace("\u00a0", " ").replace("\xa0", " "))
+            except json.JSONDecodeError:
+                return s
+
+    # -------- serializers (must accept children) --------
+    def serialize_a(el, base, children):
+        href = el.attrib.get("href")
+        return {
+            "a": {
+                "text": all_text(el),
+                "title": el.attrib.get("title", ""),
+                "href": _norm_url(base, href),
+                "link_type": ("internal" if is_internal_link(href) else "external")
+                if href
+                else None,
+                "classes": el.attrib.get("class", ""),
+                "target": el.attrib.get("target"),
+                "content": children or None,
+            }
+        }
+
+    def serialize_button_like(el, base, children):
+        act = el.attrib.get("href") or el.attrib.get("formaction")
+        return {
+            "button": {
+                "text": all_text(el),
+                "url": _norm_url(base, act),
+                "link_type": ("internal" if is_internal_link(act) else "external")
+                if act
+                else None,
+                "classname": el.attrib.get("class", ""),
+                "content": children or None,
+                **({k: el.attrib[k] for k in el.attrib if k.startswith("data-")}),
+                **(
+                    {
+                        k: el.attrib[k]
+                        for k in ("title", "aria-haspopup", "aria-expanded")
+                        if k in el.attrib
+                    }
+                ),
+            }
+        }
+
+    def serialize_img(el, base, _children):
+        src = el.attrib.get("src")
+        return {
+            "img": {
+                "src": _norm_url(base, src),
+                "classes": el.attrib.get("class", ""),
+                "alt": el.attrib.get("alt"),
+                "title": el.attrib.get("title"),
+                "link_type": ("internal" if is_internal_link(src) else "external")
+                if src
+                else None,
+                "loading": el.attrib.get("loading"),
+                **({k: el.attrib[k] for k in el.attrib if k.startswith("data-")}),
+            }
+        }
+
+    def serialize_source(el, base, _children):
+        srcset = (el.attrib.get("srcset") or "").replace("\n", " ")
+        urls = []
+        for part in srcset.split(","):
+            tok = part.strip().split()
+            if tok:
+                urls.append(_norm_url(base, tok[0]))
+        return {
+            "source": {
+                "media": el.attrib.get("media"),
+                "height": el.attrib.get("height"),
+                "width": el.attrib.get("width"),
+                "srcset": [u for u in urls if u],
+                "classes": el.attrib.get("class", ""),
+                "data_aspectratio": el.attrib.get("data-aspectratio"),
+            }
+        }
+
+    def serialize_heading(el, _base, _children):
+        return {"heading": own_text(el)}
+
+    def serialize_gb_dynamic_text(el, _base, _children):
+        return {
+            "gb-dynamic-text": {
+                "text": all_text(el) or None,
+                "class": el.attrib.get("class", ""),
+                "country": el.attrib.get("country"),
+                "regional_information": parse_json(
+                    el.attrib.get("regional-information-json")
+                ),
+            }
+        }
+
+    def serialize_myaccount_flyout(el, base, children):
+        # reuse JSON attr parser
+        def _parse(attr):
+            return parse_json(el.attrib.get(attr))
+
+        return {
+            "gb-myaccount-flyout": {
+                "class": el.attrib.get("class", ""),
+                "flyoutstate": el.attrib.get("flyoutstate"),
+                "auth_flyout": _parse("authflyoutdata"),
+                "auth_links": _parse("authlinkdata"),
+                "fallback": _parse("fallbackdata"),
+                "content": children or None,  # preserve nested nodes if any
+            }
+        }
+
+    def _attrs_copy(el):
+        return dict(el.attrib) if el.attrib else {}
+
+    def _pop_cls(attrs):
+        cls = attrs.pop("class", None)
+        return cls, attrs
+
+    def serialize_li(el, _base, children):
+        attrs = _attrs_copy(el)
+        li_class, rest = _pop_cls(attrs)
+        txt = own_text(el)
+        node = {
+            "item": {
+                **({"li_class": li_class} if li_class else {}),
+                **({"attrs": rest} if rest else {}),
+                **({"text": txt} if txt else {}),
+                **({"content": children} if children else {}),
+            }
+        }
+        return node
+
+    def _serialize_list(kind, el, base, children):
+        # children already serialized by dfs; pick out only LI entries
+        items = []
+        other = []
+        for ch in children:
+            if isinstance(ch, dict) and "item" in ch:
+                items.append(ch["item"])
+            else:
+                other.append(ch)
+        attrs = _attrs_copy(el)
+        cls, rest = _pop_cls(attrs)
+        node = {
+            kind: {
+                **({"class": cls} if cls else {}),
+                **({"attrs": rest} if rest else {}),
+                **({"items": items} if items else {"items": []}),
+                **({"content": other} if other else {}),
+            }
+        }
+        return node
+
+    def serialize_ul(el, base, children):
+        return _serialize_list("ul", el, base, children)
+
+    def serialize_ol(el, base, children):
+        return _serialize_list("ol", el, base, children)
+
+    NATIVE = {
+        "a": serialize_a,
+        "button": serialize_button_like,
+        "input": serialize_button_like,  # gated below
+        "img": serialize_img,
+        "source": serialize_source,
+        "gb-dynamic-text": serialize_gb_dynamic_text,
+        "h1": serialize_heading,
+        "h2": serialize_heading,
+        "h3": serialize_heading,
+        "h4": serialize_heading,
+        "h5": serialize_heading,
+        "h6": serialize_heading,
+        "ul": serialize_ul,
+        "ol": serialize_ol,
+        "li": serialize_li,
+        "gb-myaccount-flyout": serialize_myaccount_flyout,
+    }
+
+    def serialize_generic(el, children):
+        node = {"tag": el.root.tag.lower()}
+        attrs = _attrs(el)
+        if attrs:
+            node["attrs"] = attrs
+        txt = own_text(el)
+        if txt:
+            node["text"] = txt
+        if children:
+            node["content"] = children
+        return node
+
+    # -------- unified DFS --------
+    def dfs(el, base):
+        tag = el.root.tag.lower()
+
+        # 1) drop excluded wrappers but keep their children
+        if tag in EXCLUDE:
+            kids = []
+            for ch in el.xpath("./*"):
+                _append(kids, dfs(ch, base))
+            return kids or None
+
+        # 2) always build children first
+        children = []
+        for ch in el.xpath("./*"):
+            _append(children, dfs(ch, base))
+
+        # 3) special handling when needed, but never block children
+        if tag in NATIVE:
+            if tag == "input" and el.attrib.get("type") not in {
+                "button",
+                "submit",
+                "reset",
+            }:
+                # non-button inputs fall back to generic
+                pass
+            else:
+                try:
+                    return NATIVE[tag](el, base, children)
+                except Exception as _:
+                    # fall through to generic if a serializer fails
+                    return serialize_generic(el, children)
+
+        # 4) flatten trivial wrappers
+        if tag in WRAPPERS:
+            cls = el.attrib.get("class", "").strip()
+            if not cls and not own_text(el) and len(children) == 1:
+                return children[0]
+
+        # 5) generic element
+        return serialize_generic(el, children)

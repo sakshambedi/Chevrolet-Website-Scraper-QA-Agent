@@ -1,3 +1,27 @@
 [
-
+    {
+        "url": "file:///Users/sakshambedi/Documents/project/assingment/samples/silverado_simple.html",
+        "metadata": {
+            "title": "2025 Chevrolet Silverado 1500 | Pickup Truck | Chevrolet Canada",
+            "description": "The 2025 Silverado 1500 offers advanced interior technology that puts infotainment at your fingertips \u2014 keeping you connected almost anywhere the day takes you.",
+            "canonical": null,
+            "language": "en-CA",
+            "template": "generic-templates-page",
+            "viewport": "width=device-width, initial-scale=1",
+            "opengraph": {
+                "type": null,
+                "url": null,
+                "site_name": null
+            },
+            "twitter": {
+                "card": null,
+                "site": null
+            }
+        },
+        "body_content": {
+            "error": "No parseable content found",
+            "parsing_method": "dfs"
+        },
+        "parsing_method": "dfs_enhanced"
+    }
 ]
