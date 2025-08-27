@@ -6,7 +6,6 @@ import os
 from urllib.parse import urljoin
 
 from dotenv import load_dotenv
-
 # from parsel import Selector
 from scrapy import Request
 from scrapy.spiders import Spider
