@@ -5,6 +5,7 @@ A production-grade web scraper that converts complex DOM structures into semanti
 ## Why Scrapy
 
 **Decision**: Scrapy over alternatives (BeautifulSoup, Selenium, custom asyncio)
+
 **Rationale**:
 
 - **Production reliability**: Built-in retry logic, connection pooling, and error handling
@@ -16,6 +17,7 @@ A production-grade web scraper that converts complex DOM structures into semanti
 ### Dynamic Content: Playwright Integration
 
 **Decision**: Scrapy-Playwright over pure Scrapy or Selenium
+
 **Rationale**:
 
 - Modern automotive sites heavily rely on JavaScript for navigation and content rendering
