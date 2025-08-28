@@ -1,10 +1,9 @@
-website=https://www.chevrolet.ca/en/trucks/silverado-1500
 
 phony: run
 
 run :
-	python main.py -w $(website)
+	python main.py
 
 
-run-debug:
-	python main.py -w $(website) -l INFO
+rund:
+	python main.py -l INFO
