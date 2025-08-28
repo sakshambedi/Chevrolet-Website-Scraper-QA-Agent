@@ -2,8 +2,6 @@
 
 A production-grade web scraper that converts complex DOM structures into semantically meaningful JSON optimized for LLM consumption. Built for Chevrolet's dynamic e-commerce pages but architected for extensibility across different sites.
 
-## Technical Architecture Decisions
-
 ## Why Scrapy
 
 **Decision**: Scrapy over alternatives (BeautifulSoup, Selenium, custom asyncio)
