@@ -299,19 +299,6 @@ The `samples` directory contains HTML files from previously scraped websites tha
 
 This architecture demonstrates production-ready web scraping with clear separation of concerns, comprehensive error handling, and optimization for downstream AI/ML workflows.
 
-## Future Plans
+## Future Plans 🔄
 
-```mermaid
-flowchart TD
-    A[TUI Interface] --> B[Query Handler]
-    B --> C[Embedding for OpenAI API or Google API]
-    B --> D[Vector Search FAISS]
-    D --> E[Top-K Chunks]
-    E --> F[OpenAI Chat Completion]
-    F --> A
-
-    subgraph Supabase
-        G[JSON Website Dump] --> B
-    end
-
-```
+- Create a embedding table from the semantic representation of the website
