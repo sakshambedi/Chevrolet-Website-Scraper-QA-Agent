@@ -303,7 +303,7 @@ This architecture demonstrates production-ready web scraping with clear separati
 
 ```mermaid
 flowchart TD
-    A[TUI Interface (Prompt Toolkit)] --> B[Query Handler]
+    A[TUI Interface] --> B[Query Handler]
     B --> C[Embedding (OpenAI API)]
     B --> D[Vector Search (FAISS)]
     D --> E[Top-K Chunks]
