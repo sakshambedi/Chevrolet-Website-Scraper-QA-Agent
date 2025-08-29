@@ -1,7 +1,4 @@
-import os
-
 import click
-from dotenv import load_dotenv
 from scrapy.crawler import CrawlerProcess
 
 from scrapper.chevy_scrapper import ChevyScapper
@@ -32,14 +29,8 @@ def main(save_html, log_level) -> None:
 
     logger.info(f"Save html : {save_html}")
 
-    # Load environment variables
-    load_dotenv()
-    DEV_MODE = os.getenv("DEV", "False").lower() == "true"
-
-    # Since we've defined all settings in the Scrapper class, we can use an empty dict here
-    # The Spider's custom_settings will be applied automatically
     process = CrawlerProcess(settings={})
-    process.crawl(ChevyScapper)
+    process.crawl(ChevyScapper, save_html=save_html)
     process.start()
 
 

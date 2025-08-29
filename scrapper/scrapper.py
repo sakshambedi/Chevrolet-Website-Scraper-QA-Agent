@@ -1,3 +1,4 @@
+import datetime
 import os
 from abc import ABC, abstractmethod
 
@@ -23,7 +24,9 @@ class Scrapper(Spider, ABC):
     DEV_MODE = os.getenv("DEV", "False").lower() == "true"
 
     custom_settings = {
-        "FEEDS": {"output.json": {"format": "json", "overwrite": True}},
+        "FEEDS": {
+            f"output_{'DEV' if DEV_MODE else 'PROD'}.json": {"format": "json", "overwrite": True}
+        },
         "ROBOTSTXT_OBEY": True,
         "LOG_LEVEL": "WARNING",
         "DEFAULT_REQUEST_HEADERS": {
@@ -72,11 +75,12 @@ class Scrapper(Spider, ABC):
         """Production URL - must be implemented by child classes"""
         pass
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, save_html=False, *args, **kwargs):
         # Set spider name before calling super().__init__
         if not hasattr(self, "name"):
             self.name = self.spider_name
 
+        self.save_html = save_html
         super().__init__(*args, **kwargs)
 
     @property
@@ -87,7 +91,7 @@ class Scrapper(Spider, ABC):
         else:
             return [self.prod_url]
 
-    def start_requests(self):
+    async def start(self):
         """Generate initial requests"""
         logger.info("Starting requests")
         for url in self.start_urls:
@@ -115,6 +119,42 @@ class Scrapper(Spider, ABC):
                         ],
                     },
                 )
+
+    def save_response_html(self, response, url):
+        """Save HTML content to samples directory."""
+        if not self.save_html:
+            return
+
+        # Create filename based on URL
+        url_parts = url.split("/")
+        filename = url_parts[-1] if url_parts[-1] else url_parts[-2]
+
+        # If it doesn't have .html extension, add it
+        if not filename.endswith(".html"):
+            filename = f"{filename}.html"
+
+        # Add timestamp to avoid overwriting
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"{filename.split('.')[0]}_{timestamp}.html"
+
+        # Get path to samples directory
+        samples_dir = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "samples"
+        )
+
+        # Create samples directory if it doesn't exist
+        if not os.path.exists(samples_dir):
+            os.makedirs(samples_dir)
+
+        # Full path to save the file
+        file_path = os.path.join(samples_dir, filename)
+
+        # Save the HTML content
+        with open(file_path, "wb") as f:
+            f.write(response.body)
+
+        self.logger.info(f"Saved HTML content to {file_path}")
+        return file_path
 
     @abstractmethod
     def parse(self, response):

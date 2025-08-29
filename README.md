@@ -198,37 +198,95 @@ Scrapper (ABC) → ChevyScapper → [Future: FordScapper, ToyotaScapper]
 
 ## Setup & Usage
 
-**Dependencies**:
+### Environment Setup
+
+Create a `.env` file in the root directory with the following basic settings:
 
 ```bash
-pip install -r requirements.txt
-playwright install chromium  # Production mode only
-```
-
-**Environment Configuration**:
-
-```bash
-# Development (fast iteration)
-echo "DEV=true" > .env
+# Development (fast iteration with local fixtures)
+DEV=true
 
 # Production (full browser rendering)
-echo "DEV=false" > .env
+DEV=false
 ```
 
-**Execution**:
+The application relies on this environment variable to determine whether to use local HTML files (DEV=true) or fetch content from the live website (DEV=false).
+
+### Installation
+
+**Using pip**:
 
 ```bash
-# Development mode
-make run
+# Create and activate a virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Production with debug logging
-make run-debug
+# Install dependencies
+pip install -r requirements.txt
 
-# Direct Python execution
-python main.py --log-level INFO
+# Install Playwright browsers (required for production mode)
+playwright install chromium
 ```
 
-**Output**: `output.json` contains structured semantic data ready for LLM consumption
+**Using uv** (faster Python package installer):
+
+```bash
+# Create and activate a virtual environment
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install dependencies
+uv pip install -r requirements.txt
+
+# Install Playwright browsers (required for production mode)
+playwright install chromium
+```
+
+### Running the Scraper
+
+**Using Make**:
+
+```bash
+# Run in default mode (CRITICAL log level)
+make run
+
+# Run with INFO logging level
+make rund
+```
+
+**Direct Python execution**:
+
+```bash
+# Run with default settings
+python main.py
+
+# Run with custom log level
+python main.py --log-level INFO
+
+# Run with HTML saving enabled
+python main.py --save-html True
+
+# Run with both options
+python main.py --log-level DEBUG --save-html True
+```
+
+**Command Line Options**:
+
+- `--log-level` or `-l`: Set logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+- `--save-html` or `-s`: Save HTML from website (True/False)
+
+**Outputs**:
+
+- `output.json` contains structured semantic data ready for LLM consumption
+- When `--save-html True` is specified and in production mode (`DEV=false`), the HTML content from the scraped website will be saved to the `samples` directory with a timestamped filename for future use in development mode
+
+### HTML Samples
+
+The `samples` directory contains HTML files from previously scraped websites that can be used in development mode:
+
+- When `DEV=true` in the `.env` file, the scraper will use these local HTML files instead of making requests to the live website
+- New samples can be added by running the scraper in production mode with the `--save-html True` option
+- These samples are essential for development and testing without repeatedly hitting the production website
 
 ## Technical Decisions Summary
 
@@ -240,3 +298,20 @@ python main.py --log-level INFO
 6. **Environment-Driven Configuration**: Deployment flexibility with sensible defaults
 
 This architecture demonstrates production-ready web scraping with clear separation of concerns, comprehensive error handling, and optimization for downstream AI/ML workflows.
+
+## Future Plans
+
+```mermaid
+flowchart TD
+    A[TUI Interface (Prompt Toolkit)] --> B[Query Handler]
+    B --> C[Embedding (OpenAI API)]
+    B --> D[Vector Search (FAISS)]
+    D --> E[Top-K Chunks]
+    E --> F[OpenAI Chat Completion]
+    F --> A
+
+    subgraph Supabase
+        G[JSON Website Dump] --> B
+    end
+
+```

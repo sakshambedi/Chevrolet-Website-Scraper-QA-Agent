@@ -20,7 +20,6 @@ class ChevyScapper(Scrapper):
 
     @property
     def prod_url(self) -> str:
-        # Replace with your actual production URL
         return self.chevy_website + "/en/trucks/silverado-1500"
 
     def parse(self, response):
@@ -29,50 +28,46 @@ class ChevyScapper(Scrapper):
         self.logger.info(f"Local URL: {self.local_url}")
         self.logger.info(f"Prod URL: {self.prod_url}")
 
+        # Save HTML content if save_html is True and we're in production mode
+        if self.save_html and not self.DEV_MODE:
+            self.save_response_html(response, self.prod_url)
+
         if not self.DEV_MODE and "playwright_page" in response.meta:
             page = response.meta["playwright_page"]
             page.close()
 
         metadata = self.extract_metadata(response)
-        navbar = self.parse_navbar(response)
-        body_content = self.parse_body(response)
+        # navbar = self.parse_navbar(response)
+        navbar = self.parse_content(
+            response, "//gb-global-nav/template[@id='gb-global-nav-content']", "navbar"
+        )
+        body_content = self.parse_content(response, "//main[@id='gb-main-content']", "body")
+        footer = self.parse_content(response, "//gb-global-footer", "footer")
 
         yield {
             "url": response.url,
             "metadata": metadata,
             "navbar": navbar,
             "main_body_content": body_content,
+            "footer": footer,
         }
 
-    def parse_navbar(self, response):
+    def parse_content(self, response, parent_search, parent_name):
         try:
-            root = response.xpath("//gb-global-nav/template[@id='gb-global-nav-content']")
+            root = response.xpath(parent_search)
             if root:
-                tree = []
-                for ch in root[0].xpath("./*"):
-                    parsed_node = self.dfs(ch, self.chevy_website)
-                    if parsed_node is not None:
-                        tree.append(parsed_node)
-                return {"navbar_content": tree}
+                self.chevy_website
+                tree = [
+                    n
+                    for n in (self.dfs(ch, self.chevy_website) for ch in root[0].xpath("./*"))
+                    if n is not None
+                ]
+                return tree
             else:
-                return {"error": "No navbar content found", "status": "not_found"}
+                return {parent_name: f"Unable to parse {parent_name} content by {self.spider_name}"}
         except Exception as e:
-            self.logger.error(f"Error parsing navbar: {str(e)}")
-            return {"error": f"Navbar parsing failed: {str(e)}", "status": "error"}
-
-    def parse_body(self, response):
-        # Implement your body parsing logic here
-        root = response.xpath("//main[@id='gb-main-content']")
-        if root:
-            self.chevy_website
-            tree = [
-                n
-                for n in (self.dfs(ch, self.chevy_website) for ch in root[0].xpath("./*"))
-                if n is not None
-            ]
-            return tree
-        else:
-            return {"body": f"Unable to parse main body content by {self.spider_name}"}
+            self.logger.error(f"Error parsing {parent_name}: {str(e)}")
+            return {"error": f"{parent_name} parsing failed: {str(e)}", "status": "error"}
 
     EXCLUDE = {
         "script",
@@ -96,6 +91,7 @@ class ChevyScapper(Scrapper):
         "gb-main-flyout",
         "div",
         "span",
+        "gb-flyout",
     }
 
     WRAPPERS = {
@@ -165,6 +161,41 @@ class ChevyScapper(Scrapper):
         return self.all_text(el)
 
     # -------- serializers  --------
+    #
+
+    def serialize_gb_region_selector(self, el, _base, children):
+        attrs = {k: self.parse_json(v) for k, v in el.attrib.items()}
+        out = {"gb-region-selector": attrs}
+        if children:
+            out["gb-region-selector"]["content"] = children
+        return out
+
+    # def serialize_region_selector(self, el, base, children):
+    #     def _maybe_json(val: str):
+    #         if val is None:
+    #             return None
+    #         s = html.unescape(val)
+    #         t = s.lstrip()
+    #         if t.startswith("{") or t.startswith("["):
+    #             try:
+    #                 return json.loads(t)
+    #             except json.JSONDecodeError:
+    #                 # common site escapes
+    #                 try:
+    #                     return json.loads(
+    #                         t.replace("\\/", "/").replace("\u00a0", " ").replace("\xa0", " ")
+    #                     )
+    #                 except json.JSONDecodeError:
+    #                     return s
+    #         return s
+
+    #     attrs = {k: _maybe_json(v) for k, v in el.attrib.items()}
+
+    #     node = {"gb-region-selector": attrs}
+    #     if children:
+    #         node["gb-region-selector"]["content"] = children
+    #     return node
+
     def serialize_a(self, el, base, children):
         href = el.attrib.get("href")
         return {
@@ -262,13 +293,8 @@ class ChevyScapper(Scrapper):
     def _attrs_copy(self, el):
         return dict(el.attrib) if el.attrib else {}
 
-    def serialize_li(self, el, _base, _children):
-        txt = self.all_text(el).strip()
-        if not txt:
-            return None
-        return {"item": txt}
-
     def _serialize_list(self, kind, el, base, children):
+        # keep only LI entries; flatten to a list of strings
         texts = []
         for ch in children or []:
             if isinstance(ch, dict) and "item" in ch:
@@ -287,6 +313,32 @@ class ChevyScapper(Scrapper):
 
     def serialize_ol(self, el, base, children):
         return self._serialize_list("ol", el, base, children)
+
+    def serialize_li(self, el, _base, _children):
+        txt = self.all_text(el).strip()
+        if not txt:
+            return None
+        return {"item": txt}
+
+    # def _serialize_list(self, kind, el, base, children):
+    #     texts = []
+    #     for ch in children or []:
+    #         if isinstance(ch, dict) and "item" in ch:
+    #             val = ch["item"]
+    #             if isinstance(val, str) and val:
+    #                 texts.append(val)
+    #             elif isinstance(val, dict):
+    #                 t = val.get("text", "")
+    #                 if t:
+    #                     texts.append(t)
+
+    # return {kind: texts}
+
+    # def serialize_ul(self, el, base, children):
+    #     return self._serialize_list("ul", el, base, children)
+
+    # def serialize_ol(self, el, base, children):
+    #     return self._serialize_list("ol", el, base, children)
 
     def serialize_p(self, el, base, children):
         attrs = self._attrs_copy(el) if el.attrib else {}
@@ -377,6 +429,7 @@ class ChevyScapper(Scrapper):
             "span": self.serialize_span,
             "svg": self.serialize_svg,
             "path": self.serialize_path,
+            "gb-region-selector": self.serialize_gb_region_selector,
         }
 
     def serialize_generic(self, el, children):
