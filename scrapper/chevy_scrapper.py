@@ -41,7 +41,9 @@ class ChevyScapper(Scrapper):
         navbar = self.parse_content(
             response, "//gb-global-nav/template[@id='gb-global-nav-content']", "navbar"
         )
-        body_content = self.parse_content(response, "//main[@id='gb-main-content']", "body")
+        body_content = self.parse_content(
+            response, "//main[@id='gb-main-content']", "body"
+        )
         footer = self.parse_content(response, "//gb-global-footer", "footer")
 
         yield {
@@ -59,15 +61,22 @@ class ChevyScapper(Scrapper):
                 self.chevy_website
                 tree = [
                     n
-                    for n in (self.dfs(ch, self.chevy_website) for ch in root[0].xpath("./*"))
+                    for n in (
+                        self.dfs(ch, self.chevy_website) for ch in root[0].xpath("./*")
+                    )
                     if n is not None
                 ]
                 return tree
             else:
-                return {parent_name: f"Unable to parse {parent_name} content by {self.spider_name}"}
+                return {
+                    parent_name: f"Unable to parse {parent_name} content by {self.spider_name}"
+                }
         except Exception as e:
             self.logger.error(f"Error parsing {parent_name}: {str(e)}")
-            return {"error": f"{parent_name} parsing failed: {str(e)}", "status": "error"}
+            return {
+                "error": f"{parent_name} parsing failed: {str(e)}",
+                "status": "error",
+            }
 
     EXCLUDE = {
         "script",
@@ -202,7 +211,9 @@ class ChevyScapper(Scrapper):
             "a": {
                 "text": self.all_text(el),
                 "href": self._norm_url(base, href),
-                "link_type": ("internal" if self.is_internal_link(href, base) else "external")
+                "link_type": (
+                    "internal" if self.is_internal_link(href, base) else "external"
+                )
                 if href
                 else None,
                 "target": el.attrib.get("target"),
@@ -216,7 +227,9 @@ class ChevyScapper(Scrapper):
             "button": {
                 "text": self.all_text(el),
                 "url": self._norm_url(base, act),
-                "link_type": ("internal" if self.is_internal_link(act, base) else "external")
+                "link_type": (
+                    "internal" if self.is_internal_link(act, base) else "external"
+                )
                 if act
                 else None,
                 # "classname": el.attrib.get("class", ""),
@@ -239,7 +252,9 @@ class ChevyScapper(Scrapper):
                 "src": self._norm_url(base, src),
                 "alt": el.attrib.get("alt"),
                 "title": el.attrib.get("title"),
-                "link_type": ("internal" if self.is_internal_link(src, base) else "external")
+                "link_type": (
+                    "internal" if self.is_internal_link(src, base) else "external"
+                )
                 if src
                 else None,
                 "loading": el.attrib.get("loading"),
@@ -271,7 +286,9 @@ class ChevyScapper(Scrapper):
         return {
             "gb-dynamic-text": {
                 "country": el.attrib.get("country"),
-                "regional_information": self.parse_json(el.attrib.get("regional-information-json")),
+                "regional_information": self.parse_json(
+                    el.attrib.get("regional-information-json")
+                ),
                 **({"content": children} if children else {}),
             }
         }
@@ -391,7 +408,9 @@ class ChevyScapper(Scrapper):
 
         filtered_children = []
         for ch in children or []:
-            if isinstance(ch, dict) and ("path" in ch or ch.get("tag", "").endswith("path")):
+            if isinstance(ch, dict) and (
+                "path" in ch or ch.get("tag", "").endswith("path")
+            ):
                 continue
             filtered_children.append(ch)
 
