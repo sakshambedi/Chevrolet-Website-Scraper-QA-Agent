@@ -57,7 +57,6 @@ class ChevyScapper(Scrapper):
         try:
             root = response.xpath(parent_search)
             if root:
-                self.chevy_website
                 tree = [
                     n
                     for n in (
