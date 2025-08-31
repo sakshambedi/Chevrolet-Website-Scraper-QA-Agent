@@ -87,10 +87,8 @@ class ChevyScapper(Scrapper):
         "gb-adv-grid",
         "gb-wrapper",
         "gb-responsive-image",
-        "adv-col",
-        "gb-tab-nav",  # usually just adds nodes in tree, wraps an unordered list
-        "gb-adv-grid",
         "adv-col",  # adds a column, we just need the main grid
+        "gb-tab-nav",  # usually just adds nodes in tree, wraps an unordered list
         "section",
         "nav",
         "article",
