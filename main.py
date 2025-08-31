@@ -1,7 +1,7 @@
 import click
 from scrapy.crawler import CrawlerProcess
 
-from scrapper.chevy_scrapper import ChevyScapper
+from scrapper.chevy_scrapper import ChevyScrapper
 from utils.logger import Logger
 
 logger = Logger(__name__).get_logger()
@@ -30,7 +30,7 @@ def main(save_html, log_level) -> None:
     logger.info(f"Save html : {save_html}")
 
     process = CrawlerProcess(settings={})
-    process.crawl(ChevyScapper, save_html=save_html)
+    process.crawl(ChevyScrapper, save_html=save_html)
     process.start()
 
 

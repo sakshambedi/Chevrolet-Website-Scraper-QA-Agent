@@ -158,7 +158,7 @@ custom_settings = {
 **Inheritance Hierarchy**: Abstract base class enables site-specific implementations
 
 ```
-Scrapper (ABC) → ChevyScapper → [Future: FordScapper, ToyotaScapper]
+Scrapper (ABC) → ChevyScrapper → [Future: FordScapper, ToyotaScapper]
 ```
 
 **Configuration Management**: Environment-driven settings with sensible defaults

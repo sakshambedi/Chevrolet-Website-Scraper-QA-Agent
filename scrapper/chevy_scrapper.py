@@ -4,7 +4,7 @@ from urllib.parse import urljoin
 from scrapper.scrapper import Scrapper
 
 
-class ChevyScapper(Scrapper):
+class ChevyScrapper(Scrapper):
     @property
     def spider_name(self) -> str:
         return "chevy_spider" + "_DEV" if self.DEV_MODE else "_PROD"
@@ -24,7 +24,7 @@ class ChevyScapper(Scrapper):
 
     def parse(self, response):
         self.logger.info(f"DEV_MODE: {self.DEV_MODE}")
-        self.logger.info(f"Processing {response.url} in ChevyScapper")
+        self.logger.info(f"Processing {response.url} in ChevyScrapper")
         self.logger.info(f"Local URL: {self.local_url}")
         self.logger.info(f"Prod URL: {self.prod_url}")
 
