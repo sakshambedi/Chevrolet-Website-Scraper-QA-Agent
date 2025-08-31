@@ -457,31 +457,33 @@ class ChevyScapper(Scrapper):
     def serialize_disclosure(self, el, _base, _children):
         pass
 
+    _NATIVE_SERIALIZERS = {
+        "a": serialize_a,
+        "button": serialize_button_like,
+        "input": serialize_button_like,
+        "img": serialize_img,
+        "source": serialize_source,
+        "gb-dynamic-text": serialize_gb_dynamic_text,
+        "h1": serialize_heading,
+        "h2": serialize_heading,
+        "h3": serialize_heading,
+        "h4": serialize_heading,
+        "h5": serialize_heading,
+        "h6": serialize_heading,
+        "ul": serialize_ul,
+        "ol": serialize_ol,
+        "li": serialize_li,
+        "p": serialize_p,
+        "gb-myaccount-flyout": serialize_myaccount_flyout,
+        "gb-disclosure": serialize_disclosure,
+        "span": serialize_span,
+        "svg": serialize_svg,
+        "path": serialize_path,
+        "gb-region-selector": serialize_gb_region_selector,
+    }
+
     def get_native(self):
-        return {
-            "a": self.serialize_a,
-            "button": self.serialize_button_like,
-            "input": self.serialize_button_like,
-            "img": self.serialize_img,
-            "source": self.serialize_source,
-            "gb-dynamic-text": self.serialize_gb_dynamic_text,
-            "h1": self.serialize_heading,
-            "h2": self.serialize_heading,
-            "h3": self.serialize_heading,
-            "h4": self.serialize_heading,
-            "h5": self.serialize_heading,
-            "h6": self.serialize_heading,
-            "ul": self.serialize_ul,
-            "ol": self.serialize_ol,
-            "li": self.serialize_li,
-            "p": self.serialize_p,
-            "gb-myaccount-flyout": self.serialize_myaccount_flyout,
-            "gb-disclosure": self.serialize_disclosure,
-            "span": self.serialize_span,
-            "svg": self.serialize_svg,
-            "path": self.serialize_path,
-            "gb-region-selector": self.serialize_gb_region_selector,
-        }
+        return self._NATIVE_SERIALIZERS
 
     def serialize_generic(self, el, children):
         node = {"tag": el.root.tag.lower()}
@@ -621,7 +623,7 @@ class ChevyScapper(Scrapper):
 
     def dfs(self, el, base):
         tag = el.root.tag.lower()
-        NATIVE = self.get_native()
+        NATIVE = self._NATIVE_SERIALIZERS
 
         if tag in self.EXCLUDE:
             kids = []
