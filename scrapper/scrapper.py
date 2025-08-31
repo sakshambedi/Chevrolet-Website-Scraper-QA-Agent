@@ -178,7 +178,7 @@ class Scrapper(Spider, ABC):
         og_meta = {}
         og_meta["type"] = response.xpath('//meta[@property="og:type"]/@content').get()
         og_meta["url"] = response.xpath('//meta[@property="og:url"]/@content').get()
-        og_meta["site_name"] = response.xpath('//meta[@name="og:site_name"]/@content').get()
+        og_meta["site_name"] = response.xpath('//meta[@property="og:site_name"]/@content').get()
 
         # Twitter metadata
         twitter_meta = {}
