@@ -402,7 +402,17 @@ class ChevyScapper(Scrapper):
         if not txt and not clean_children and not cls and not attrs:
             return None
 
-        return {"p": txt} if txt else None
+        out = {}
+        if txt:
+            out["text"] = txt
+        if clean_children:
+            out["content"] = clean_children
+        if cls:
+            out["class"] = cls
+        if attrs:
+            out["attrs"] = attrs
+
+        return {"p": out}
 
     def _qualname(self, attr, el):
         if attr.startswith("{"):
