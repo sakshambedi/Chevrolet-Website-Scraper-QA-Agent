@@ -7,10 +7,6 @@ from scrapy import Request
 from scrapy.spiders import Spider
 from scrapy_playwright.page import PageMethod
 
-from utils.logger import Logger
-
-logger = Logger(__name__).get_logger()
-
 
 class Scrapper(Spider, ABC):
     """
@@ -91,16 +87,16 @@ class Scrapper(Spider, ABC):
         else:
             return [self.prod_url]
 
-    async def start(self):
+    async def start_requests(self):
         """Generate initial requests"""
-        logger.info("Starting requests")
+        self.logger.info("Starting requests")
         for url in self.start_urls:
             if self.DEV_MODE:
                 # For local files, convert to absolute file URL with proper scheme
                 # Get the absolute path
                 # Convert to file:// URL format
                 file_url = f"file://{os.path.abspath(url)}"
-                logger.info(f"Using local file: {file_url}")
+                self.logger.info(f"Using local file: {file_url}")
                 yield Request(file_url, callback=self.parse)
             else:
                 # For production, use Playwright for dynamic content
