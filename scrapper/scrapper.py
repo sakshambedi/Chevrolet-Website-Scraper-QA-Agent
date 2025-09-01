@@ -25,7 +25,10 @@ class Scrapper(Spider, ABC):
 
     custom_settings = {
         "FEEDS": {
-            f"output_{'DEV' if DEV_MODE else 'PROD'}.json": {"format": "json", "overwrite": True}
+            f"output_{'DEV' if DEV_MODE else 'PROD'}.json": {
+                "format": "json",
+                "overwrite": True,
+            }
         },
         "ROBOTSTXT_OBEY": True,
         "LOG_LEVEL": "WARNING",
@@ -92,18 +95,16 @@ class Scrapper(Spider, ABC):
             return [self.prod_url]
 
     async def start(self):
-        """Generate initial requests"""
+        """Generate initial requests (supports local files in DEV)."""
         logger.info("Starting requests")
         for url in self.start_urls:
             if self.DEV_MODE:
-                # For local files, convert to absolute file URL with proper scheme
-                # Get the absolute path
-                # Convert to file:// URL format
+                # Convert to file:// URL format for local HTML
                 file_url = f"file://{os.path.abspath(url)}"
                 logger.info(f"Using local file: {file_url}")
                 yield Request(file_url, callback=self.parse)
             else:
-                # For production, use Playwright for dynamic content
+                # In production, enable Playwright for dynamic content
                 yield Request(
                     url,
                     callback=self.parse,
@@ -178,12 +179,18 @@ class Scrapper(Spider, ABC):
         og_meta = {}
         og_meta["type"] = response.xpath('//meta[@property="og:type"]/@content').get()
         og_meta["url"] = response.xpath('//meta[@property="og:url"]/@content').get()
-        og_meta["site_name"] = response.xpath('//meta[@name="og:site_name"]/@content').get()
+        og_meta["site_name"] = response.xpath(
+            '//meta[@property="og:site_name" or @name="og:site_name"]/@content'
+        ).get()
 
         # Twitter metadata
         twitter_meta = {}
-        twitter_meta["card"] = response.xpath('//meta[@name="twitter:card"]/@content').get()
-        twitter_meta["site"] = response.xpath('//meta[@name="twitter:site"]/@content').get()
+        twitter_meta["card"] = response.xpath(
+            '//meta[@name="twitter:card"]/@content'
+        ).get()
+        twitter_meta["site"] = response.xpath(
+            '//meta[@name="twitter:site"]/@content'
+        ).get()
 
         lang = response.xpath("//html/@lang").get()
         template = response.xpath('//meta[@name="template"]/@content').get()

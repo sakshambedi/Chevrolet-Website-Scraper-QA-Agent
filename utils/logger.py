@@ -51,15 +51,12 @@ class Logger:
             # Clear any existing handlers
             cls._logger.handlers.clear()
 
-            # Convert string log level to logging constant
             numeric_level = getattr(logging, log_level.upper(), None)
             if not isinstance(numeric_level, int):
                 raise ValueError(f"Invalid log level: {log_level}")
 
-            # Set the base logger level
             cls._logger.setLevel(numeric_level)
 
-            # Create and configure console handler
             console_handler = logging.StreamHandler()
             console_handler.setLevel(numeric_level)
             formatter = logging.Formatter(format, datefmt)
@@ -69,7 +66,9 @@ class Logger:
             # Add file handler if requested
             if log_to_file:
                 if log_dir is None:
-                    raise ValueError("log_dir must be specified when log_to_file is True")
+                    raise ValueError(
+                        "log_dir must be specified when log_to_file is True"
+                    )
                 file_handler = logging.FileHandler(os.path.join(log_dir, "log.txt"))
                 file_handler.setLevel(numeric_level)
                 file_handler.setFormatter(formatter)
@@ -78,5 +77,4 @@ class Logger:
             cls._configured = True
 
 
-# Create a typed alias
 LoggerClass = logging.Logger
