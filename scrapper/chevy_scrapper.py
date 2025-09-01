@@ -26,10 +26,12 @@ class ChevyScapper(Scrapper):
     def parse(self, response):
         self.logger.info(f"DEV_MODE: {self.DEV_MODE}")
         self.logger.info(f"Processing {response.url} in ChevyScapper")
-        self.logger.info(f"Local URL: {self.local_url}")
-        self.logger.info(f"Prod URL: {self.prod_url}")
+        self.logger.info(
+            f"Local URL: {self.local_url}"
+            if self.DEV_MODE
+            else f"Prod URL: {self.prod_url}"
+        )
 
-        # Save HTML content if save_html is True and we're in production mode
         if self.save_html and not self.DEV_MODE:
             self.save_response_html(response, self.prod_url)
 
@@ -38,7 +40,6 @@ class ChevyScapper(Scrapper):
             page.close()
 
         metadata = self.extract_metadata(response)
-        # navbar = self.parse_navbar(response)
         navbar = self.parse_content(
             response, "//gb-global-nav/template[@id='gb-global-nav-content']", "navbar"
         )
@@ -75,6 +76,10 @@ class ChevyScapper(Scrapper):
                 "status": "error",
             }
 
+    # EXCLUDE tags are flattened: only their children are traversed.
+    # Note: The following broad tags are intentionally excluded to reduce
+    # structural noise: 'div', 'nav', 'section', 'article'. If richer
+    # structure is needed later, consider moving them to WRAPPERS instead.
     EXCLUDE = {
         "script",
         "style",
@@ -83,10 +88,8 @@ class ChevyScapper(Scrapper):
         "gb-adv-grid",
         "gb-wrapper",
         "gb-responsive-image",
-        "adv-col",
-        "gb-tab-nav",  # usually just adds nodes in tree, wraps an unordered list
-        "gb-adv-grid",
-        "adv-col",  # adds a column, we just need the main grid
+        "adv-col",  # adds a column; keep only grid content
+        "gb-tab-nav",  # wraps an unordered list; structural only
         "section",
         "nav",
         "article",
@@ -169,9 +172,6 @@ class ChevyScapper(Scrapper):
         # Parent serializers (like p) and serialize_generic can include span text via own_text.
         return None
 
-    # -------- serializers  --------
-    #
-
     def serialize_gb_region_selector(self, el, _base, children):
         attrs = {k: self.parse_json(v) for k, v in el.attrib.items()}
         out = {"gb-region-selector": attrs}
@@ -179,36 +179,11 @@ class ChevyScapper(Scrapper):
             out["gb-region-selector"]["content"] = children
         return out
 
-    # def serialize_region_selector(self, el, base, children):
-    #     def _maybe_json(val: str):
-    #         if val is None:
-    #             return None
-    #         s = html.unescape(val)
-    #         t = s.lstrip()
-    #         if t.startswith("{") or t.startswith("["):
-    #             try:
-    #                 return json.loads(t)
-    #             except json.JSONDecodeError:
-    #                 # common site escapes
-    #                 try:
-    #                     return json.loads(
-    #                         t.replace("\\/", "/").replace("\u00a0", " ").replace("\xa0", " ")
-    #                     )
-    #                 except json.JSONDecodeError:
-    #                     return s
-    #         return s
-
-    #     attrs = {k: _maybe_json(v) for k, v in el.attrib.items()}
-
-    #     node = {"gb-region-selector": attrs}
-    #     if children:
-    #         node["gb-region-selector"]["content"] = children
-    #     return node
-
     def serialize_a(self, el, base, children):
         href = el.attrib.get("href")
-        return {
-            "a": {
+        return (
+            {
+                "type": "a link",
                 "text": self.all_text(el),
                 "href": self._norm_url(base, href),
                 "link_type": (
@@ -219,12 +194,15 @@ class ChevyScapper(Scrapper):
                 "target": el.attrib.get("target"),
                 **({"content": children} if children else {}),
             }
-        }
+            if href
+            else None
+        )
 
     def serialize_button_like(self, el, base, children):
         act = el.attrib.get("href") or el.attrib.get("formaction")
-        return {
-            "button": {
+        return (
+            {
+                "type": "button",
                 "text": self.all_text(el),
                 "url": self._norm_url(base, act),
                 "link_type": (
@@ -243,23 +221,24 @@ class ChevyScapper(Scrapper):
                     }
                 ),
             }
-        }
+            if act
+            else None
+        )
 
     def serialize_img(self, el, base, _children):
         src = el.attrib.get("src")
         return {
-            "img": {
-                "src": self._norm_url(base, src),
-                "alt": el.attrib.get("alt"),
-                "title": el.attrib.get("title"),
-                "link_type": (
-                    "internal" if self.is_internal_link(src, base) else "external"
-                )
-                if src
-                else None,
-                "loading": el.attrib.get("loading"),
-                **({k: el.attrib[k] for k in el.attrib if k.startswith("data-")}),
-            }
+            "type": "image",
+            "src": self._norm_url(base, src),
+            "alt": el.attrib.get("alt"),
+            "title": el.attrib.get("title"),
+            "link_type": (
+                "internal" if self.is_internal_link(src, base) else "external"
+            )
+            if src
+            else None,
+            "loading": el.attrib.get("loading"),
+            **({k: el.attrib[k] for k in el.attrib if k.startswith("data-")}),
         }
 
     def serialize_source(self, el, base, _children):
@@ -337,43 +316,21 @@ class ChevyScapper(Scrapper):
             return None
         return {"item": txt}
 
-    # def _serialize_list(self, kind, el, base, children):
-    #     texts = []
-    #     for ch in children or []:
-    #         if isinstance(ch, dict) and "item" in ch:
-    #             val = ch["item"]
-    #             if isinstance(val, str) and val:
-    #                 texts.append(val)
-    #             elif isinstance(val, dict):
-    #                 t = val.get("text", "")
-    #                 if t:
-    #                     texts.append(t)
-
-    # return {kind: texts}
-
-    # def serialize_ul(self, el, base, children):
-    #     return self._serialize_list("ul", el, base, children)
-
-    # def serialize_ol(self, el, base, children):
-    #     return self._serialize_list("ol", el, base, children)
-
     def serialize_p(self, el, base, children):
         attrs = self._attrs_copy(el) if el.attrib else {}
         cls = attrs.pop("class", None)
         txt = self.all_text(el)
 
+        # 'br' nodes are already excluded in DFS; no need to filter here
         clean_children = []
         for ch in children or []:
-            if isinstance(ch, dict) and ch.get("tag") == "br":
-                continue
             self._append(clean_children, ch)
 
         if not txt and not clean_children and not cls and not attrs:
             return None
 
-        # Preserve inline interactive/content elements (e.g., links, buttons, images)
         if clean_children:
-            return {"p": {"text": txt or None, "content": clean_children}}
+            return {"p": txt or None, "content": clean_children}
         return {"p": txt} if txt else None
 
     def _qualname(self, attr, el):
@@ -390,7 +347,9 @@ class ChevyScapper(Scrapper):
         out = {}
         d = pa.pop("d", None)
         if d is not None:
-            out["d"] = d
+            out["d"] = "".join(
+                el for el in "".join(e for e in d.split("\n")).split("\t")
+            )
         for k, v in pa.items():
             out[self._qualname(k, el)] = v
         return out
@@ -446,31 +405,34 @@ class ChevyScapper(Scrapper):
         return {"table": {"rows": rows}}
 
     def get_native(self):
-        return {
-            "a": self.serialize_a,
-            "button": self.serialize_button_like,
-            "input": self.serialize_button_like,
-            "img": self.serialize_img,
-            "source": self.serialize_source,
-            "table": self.serialize_table,
-            "gb-dynamic-text": self.serialize_gb_dynamic_text,
-            "h1": self.serialize_heading,
-            "h2": self.serialize_heading,
-            "h3": self.serialize_heading,
-            "h4": self.serialize_heading,
-            "h5": self.serialize_heading,
-            "h6": self.serialize_heading,
-            "ul": self.serialize_ul,
-            "ol": self.serialize_ol,
-            "li": self.serialize_li,
-            "p": self.serialize_p,
-            "gb-myaccount-flyout": self.serialize_myaccount_flyout,
-            "gb-disclosure": self.serialize_disclosure,
-            "span": self.serialize_span,
-            "svg": self.serialize_svg,
-            "path": self.serialize_path,
-            "gb-region-selector": self.serialize_gb_region_selector,
-        }
+        # Lazily cache the serializer map to avoid rebuilding it on every DFS call
+        if not hasattr(self, "_native_serializers"):
+            self._native_serializers = {
+                "a": self.serialize_a,
+                "button": self.serialize_button_like,
+                "input": self.serialize_button_like,
+                "img": self.serialize_img,
+                "source": self.serialize_source,
+                "table": self.serialize_table,
+                "gb-dynamic-text": self.serialize_gb_dynamic_text,
+                "h1": self.serialize_heading,
+                "h2": self.serialize_heading,
+                "h3": self.serialize_heading,
+                "h4": self.serialize_heading,
+                "h5": self.serialize_heading,
+                "h6": self.serialize_heading,
+                "ul": self.serialize_ul,
+                "ol": self.serialize_ol,
+                "li": self.serialize_li,
+                "p": self.serialize_p,
+                "gb-myaccount-flyout": self.serialize_myaccount_flyout,
+                "gb-disclosure": self.serialize_disclosure,
+                "span": self.serialize_span,
+                "svg": self.serialize_svg,
+                "path": self.serialize_path,
+                "gb-region-selector": self.serialize_gb_region_selector,
+            }
+        return self._native_serializers
 
     def serialize_generic(self, el, children):
         node = {"tag": el.root.tag.lower()}
