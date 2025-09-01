@@ -2,7 +2,7 @@
 __pycache__
 .venv
 .env
-samples/
+samples/silverado_*
 .ropeproject/
-*.json
+output*.json
 *.ipynb

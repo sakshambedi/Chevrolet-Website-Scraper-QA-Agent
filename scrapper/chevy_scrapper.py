@@ -5,14 +5,16 @@ from scrapper.scrapper import Scrapper
 
 
 class ChevyScapper(Scrapper):
+    def __init__(self, disclosures: dict | None = None, *args, **kwargs):
+        self.disclosures = disclosures
+        super().__init__(*args, **kwargs)
+
     @property
     def spider_name(self) -> str:
-        # Ensure full name in both modes
         return "chevy_spider" + ("_DEV" if self.DEV_MODE else "_PROD")
 
     @property
     def local_url(self) -> str:
-        # Use a properly formatted local file path
         # Get the absolute path to the samples directory
         samples_dir = os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "samples"
@@ -79,7 +81,7 @@ class ChevyScapper(Scrapper):
     # EXCLUDE tags are flattened: only their children are traversed.
     # Note: The following broad tags are intentionally excluded to reduce
     # structural noise: 'div', 'nav', 'section', 'article'. If richer
-    # structure is needed later, consider moving them to WRAPPERS instead.
+    # structure is needed, consider moving them to WRAPPERS instead.
     EXCLUDE = {
         "script",
         "style",
@@ -101,6 +103,7 @@ class ChevyScapper(Scrapper):
         "div",
         # "span",
         "gb-flyout",
+        "gb-target-zone",
     }
 
     WRAPPERS = {
@@ -115,7 +118,6 @@ class ChevyScapper(Scrapper):
     }
 
     def own_text(self, el):
-        # Include direct text plus descendant span text, but exclude other tags.
         parts = [t.strip() for t in el.xpath("./text() | .//span//text()").getall()]
         text = " ".join(p for p in parts if p)
         return " ".join(text.split()) if text else ""
@@ -211,7 +213,6 @@ class ChevyScapper(Scrapper):
                 if act
                 else None,
                 # "classname": el.attrib.get("class", ""),
-                "content": children or None,
                 **({k: el.attrib[k] for k in el.attrib if k.startswith("data-")}),
                 **(
                     {
@@ -220,6 +221,7 @@ class ChevyScapper(Scrapper):
                         if k in el.attrib
                     }
                 ),
+                **({"content": children or None}),
             }
             if act
             else None
@@ -290,19 +292,15 @@ class ChevyScapper(Scrapper):
         return dict(el.attrib) if el.attrib else {}
 
     def _serialize_list(self, kind, el, base, children):
-        # keep only LI entries; flatten to a list of strings
-        texts = []
+        # Preserve LI structure rather than flattening into strings
+        items = []
         for ch in children or []:
             if isinstance(ch, dict) and "item" in ch:
                 val = ch["item"]
-                if isinstance(val, str) and val:
-                    texts.append(val)
-                elif isinstance(val, dict):
-                    t = val.get("text", "")
-                    if t:
-                        texts.append(t)
-
-        return {kind: texts}
+                if val is None:
+                    continue
+                items.append(val)
+        return {kind: items}
 
     def serialize_ul(self, el, base, children):
         return self._serialize_list("ul", el, base, children)
@@ -310,18 +308,30 @@ class ChevyScapper(Scrapper):
     def serialize_ol(self, el, base, children):
         return self._serialize_list("ol", el, base, children)
 
-    def serialize_li(self, el, _base, _children):
-        txt = self.all_text(el).strip()
-        if not txt:
-            return None
-        return {"item": txt}
+    def serialize_li(self, el, _base, children):
+        # Use only the LI's own text (exclude nested elements, except spans)
+        text_only = (self.own_text(el) or "").strip()
+
+        # Keep any serialized children (e.g., nested UL/OL, links, etc.)
+        content_children = []
+        for ch in children or []:
+            if ch is None:
+                continue
+            content_children.append(ch)
+
+        if content_children and text_only:
+            return {"item": {"text": text_only, "content": content_children}}
+        if content_children:
+            return {"item": {"content": content_children}}
+        if text_only:
+            return {"item": text_only}
+        return None
 
     def serialize_p(self, el, base, children):
         attrs = self._attrs_copy(el) if el.attrib else {}
         cls = attrs.pop("class", None)
         txt = self.all_text(el)
 
-        # 'br' nodes are already excluded in DFS; no need to filter here
         clean_children = []
         for ch in children or []:
             self._append(clean_children, ch)
@@ -386,13 +396,18 @@ class ChevyScapper(Scrapper):
 
     def serialize_disclosure(self, el, _base, _children):
         # Capture disclosure marker and reference to disclosure content if present
-        return {
-            "gb-disclosure": {
-                "text": self.all_text(el) or self.own_text(el) or None,
-                "disclosure_id": el.attrib.get("data-disclosure-id"),
-                "role": el.attrib.get("role"),
+        dis_id = el.attrib.get("data-disclosure-id")
+
+        if self.disclosures and dis_id in self.disclosures:
+            return {"gb-disclosure": self.disclosures[dis_id]["content"]}
+        else:
+            return {
+                "gb-disclosure": {
+                    "text": self.all_text(el) or self.own_text(el) or None,
+                    "disclosure_id": dis_id,
+                    "role": el.attrib.get("role"),
+                }
             }
-        }
 
     def serialize_table(self, el, _base, _children):
         # Convert tables into a simple list of row arrays for embedding
