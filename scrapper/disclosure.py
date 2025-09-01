@@ -255,7 +255,9 @@ def main(save_json: bool, out: str | None, log_level: str | None, file_name: str
 
     save_path = _default_samples_path(file_name) if (save_json and not out) else out
 
-    settings = {}
+    settings = {
+        "LOG_LEVEL": (log_level.upper() if log_level else "CRITICAL"),
+    }
     process = CrawlerProcess(settings=settings)
     process.crawl(DisclosureScrapper, save_json_to=save_path)
     process.start()
