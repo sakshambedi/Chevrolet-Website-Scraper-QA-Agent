@@ -7,10 +7,6 @@ from scrapy import Request
 from scrapy.spiders import Spider
 from scrapy_playwright.page import PageMethod
 
-from utils.logger import Logger
-
-logger = Logger(__name__).get_logger()
-
 
 class Scrapper(Spider, ABC):
     """
@@ -31,7 +27,6 @@ class Scrapper(Spider, ABC):
             }
         },
         "ROBOTSTXT_OBEY": True,
-        "LOG_LEVEL": "WARNING",
         "DEFAULT_REQUEST_HEADERS": {
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
             "Accept-Language": "en-CA,en;q=0.9",
@@ -58,7 +53,8 @@ class Scrapper(Spider, ABC):
                 "CONCURRENT_REQUESTS": 1,
             }
         )
-    print(f"Settings configured for {'DEV' if DEV_MODE else 'PRODUCTION'} mode")
+    # Logging is configured at the application entrypoint; Scrapy's
+    # LOG_LEVEL is passed via CrawlerProcess(settings=...).
 
     @property
     @abstractmethod
@@ -96,12 +92,12 @@ class Scrapper(Spider, ABC):
 
     async def start(self):
         """Generate initial requests (supports local files in DEV)."""
-        logger.info("Starting requests")
+        self.logger.info("Starting requests")
         for url in self.start_urls:
             if self.DEV_MODE:
                 # Convert to file:// URL format for local HTML
                 file_url = f"file://{os.path.abspath(url)}"
-                logger.info(f"Using local file: {file_url}")
+                self.logger.info(f"Using local file: {file_url}")
                 yield Request(file_url, callback=self.parse)
             else:
                 # In production, enable Playwright for dynamic content

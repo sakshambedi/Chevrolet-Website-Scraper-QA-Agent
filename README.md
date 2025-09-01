@@ -1,271 +1,176 @@
 # Chevrolet Silverado 1500 Semantic Scraper
 
-A focused Scrapy-based spider that converts selected parts of chevrolet.ca’s Silverado 1500 page into a compact, semantically meaningful JSON structure. It supports a development mode (offline, deterministic, fixture-based) and a production mode (live site, optionally browser-rendered), and it can inject official disclosure content into the output when present on the page.
+A Scrapy-based spider that converts selected parts of chevrolet.ca’s Silverado 1500 page into a compact, semantically meaningful JSON structure. It supports two modes: DEV (offline, deterministic, fixture-based) and PROD (live site, optionally browser-rendered). It also injects official disclosure content when present on the page.
 
-This README explains:
+This README covers how to run the project, the high-level architecture, and the key design choices.
 
-- How the data is fetched, parsed, and transformed
-- How DEV vs PROD modes work and why they differ
-- How disclosures are integrated
-- How to set up and run the project in both modes
+## Quick Start
 
-## Project layout (relevant files)
+- Create a virtualenv and install dependencies:
+  - `python -m venv .venv && source .venv/bin/activate`
+  - `pip install -r requirements.txt`
+- Install Playwright browsers for PROD rendering (chromium):
+  - `python -m playwright install chromium`
+- Ensure DEV fixtures exist:
+  - `samples/silverado1500.html`
+  - `samples/disclosurespurejson.json`
+- Run in DEV (offline):
+  - `python main.py --dev --log-level INFO`
+- Run in PROD (live):
+  - `DEV=false python main.py --prod --log-level INFO --save-html True`
 
-- `main.py` — CLI entrypoint; sets mode, loads disclosures, runs the Chevy spider
-- `scrapper/chevy_scrapper.py` — The `ChevyScapper` spider responsible for scraping and DOM-to-JSON transformation
-- `scrapper/disclosure.py` — Disclosures loader and standalone scraper; includes the `load_disclosures` function used by `main.py`
-- `samples/` — Local fixtures used in DEV mode (expected: `silverado1500.html`, `disclosurespurejson.json`)
-- `utils/logger.py` — Logging utility (not shown here)
+Notes:
 
-## How the scraper works (end-to-end flow)
+- Output is written to `output_DEV.json` or `output_PROD.json` (root) via Scrapy FEEDS.
+- `--save-html` only applies in PROD and saves a timestamped HTML to `samples/`.
 
-1. Entry (CLI)
+## Setup
 
-- Run `python main.py` with Click options to choose DEV/PROD, logging level, and whether to save HTML.
-- The CLI sets logging, stores the mode in `os.environ["DEV"]`, and loads disclosures before starting the spider.
+- Python: 3.10+ recommended
+- Dependencies: see `requirements.txt` (Scrapy, Playwright, scrapy-playwright, Click, python-dotenv, rich)
+- Playwright browsers: `python -m playwright install chromium`
+- Env var for mode: `.env` can set `DEV=TRUE` or `DEV=False`
+- Make targets: `make run` (defaults to DEV), `make rund` (DEV with INFO logs)
 
-2. Disclosures loading
+## Project Layout
 
-- `main.py` calls `load_disclosures(dev_mode=dev)` from `scrapper/disclosure.py`.
-  - In DEV: reads `samples/disclosurespurejson.json` on disk and returns a dict.
-  - In PROD: fetches <https://www.chevrolet.ca/content/chevrolet/na/ca/en/index.disclosurespurejson.html>, parses it into a dict (using robust JSON cleaning), and returns it.
-- The resulting dict is passed to the spider so disclosure markers on the page (elements with `data-disclosure-id`) can be replaced with full text.
+- `main.py` — CLI entrypoint; configures logging, sets DEV/PROD, loads disclosures, runs the spider
+- `scrapper/scrapper.py` — Base `Scrapper` class (mode-aware settings, optional Playwright, FEEDS setup, HTML saver, metadata extraction)
+- `scrapper/chevy_scrapper.py` — `ChevyScapper` spider (DOM selection + semantic JSON transformation)
+- `scrapper/disclosure.py` — `DisclosureScrapper` and `load_disclosures` utility (fetch/parse disclosures; optional CLI to refresh `samples`)
+- `samples/` — DEV fixtures: `silverado1500.html`, `disclosurespurejson.json` (+ optional split sections)
+- `utils/logger.py` — Minimal, configurable logger
 
-3. Spider launch
+## Running
 
-- `main.py` starts a `CrawlerProcess` and runs `scrapper.chevy_scrapper.ChevyScapper` with two runtime parameters:
-  - `disclosures`: the mapping loaded in step 2 (or None if unavailable)
-  - `save_html`: whether to persist a raw HTML copy (only in PROD)
+DEV (offline, deterministic)
 
-4. Page selection by mode
+- Ensures no network usage; reads `samples/silverado1500.html` and `samples/disclosurespurejson.json`.
+- Command: `python main.py --dev --log-level INFO`
 
-- In DEV: the spider reads `samples/silverado1500.html` using a `file://` URL (no network).
-- In PROD: the spider uses the live page `https://www.chevrolet.ca/en/trucks/silverado-1500`.
-  - If a browser integration (e.g., scrapy-playwright) is configured in the base `Scrapper` class, the response may contain a `playwright_page` object.
+PROD (live site)
 
-### 1. DOM-to-JSON transformation
+- Fetches the live page `https://www.chevrolet.ca/en/trucks/silverado-1500` and live disclosures endpoint.
+- Requires Playwright browsers installed. Optionally saves raw HTML for later DEV use.
+- Command: `DEV=false python main.py --prod --log-level INFO --save-html True`
 
-- The spider extracts high-level sections via XPath:
-  - Navbar: `//gb-global-nav/template[@id='gb-global-nav-content']`
-  - Main body: `//main[@id='gb-main-content']`
-  - Footer: `//gb-global-footer`
-- Each section is transformed with a DFS that:
-  - Skips layout-only or noisy tags (see EXCLUDE)
-  - Flattens trivial wrappers (see WRAPPERS)
-  - Applies specialized serializers for semantics:
-    - Links (`a`) with `text`, `href`, internal/external classification
-    - Buttons (`button`, `input[type in {button, submit, reset}]`) with action URLs, ARIA attributes, data- attributes
-    - Images (`img`) with `src`, `alt`, `title`, loading, data- attributes
-    - Responsive sources (`source`) with resolved `srcset`
-    - Headings (`h1`–`h6`) as simple text
-    - Lists (`ul`, `ol`, `li`) preserving structure
-    - Paragraphs (`p`) with inline content preserved
-    - SVG and `path` with compact path serialization
-    - Tables serialized as row arrays
-    - GM-specific components:
-      - `gb-dynamic-text` (content + structured attributes)
-      - `gb-region-selector` (structured attributes)
-      - `gb-myaccount-flyout`
-      - `gb-disclosure` (see next section)
-- The spider yields one item per page with:
-  - `url`
-  - `metadata` (via a base method, e.g., title/description/meta tags)
-  - `navbar`
-  - `main_body_content`
-  - `footer`
+CLI options (from `main.py`)
 
-6. Output
+- `--dev/--prod` (default `--dev`): Select mode
+- `--log-level, -l`: `DEBUG` | `INFO` | `WARNING` | `ERROR` | `CRITICAL` (default `CRITICAL`)
+- `--save-html, -s`: `True|False` (effective in PROD only)
 
-- Items are yielded through Scrapy’s item pipeline. The final write destination depends on FEEDS configuration.
-- If your base `Scrapper` class or project settings define FEEDS, items will be written accordingly. If not, you can override `CrawlerProcess(settings={...})` in `main.py` to add FEEDS.
+Logging
 
-Tip (optional): to force a local file export, you can change `settings={}` in `main.py` to include a FEEDS block that picks a filename based on DEV/PROD (JSON, overwrite=true).
+- The CLI `--log-level` sets both the project logger (`utils/logger.py`) and Scrapy's `LOG_LEVEL` so all log output uses a consistent level.
 
-## Disclosures integration
+Where output goes
 
-- On chevrolet.ca pages, disclosures are often referenced via elements like `<gb-disclosure data-disclosure-id="SOME_KEY">...</gb-disclosure>`.
-- At runtime, `ChevyScapper.serialize_disclosure`:
-  - Looks up `data-disclosure-id` in the `disclosures` mapping provided at spider start
-  - If found, replaces the node with the full disclosure content (cleaned of basic tags like `<p>`, `<sup>` by the loader)
-  - If not found, emits a fallback structure containing any inline text plus the `disclosure_id` for later reconciliation
+- `scrapper/scrapper.py` sets FEEDS to write JSON to `output_DEV.json` or `output_PROD.json` in the project root.
 
-Refreshing local DEV disclosures
+Mode selection caveat
 
-- Run the standalone disclosures spider to fetch the latest live payload and save it into `samples/`:
-  python scrapper/disclosure.py --save-json --file-name disclosurespurejson.json
-  - You can also use `--out <path>` to save to a custom location.
+- The base `Scrapper` reads `DEV` from the environment at import-time to configure FEEDS and Playwright.
+- To force PROD end-to-end, set the env var when launching: `DEV=false python main.py --prod ...` (or set `DEV=False` in `.env`).
+- The CLI flag controls runtime behavior and disclosure loading; the env var ensures Playwright and FEEDS are configured consistently.
 
-Programmatic loader (`load_disclosures`)
+## Architecture
 
-- Used by `main.py` for both DEV and PROD
-- DEV: reads from `samples/disclosurespurejson.json`
-- PROD: downloads and parses the remote JSON (using certifi if available)
+- Orchestrator (CLI): `main.py`
+  - Configures logs (via `utils/logger.py`)
+  - Decides mode (DEV/PROD) and sets `os.environ["DEV"]`
+  - Loads disclosures via `load_disclosures(dev_mode=...)`
+  - Runs Scrapy `CrawlerProcess` with `ChevyScapper(disclosures=..., save_html=...)`
 
-## DEV vs PROD: what changes
+- Base Spider: `scrapper/scrapper.py` (`Scrapper`)
+  - Mode-aware Scrapy `custom_settings` (FEEDS, robots, UA, Playwright handler in PROD)
+  - `start_urls` set by mode (local fixture vs live URL)
+  - `save_response_html(...)` to persist raw HTML (PROD only)
+  - `extract_metadata(...)` collects title/description/canonical/OG/Twitter/meta
 
-Data source
+- Domain Spider: `scrapper/chevy_scrapper.py` (`ChevyScapper`)
+  - Selects three major regions via XPath: navbar, main body, footer
+  - DFS over the DOM builds a semantic JSON tree
+  - Specialized serializers for common and GM-specific elements (links, buttons, images, lists, tables, `gb-*` components, SVG paths)
+  - Disclosure integration: `<gb-disclosure data-disclosure-id>` resolved via the loaded mapping
 
-- DEV: Reads from local fixtures in `samples/` (no network, deterministic)
-- PROD: Fetches the live site and live disclosures
+- Disclosures: `scrapper/disclosure.py`
+  - `load_disclosures(...)` loads from `samples` in DEV or remote endpoint in PROD, cleaning JSON and stripping basic tags (`<p>`, `'<sup>'`) from content
+  - Optional CLI to refresh and persist the latest disclosures payload to `samples/`
 
-Rendering and page handle
+Data flow
 
-- DEV: No browser/page handle; strictly file content
-- PROD: If a browser integration is configured, a `playwright_page` may be present in `response.meta` and is explicitly closed by the spider
+- DEV: `samples/*.html` + local disclosures → spider → semantic JSON → `output_DEV.json`
+- PROD: live page + remote disclosures → spider → semantic JSON → `output_PROD.json` (+ optional raw HTML saved under `samples/`)
 
-HTML capture
+## Disclosures Integration
 
-- DEV: `--save-html` is ignored
-- PROD: When `--save-html True` is set, the spider saves the raw HTML response for future offline development
+- On-page markers: `<gb-disclosure data-disclosure-id="...">`
+- At parse time: lookup the ID in the disclosures mapping
+  - Found: replace with the full content (cleaned)
+  - Missing: emit a fallback with `text` and `disclosure_id` for later reconciliation
 
-Operational characteristics
+Refresh DEV disclosures
 
-- DEV: Fast iteration, stable structure, safe for frequent runs
-- PROD: Network-dependent, reflects the current site, subject to live changes
+- `python scrapper/disclosure.py --save-json --file-name disclosurespurejson.json`
+- Use `--out <path>` to save to a custom file
+
+## What Gets Serialized (High-Level)
+
+- Noise reduction: EXCLUDE flattens structural/noisy tags (script/style/template/noscript/div/nav/section/article, grid wrappers, etc.)
+- Wrapper flattening: WRAPPERS collapses trivial containers (header/main/footer/picture/aside/gb-dynamic-text/adv-grid) unless specialized
+- Rich serializers: links, button-like elements, images and srcsets, headings, lists, paragraphs with inline content, tables (row arrays), SVG and paths, GM components (`gb-dynamic-text`, `gb-region-selector`, `gb-myaccount-flyout`, `gb-disclosure`)
+- Utilities: URL normalization, internal/external classification, robust JSON attribute parsing, NBSP handling, metadata extraction
+
+## Design Choices & Rationale
+
+- Scrapy over ad-hoc scripts: Crawl lifecycle, retries, FEEDS, throttling, and observability out of the box; easy to layer Playwright for dynamic content
+- DEV vs PROD split: Speed and determinism for iteration; live validation for production reality
+- Semantic transform: Purposefully reduce layout noise while preserving meaningful content; serializers capture intent (links/buttons/images/lists/tables) and GM-specific components
+- Disclosure enrichment: Decouple content from page markers; support offline iteration with a local disclosures snapshot
+- Output stability: One item per page with consistent shape (`url`, `metadata`, `navbar`, `main_body_content`, `footer`)
 
 ## Why Scrapy over BeautifulSoup
 
 - Purpose and scope
   - BeautifulSoup is a great HTML/XML parser, but it is not a crawler. You must glue together HTTP clients, concurrency, retries, scheduling, politeness, storage, and logging yourself.
   - Scrapy is a full crawling framework: downloader, scheduler, item pipeline, middleware, feed exports, throttling, and robust logging/stats/signals out of the box.
-
 - Robust networking and crawling primitives
   - Built-in retry/backoff, request fingerprinting/deduplication, cookies, headers, caching, robots.txt obedience, and AutoThrottle.
   - With BeautifulSoup alone, you would need to implement these around a separate HTTP client (e.g., requests/async clients).
-
 - Concurrency and performance
   - Scrapy’s async engine (Twisted) efficiently handles high concurrency with backpressure control.
   - Rolling your own asyncio/threading around BeautifulSoup is feasible but error-prone and harder to tune.
-
 - Extensibility and maintainability
   - Spiders, middlewares, and pipelines create a clean separation of concerns and make it easy to add features (e.g., disclosure enrichment, custom exporters).
   - BeautifulSoup scripts tend to become monolithic as responsibilities grow beyond parsing.
-
 - Dynamic content readiness
   - Scrapy integrates with browser automation via custom download handlers (e.g., scrapy-playwright) when needed for JS-rendered pages.
   - BeautifulSoup cannot execute JavaScript; you’d need to bring your own browser automation layer and integrate it manually.
-
 - Observability and resilience
   - Rich logging, stats, and signal hooks in Scrapy make production monitoring and debugging straightforward.
   - With BeautifulSoup-based scripts, you must build this scaffolding yourself.
-
 - Why this design choice for this project
   - The target page (chevrolet.ca) is dynamic and changes over time; we need reliability, concurrency controls, and a path to browser rendering when needed.
   - We transform multiple DOM regions into a structured JSON schema and enrich content with remote disclosures—best done with a framework that manages the crawl lifecycle and item flow.
   - Scrapy lets us keep DEV mode fast and deterministic (fixtures) while keeping PROD mode robust for live runs.
 
-## Running the code
+## Extending
 
-Prerequisites
-
-- Python 3.10+ recommended
-- Install project dependencies (for example, using a requirements.txt if present)
-- If your base Scrapper integrates a browser (e.g., scrapy-playwright), ensure browsers are installed (e.g., `playwright install chromium`)
-
-Install
-
-- Create and activate a virtual environment, then install dependencies:
-
-```bash
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-If no requirements file is provided, install at least: scrapy, click, lxml (plus certifi for PROD disclosures). If your base uses a browser, also install scrapy-playwright and Playwright, then run `playwright install chromium`.
-
-Quick start: Development mode (offline, local fixtures)
-
-- Ensure `samples/silverado1500.html` and `samples/disclosurespurejson.json` exist
-- Run:
-  ```bash
-  python main.py --dev --log-level INFO
-  ```
-  Notes:
-  - Uses the local HTML file and local disclosures
-  - Fast and deterministic
-  - `--save-html` has no effect in DEV
-
-Quick start: Production mode (live site)
-
-- Run:
-
-```bash
-python main.py --prod --log-level INFO --save-html True
-```
-
-Notes:
-
-- Fetches the live page and live disclosures
-- If configured, may open a browser context to render dynamic content
-- Saves raw HTML for reuse in DEV if `--save-html True` is provided
-
-CLI options for `main.py`
-
-- `--dev/--prod` (default: `--dev`): Mode toggle
-- `--log-level, -l`: One of DEBUG, INFO, WARNING, ERROR, CRITICAL (default: CRITICAL)
-- `--save-html, -s`: True/False, only effective in PROD
-
-Where is the output?
-
-- The spider yields a single item of the shape:
-  - url: string
-  - metadata: object (document metadata)
-  - navbar: array/object (semantic structure)
-  - main_body_content: array/object (semantic structure)
-  - footer: array/object (semantic structure)
-- File export is controlled by Scrapy FEEDS settings. If the base class or project config does not set FEEDS, nothing will be written automatically.
-- To force writing to a file, add a FEEDS block to the `CrawlerProcess` settings in `main.py` (e.g., choose a filename based on DEV/PROD, JSON format, overwrite=true).
-
-## What gets serialized (high-level)
-
-Noise reduction
-
-- EXCLUDE set drops structural/noisy tags but retains their children: script, style, template, noscript, div, nav, section, article, grid/wrapper components, etc.
-
-Wrapper flattening
-
-- WRAPPERS set flattens trivial containers (header, main, footer, picture, aside, gb-dynamic-text, adv-grid) unless a specialized serializer exists.
-
-Specialized serializers (selected)
-
-- Links (`a`): text, href, link_type (internal/external), target, nested content
-- Buttons-like (`button`, `input` with type in {button, submit, reset}): text, action URL, ARIA attrs, data- attributes
-- Images (`img`): src, alt, title, loading, data-\*
-- Sources (`source`): parsed srcset with resolved URLs
-- Headings (`h1`–`h6`): extracted text
-- Lists (`ul`, `ol`, `li`): preserves structure and nested content
-- Paragraphs (`p`): text plus nested content
-- Tables: emitted as lists of row arrays
-- SVG and `path`: compact attribute/path payload
-- GM components: `gb-dynamic-text`, `gb-region-selector`, `gb-myaccount-flyout`, `gb-disclosure` (with disclosure injection when available)
-
-Utilities
-
-- URL normalization and internal/external classification
-- Attribute JSON parsing with safe fallbacks and NBSP handling
-- Metadata extraction via the base `Scrapper` class
-
-## Updating or extending
-
-- To scrape a different Chevrolet page, change `prod_url` (and the DEV fixture) in `ChevyScapper`.
-- To support additional components, add a serializer in `get_native()` and its implementation.
-- To alter which regions of the DOM are parsed, adjust the XPaths in `parse()`.
+- Scrape a different page: update `prod_url` in `ChevyScapper` and provide a corresponding DEV fixture in `samples/`
+- Add new component serializers: implement a serializer and register it in `get_native()`
+- Change DOM regions: adjust the XPaths in `parse()`
 
 ## Troubleshooting
 
-- No output file appears
-  - Ensure FEEDS are configured either in the base `Scrapper` or passed to `CrawlerProcess(settings=...)`.
-- Disclosures missing
-  - Confirm the disclosure key exists in the loaded mapping (DEV: samples file; PROD: remote endpoint).
-  - Use the standalone disclosure CLI to refresh DEV data.
-- HTML save not working
-  - `--save-html` only applies in PROD.
-  - The save implementation lives in the base `Scrapper` (`save_response_html`), which determines the final path/name.
+- No output file: verify FEEDS in `Scrapper.custom_settings` or override with `CrawlerProcess(settings=...)`
+- Disclosures missing: ensure the ID exists in `samples/disclosurespurejson.json` (DEV) or that the remote endpoint is reachable (PROD)
+- HTML not saved: `--save-html` works only in PROD; files are timestamped under `samples/`
+- Mode mismatch: set env var on launch to align Playwright/FEEDS with CLI flags, e.g., `DEV=false python main.py --prod ...`
 
-## Why DEV and PROD modes
+## Why DEV and PROD Modes
 
-- DEV exists for speed, determinism, and cost control. You can iterate on the DOM-to-JSON logic without live network or a browser.
-- PROD exists to validate against the live site with dynamic rendering and the current disclosures content.
+- DEV: fast, deterministic, and safe for frequent runs
+- PROD: validates against the live site with dynamic rendering and current disclosures
 
-This separation keeps iteration fast while ensuring your extractor stays faithful to production reality.
+This separation keeps iteration fast while ensuring the extractor stays faithful to production reality.

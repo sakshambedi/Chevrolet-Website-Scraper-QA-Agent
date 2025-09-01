@@ -56,6 +56,8 @@ class Logger:
                 raise ValueError(f"Invalid log level: {log_level}")
 
             cls._logger.setLevel(numeric_level)
+            # Avoid duplicate logs via root handlers
+            cls._logger.propagate = False
 
             console_handler = logging.StreamHandler()
             console_handler.setLevel(numeric_level)

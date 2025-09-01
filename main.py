@@ -47,7 +47,9 @@ def main(save_html, log_level, dev) -> None:
     except Exception as e:
         logger.warning(f"Failed to load disclosures: {e}")
 
-    process = CrawlerProcess(settings={})
+    process = CrawlerProcess(settings={
+        "LOG_LEVEL": log_level.upper(),
+    })
     process.crawl(ChevyScapper, disclosures=disclosures, save_html=save_html)
     process.start()
 
