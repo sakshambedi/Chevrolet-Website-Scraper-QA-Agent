@@ -7,7 +7,8 @@ from scrapper.scrapper import Scrapper
 class ChevyScapper(Scrapper):
     @property
     def spider_name(self) -> str:
-        return "chevy_spider" + "_DEV" if self.DEV_MODE else "_PROD"
+        # Ensure full name in both modes
+        return "chevy_spider" + ("_DEV" if self.DEV_MODE else "_PROD")
 
     @property
     def local_url(self) -> str:
@@ -58,14 +59,10 @@ class ChevyScapper(Scrapper):
         try:
             root = response.xpath(parent_search)
             if root:
-                self.chevy_website
-                tree = [
-                    n
-                    for n in (
-                        self.dfs(ch, self.chevy_website) for ch in root[0].xpath("./*")
-                    )
-                    if n is not None
-                ]
+                # Build tree while flattening any list returned by dfs
+                tree = []
+                for ch in root[0].xpath("./*"):
+                    self._append(tree, self.dfs(ch, self.chevy_website))
                 return tree
             else:
                 return {
@@ -99,7 +96,7 @@ class ChevyScapper(Scrapper):
         "gb-sublinks",
         "gb-main-flyout",
         "div",
-        "span",
+        # "span",
         "gb-flyout",
     }
 
@@ -115,7 +112,8 @@ class ChevyScapper(Scrapper):
     }
 
     def own_text(self, el):
-        parts = [t.strip() for t in el.xpath("./text()").getall()]
+        # Include direct text plus descendant span text, but exclude other tags.
+        parts = [t.strip() for t in el.xpath("./text() | .//span//text()").getall()]
         text = " ".join(p for p in parts if p)
         return " ".join(text.split()) if text else ""
 
@@ -167,7 +165,9 @@ class ChevyScapper(Scrapper):
         return data
 
     def serialize_span(self, el, _base, _child):
-        return self.all_text(el)
+        # Merge span text into parent by not emitting a standalone node.
+        # Parent serializers (like p) and serialize_generic can include span text via own_text.
+        return None
 
     # -------- serializers  --------
     #
@@ -371,6 +371,9 @@ class ChevyScapper(Scrapper):
         if not txt and not clean_children and not cls and not attrs:
             return None
 
+        # Preserve inline interactive/content elements (e.g., links, buttons, images)
+        if clean_children:
+            return {"p": {"text": txt or None, "content": clean_children}}
         return {"p": txt} if txt else None
 
     def _qualname(self, attr, el):
@@ -423,7 +426,24 @@ class ChevyScapper(Scrapper):
         }
 
     def serialize_disclosure(self, el, _base, _children):
-        pass
+        # Capture disclosure marker and reference to disclosure content if present
+        return {
+            "gb-disclosure": {
+                "text": self.all_text(el) or self.own_text(el) or None,
+                "disclosure_id": el.attrib.get("data-disclosure-id"),
+                "role": el.attrib.get("role"),
+            }
+        }
+
+    def serialize_table(self, el, _base, _children):
+        # Convert tables into a simple list of row arrays for embedding
+        rows = []
+        for tr in el.xpath(".//tr"):
+            cells = tr.xpath("./th | ./td")
+            row = [self.all_text(c) for c in cells]
+            if any(cell for cell in row):
+                rows.append(row)
+        return {"table": {"rows": rows}}
 
     def get_native(self):
         return {
@@ -432,6 +452,7 @@ class ChevyScapper(Scrapper):
             "input": self.serialize_button_like,
             "img": self.serialize_img,
             "source": self.serialize_source,
+            "table": self.serialize_table,
             "gb-dynamic-text": self.serialize_gb_dynamic_text,
             "h1": self.serialize_heading,
             "h2": self.serialize_heading,
@@ -489,7 +510,8 @@ class ChevyScapper(Scrapper):
 
         if tag in self.WRAPPERS and tag not in NATIVE:
             cls = el.attrib.get("class", "").strip()
+            # Preserve all children for wrapper elements to avoid data loss
             if not cls and not self.own_text(el) and len(children) >= 1:
-                return children[0]
+                return children
 
         return self.serialize_generic(el, children)
