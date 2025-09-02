@@ -1,4 +1,4 @@
-# 🚗 Chevrolet Website — Scraper + Q&A Agent
+# 🚗 Chevrolet Website - Scraper + Q&A Agent
 
 Scrape the Silverado 1500 website, turn it into clean semantic JSON, build embedding artifacts, and ask questions with a local Q&A agent.
 
