@@ -27,36 +27,50 @@ Scrape the Silverado 1500 website, turn it into clean semantic JSON, build embed
 
 2. Scrape → semantic JSON
 
-- DEV (fixture): `python scrap.py --dev --log-level INFO` → `output_DEV.json`
-- PROD (live): `python scrap.py --prod --log-level INFO` → `output_PROD.json`
+- DEV (fixture):
+
+```bash
+python scrap.py --dev --log-level INFO # returns output_DEV.json
+```
+
+- PROD (live):
+
+ ```bash
+ python scrap.py --prod --log-level INFO # returns output_PROD.json
+ ```
+
 - Multi-page options:
   - Discover: `python scrap.py --prod --discover-vehicles --category trucks`
   - File: `python scrap.py --prod --urls-file urls.json`
 
-3. Build embedding artifacts
+1. Build embedding artifacts
 
 - JSONL + graph:
-  `python -m embedding.chevy_embed --input output_DEV.json --output embeddings/chevy_embeddings.jsonl --normalized-json output_embedding/embedding.json`
+
+```bash
+  python -m embedding.chevy_embed --input output_DEV.json --output embeddings/chevy_embeddings.jsonl --normalized-json output_embedding/embedding.json
+```
+
 - Graph only (skip JSONL):
-  `python -m embedding.chevy_embed --input output_DEV.json --skip-jsonl --normalized-json output_embedding/embedding.json`
+
+``` bash
+python -m embedding.chevy_embed --input output_DEV.json --skip-jsonl --normalized-json output_embedding/embedding.json`
+```
 
 4. Ask questions
 
 - `python agent.py`
-- The agent uses `GRAPH_PATH` if set; otherwise it looks for `output_embedding/embedding.json`.
+- The agent uses **GRAPH_PATH** if set; otherwise it looks for `output_embedding/embedding.json`.
 
 ### Example Usage
 
 Below are examples of using the agent.py interactive console:
 
 1. When you run the agent, it will build an index from your embedding file:
-   ![Agent Initialization](imgs/Screenshot%202025-09-01%20at%2010.23.52%20PM.jpg)
+   ![Agent Initialization](./imgs/Screenshot%202025-09-01%20at%2010.23.52 PM.jpg)
 
-2. You can ask questions about the Chevrolet Silverado, and the agent will find relevant context:
-   ![Agent Question](imgs/Screenshot%202025-09-01%20at%2010.24.08%20PM.jpg)
-
-3. The agent provides answers based on the retrieved information:
-   ![Agent Answer](imgs/Screenshot%202025-09-01%20at%2010.52.04%20PM.jpg)
+2. The agent provides answers based on the retrieved information:
+   ![Agent Answer](/imgs/Screenshot%202025-09-01%20at%2010.52.04 PM.jpg)
 
 The agent follows these steps for each question:
 
