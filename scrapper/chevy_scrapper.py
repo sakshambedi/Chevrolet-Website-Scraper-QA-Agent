@@ -1,12 +1,22 @@
 import os
 from urllib.parse import urljoin
 
+from scrapy import Request
+from scrapy_playwright.page import PageMethod
+
 from scrapper.scrapper import Scrapper
 
 
 class ChevyScapper(Scrapper):
-    def __init__(self, disclosures: dict | None = None, *args, **kwargs):
+    def __init__(
+        self,
+        disclosures: dict | None = None,
+        seed_urls: list[str] | None = None,
+        *args,
+        **kwargs,
+    ):
         self.disclosures = disclosures
+        self._seed_urls = seed_urls
         super().__init__(*args, **kwargs)
 
     @property
@@ -29,9 +39,7 @@ class ChevyScapper(Scrapper):
         self.logger.info(f"DEV_MODE: {self.DEV_MODE}")
         self.logger.info(f"Processing {response.url} in ChevyScapper")
         self.logger.info(
-            f"Local URL: {self.local_url}"
-            if self.DEV_MODE
-            else f"Prod URL: {self.prod_url}"
+            f"Local URL: {self.local_url}" if self.DEV_MODE else f"Prod URL: {self.prod_url}"
         )
 
         if self.save_html and not self.DEV_MODE:
@@ -45,9 +53,7 @@ class ChevyScapper(Scrapper):
         navbar = self.parse_content(
             response, "//gb-global-nav/template[@id='gb-global-nav-content']", "navbar"
         )
-        body_content = self.parse_content(
-            response, "//main[@id='gb-main-content']", "body"
-        )
+        body_content = self.parse_content(response, "//main[@id='gb-main-content']", "body")
         footer = self.parse_content(response, "//gb-global-footer", "footer")
 
         yield {
@@ -57,6 +63,40 @@ class ChevyScapper(Scrapper):
             "main_body_content": body_content,
             "footer": footer,
         }
+
+    async def start(self):
+        """Support crawling multiple seed URLs when provided.
+
+        Falls back to default single-page behavior when no seeds are passed.
+        """
+        if not self._seed_urls:
+            # Default behavior (single page)
+            async for req in super().start():
+                yield req
+            return
+
+        self.logger.info("Starting with provided seed URLs (multi-page crawl)")
+        for url in self._seed_urls:
+            if self.DEV_MODE and url.startswith("/"):
+                file_url = f"file://{os.path.abspath(url)}"
+                self.logger.info(f"Using local file: {file_url}")
+                yield Request(file_url, callback=self.parse)
+            else:
+                yield Request(
+                    url,
+                    callback=self.parse,
+                    meta={
+                        "playwright": not self.DEV_MODE,
+                        "playwright_context": "default",
+                        "playwright_context_kwargs": {
+                            "viewport": {"width": 1366, "height": 768},
+                            "locale": "en-CA",
+                        },
+                        "playwright_page_methods": [
+                            PageMethod("wait_for_load_state", "domcontentloaded"),
+                        ],
+                    },
+                )
 
     def parse_content(self, response, parent_search, parent_name):
         try:
@@ -68,9 +108,7 @@ class ChevyScapper(Scrapper):
                     self._append(tree, self.dfs(ch, self.chevy_website))
                 return tree
             else:
-                return {
-                    parent_name: f"Unable to parse {parent_name} content by {self.spider_name}"
-                }
+                return {parent_name: f"Unable to parse {parent_name} content by {self.spider_name}"}
         except Exception as e:
             self.logger.error(f"Error parsing {parent_name}: {str(e)}")
             return {
@@ -188,9 +226,7 @@ class ChevyScapper(Scrapper):
                 "type": "a link",
                 "text": self.all_text(el),
                 "href": self._norm_url(base, href),
-                "link_type": (
-                    "internal" if self.is_internal_link(href, base) else "external"
-                )
+                "link_type": ("internal" if self.is_internal_link(href, base) else "external")
                 if href
                 else None,
                 "target": el.attrib.get("target"),
@@ -207,9 +243,7 @@ class ChevyScapper(Scrapper):
                 "type": "button",
                 "text": self.all_text(el),
                 "url": self._norm_url(base, act),
-                "link_type": (
-                    "internal" if self.is_internal_link(act, base) else "external"
-                )
+                "link_type": ("internal" if self.is_internal_link(act, base) else "external")
                 if act
                 else None,
                 # "classname": el.attrib.get("class", ""),
@@ -234,9 +268,7 @@ class ChevyScapper(Scrapper):
             "src": self._norm_url(base, src),
             "alt": el.attrib.get("alt"),
             "title": el.attrib.get("title"),
-            "link_type": (
-                "internal" if self.is_internal_link(src, base) else "external"
-            )
+            "link_type": ("internal" if self.is_internal_link(src, base) else "external")
             if src
             else None,
             "loading": el.attrib.get("loading"),
@@ -267,9 +299,7 @@ class ChevyScapper(Scrapper):
         return {
             "gb-dynamic-text": {
                 "country": el.attrib.get("country"),
-                "regional_information": self.parse_json(
-                    el.attrib.get("regional-information-json")
-                ),
+                "regional_information": self.parse_json(el.attrib.get("regional-information-json")),
                 **({"content": children} if children else {}),
             }
         }
@@ -357,9 +387,7 @@ class ChevyScapper(Scrapper):
         out = {}
         d = pa.pop("d", None)
         if d is not None:
-            out["d"] = "".join(
-                el for el in "".join(e for e in d.split("\n")).split("\t")
-            )
+            out["d"] = "".join(el for el in "".join(e for e in d.split("\n")).split("\t"))
         for k, v in pa.items():
             out[self._qualname(k, el)] = v
         return out
@@ -380,9 +408,7 @@ class ChevyScapper(Scrapper):
 
         filtered_children = []
         for ch in children or []:
-            if isinstance(ch, dict) and (
-                "path" in ch or ch.get("tag", "").endswith("path")
-            ):
+            if isinstance(ch, dict) and ("path" in ch or ch.get("tag", "").endswith("path")):
                 continue
             filtered_children.append(ch)
 

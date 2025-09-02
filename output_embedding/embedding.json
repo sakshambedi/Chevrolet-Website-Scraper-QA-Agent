@@ -1,0 +1,5698 @@
+{
+  "models": [
+    {
+      "id": "silverado-1500",
+      "name": "Silverado 1500",
+      "year": 2025,
+      "canonical_url": "https://www.chevrolet.ca/en/trucks/silverado-1500",
+      "locale": "en-CA",
+      "trim_ids": [
+        "silverado-1500:wt",
+        "silverado-1500:custom",
+        "silverado-1500:lt",
+        "silverado-1500:rst",
+        "silverado-1500:custom-trail-boss",
+        "silverado-1500:ltz",
+        "silverado-1500:lt-trail-boss",
+        "silverado-1500:high-country",
+        "silverado-1500:zr2"
+      ],
+      "section_ids": [
+        "sec:chevrolet-earned-more-dependability-awards-for-trucks-than-any-other-brand",
+        "sec:towing-tenacity",
+        "sec:super-cruise-capability-3-year-trial-period-included",
+        "sec:additional-safety-and-driver-assistance-features"
+      ],
+      "asset_ids": [
+        "img:a5bc755e38",
+        "img:b46304be14",
+        "img:0ca71705d5",
+        "img:c2d2441444",
+        "img:4bfa91bc6c",
+        "img:ae07782e2c",
+        "img:abb2a3152f",
+        "img:29f78ff244",
+        "img:e95f09fc84",
+        "img:288225e465",
+        "img:6640081eb8",
+        "img:343d0a15b6",
+        "img:f118772887",
+        "img:b906e72965",
+        "img:34342a5d62",
+        "img:cc17395386",
+        "img:cc8aa3e33c",
+        "img:5578c24d92",
+        "img:9b33d5eb6f",
+        "img:f892afdf71",
+        "img:8f1d8390be",
+        "img:1a0df1245d",
+        "img:1f16428560",
+        "img:e6d4fdc654",
+        "img:e0e8b38c36",
+        "img:c1779f13ce",
+        "img:b48205958a",
+        "img:ccb94a4a06",
+        "img:497393ad1d",
+        "img:249c7afc12",
+        "img:9ce303562b",
+        "img:0bc2410d0e",
+        "img:aa6e1c1db7",
+        "img:4b32452a9c",
+        "img:eaf908f589",
+        "img:16eb47af13",
+        "img:eed50e88a9",
+        "img:536d6b2c99",
+        "img:11a837ef5b",
+        "img:3d1362da86",
+        "img:6782afbae5",
+        "img:3a07ea7943",
+        "img:a03c807627",
+        "img:a6b3bd2c88",
+        "img:cfa0e78bdc",
+        "img:403f6e5bb8",
+        "img:c43f71c5ff",
+        "img:1f4b3d40bb",
+        "img:959ab7c2d2",
+        "img:f9aca30679",
+        "img:c414081a62",
+        "img:70d851f1b8",
+        "img:fd00bde6eb",
+        "img:fb36d620ea",
+        "img:b056dd6881",
+        "img:bafee353bd",
+        "img:5ca8967861",
+        "img:0eb0fdd262",
+        "img:6f6fb5331f",
+        "img:7d64108f8e",
+        "img:eaf41c9c12",
+        "img:3e8bc3ff5d",
+        "img:f018ffc6b9",
+        "img:9d8cbf4511",
+        "img:dd10991b56",
+        "img:f2ef1f9878",
+        "img:dd5ee4c025",
+        "img:ad14f9f2ba",
+        "img:5f0080f062",
+        "img:4d8ee2f50e",
+        "img:0a9cedcc31",
+        "img:ded55d9f2b",
+        "img:ea70770433",
+        "img:7d6739dcb4",
+        "img:f46682ecb6",
+        "img:1d868dd430",
+        "img:a41d8079d8",
+        "img:2240a34b82",
+        "img:53c618517c",
+        "img:6979b423ca",
+        "img:18c8af8486",
+        "img:aa518cb94d",
+        "img:250a0f1d2e",
+        "img:d33da46f1e",
+        "img:ea772efb73",
+        "img:13e7be43b2",
+        "img:006b8766de",
+        "img:d9c206b1bf",
+        "img:433f894a5a",
+        "img:ddd18146d9",
+        "img:a368519194",
+        "img:c31ac07d7b",
+        "img:2dbedba198",
+        "img:f894be83d6",
+        "img:d5692d9ac7",
+        "img:042fc96ddf",
+        "img:01e38c2c89",
+        "img:15ff090a97",
+        "img:1c87c00103",
+        "img:c998694c6a",
+        "img:7390f01d47",
+        "img:4215e83897",
+        "img:8dc3f5f766",
+        "img:475789ab4e",
+        "img:5be6e80d16",
+        "img:beab6610a6",
+        "img:7a8014e788",
+        "img:ddc3b1271d",
+        "img:624b7862e3",
+        "img:c12c8a648a",
+        "img:3c30ecc199"
+      ],
+      "award_ids": [
+        "awd:chevrolet-earned-more-dependability-awards-for-trucks-than-any-other-brand"
+      ],
+      "title": "2025 Chevrolet Silverado 1500 | Pickup Truck | Chevrolet Canada",
+      "description": "The 2025 Silverado 1500 offers advanced interior technology that puts infotainment at your fingertips — keeping you connected almost anywhere the day takes you.",
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/silverado/2025/silverado-1500/config",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": "https://www.chevrolet.ca/en/inventory/SearchResults/?model=Silverado%2CSilverado+1500&year=2025",
+          "type": "internal"
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    }
+  ],
+  "prices": [
+    {
+      "id": "price:silverado-1500:AB",
+      "model_id": "silverado-1500",
+      "region": "AB",
+      "from_price": "51,433",
+      "as_shown_price": "92,083",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:BC",
+      "model_id": "silverado-1500",
+      "region": "BC",
+      "from_price": "51,430",
+      "as_shown_price": "92,080",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:MB",
+      "model_id": "silverado-1500",
+      "region": "MB",
+      "from_price": "51,418",
+      "as_shown_price": "92,068",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:NB",
+      "model_id": "silverado-1500",
+      "region": "NB",
+      "from_price": "51,470",
+      "as_shown_price": "92,120",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:NL",
+      "model_id": "silverado-1500",
+      "region": "NL",
+      "from_price": "51,416",
+      "as_shown_price": "92,066",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:NS",
+      "model_id": "silverado-1500",
+      "region": "NS",
+      "from_price": "51,425",
+      "as_shown_price": "92,075",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:NT",
+      "model_id": "silverado-1500",
+      "region": "NT",
+      "from_price": "51,398",
+      "as_shown_price": "92,048",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:NU",
+      "model_id": "silverado-1500",
+      "region": "NU",
+      "from_price": "51,398",
+      "as_shown_price": "92,048",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:ON",
+      "model_id": "silverado-1500",
+      "region": "ON",
+      "from_price": "51,433",
+      "as_shown_price": "92,083",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:PE",
+      "model_id": "silverado-1500",
+      "region": "PE",
+      "from_price": "51,422",
+      "as_shown_price": "92,072",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:QC",
+      "model_id": "silverado-1500",
+      "region": "QC",
+      "from_price": "51,425",
+      "as_shown_price": "92,075",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:SK",
+      "model_id": "silverado-1500",
+      "region": "SK",
+      "from_price": "51,423",
+      "as_shown_price": "92,073",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:YT",
+      "model_id": "silverado-1500",
+      "region": "YT",
+      "from_price": "51,433",
+      "as_shown_price": "92,083",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    },
+    {
+      "id": "price:silverado-1500:default",
+      "model_id": "silverado-1500",
+      "region": "default",
+      "from_price": "51,398",
+      "as_shown_price": "92,048",
+      "currency": "CAD",
+      "disclosure_ids": [
+        "disc:d4d4005221"
+      ],
+      "source": "navbar"
+    }
+  ],
+  "disclosures": [
+    {
+      "id": "disc:242a741eca",
+      "text": "class. *"
+    },
+    {
+      "id": "disc:26117bef69",
+      "text": "views, *"
+    },
+    {
+      "id": "disc:4b515987a8",
+      "text": "included) *"
+    },
+    {
+      "id": "disc:84a2db44ab",
+      "text": "capability.*"
+    },
+    {
+      "id": "disc:a4e320c6f1",
+      "text": "capability *"
+    },
+    {
+      "id": "disc:d4d4005221",
+      "text": "Price includes freight; $100 A/C charge; up to $699 dealer fee; estimated Federal Luxury Tax, if applicable to your vehicle; and other fees, levies and duties (all of which may vary by region and/or dealer). Licence, insurance, registration and applicable sales taxes are extra. Dealers may be free to set individual prices. Factory order or dealer trade may be required. See dealer for details."
+    },
+    {
+      "id": "disc:d8c27f9999",
+      "text": "cameras *"
+    }
+  ],
+  "assets": [
+    {
+      "id": "img:a5bc755e38",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/navigation-icons/global-icons/chevrolet-bowtie-120.svg",
+      "alt": "Home"
+    },
+    {
+      "id": "img:b46304be14",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/navigation-icons/global-icons/hamburger.svg",
+      "alt": "hamburger icon"
+    },
+    {
+      "id": "img:0ca71705d5",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/hybrid-and-electric/2025-equinox-ev/jelly/2025-equinox-ev-lt-gjv-driver-front-3quarter-nav1.jpg?imwidth=1200",
+      "alt": "2025 Equinox EV"
+    },
+    {
+      "id": "img:c2d2441444",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/hybrid-and-electric/2025-blazer-ev/jelly/2025-blazer-ev-3rs-gjy-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2024 Equinox"
+    },
+    {
+      "id": "img:4bfa91bc6c",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/build-and-price/2025-images/2025-silveradoev-3sp-gjv-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Silverado EV"
+    },
+    {
+      "id": "img:ae07782e2c",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/hybrid-and-electric/01-images/bolt-et-master-art.png?imwidth=1200",
+      "alt": "electric bolt ev"
+    },
+    {
+      "id": "img:abb2a3152f",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/navigation-icons/global-icons/EV_HUB_EN_resized.png?imwidth=1200",
+      "alt": "Chevrolet EV hub logo"
+    },
+    {
+      "id": "img:29f78ff244",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/hybrid-and-electric/equinox-ev/mov/DG25352_GM_Number%201%20EV%20Tile_FirstHalf%202025_DG25352_GM_Number%201%20EV%20Tile_EN_V2.png?imwidth=1200",
+      "alt": "EV tagline"
+    },
+    {
+      "id": "img:e95f09fc84",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/crossovers-suvs/2025-trax/jelly/2025-trax-1sa-gvr-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2024 Equinox"
+    },
+    {
+      "id": "img:288225e465",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/crossovers-suvs/2025-trailblazer/jelly/2025-trailblazer-1sa-ghs-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2024 Equinox"
+    },
+    {
+      "id": "img:6640081eb8",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/crossovers-suvs/2025-equinox/trim-jellys/01-images/2025-equinox-kdz-gvr-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Equinox"
+    },
+    {
+      "id": "img:343d0a15b6",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/build-and-price/2024-images/2025-blazer-1rs-gnt-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Blazer"
+    },
+    {
+      "id": "img:f118772887",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/build-and-price/2025-images/2025-traverse-2z7-gxd-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Traverse"
+    },
+    {
+      "id": "img:b906e72965",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/build-and-price/2025-images/2025-tahoe-z71-gbd-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Tahoe"
+    },
+    {
+      "id": "img:34342a5d62",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/build-and-price/2025-images/2025-suburban-3lz-g6m-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Suburban"
+    },
+    {
+      "id": "img:cc17395386",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/crossovers-suvs/rs-trim/RS-Logo-3D-2500x1000.png?imwidth=1200",
+      "alt": "2024 Equinox"
+    },
+    {
+      "id": "img:cc8aa3e33c",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/2025-colorado/jelly/2025-colorado-4zr-gal-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Colorado"
+    },
+    {
+      "id": "img:5578c24d92",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/2025-silverado-3lt-gjv-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Silverado 1500."
+    },
+    {
+      "id": "img:9b33d5eb6f",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/2025-silverado-hd/2025-silverado-2500-3lt-gno-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Silverado HD"
+    },
+    {
+      "id": "img:f892afdf71",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/simplified-nav/01-images/19815_Colorado_ZR2.png?imwidth=1200",
+      "alt": "Explore ZR2 Lineup"
+    },
+    {
+      "id": "img:8f1d8390be",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/build-and-price/2025-images/2025-corvette-3lt-gkz-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Corvette Stingray"
+    },
+    {
+      "id": "img:1a0df1245d",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/build-and-price/2025-images/2025-corvette-3lz-g26-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2024 Corvette Z06"
+    },
+    {
+      "id": "img:1f16428560",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/build-and-price/2025-images/2025-corvette-3lz-gjv-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Corvette E-Ray"
+    },
+    {
+      "id": "img:e6d4fdc654",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/upcoming/z71-reveal/jelly/2025-corvette-3lz-gxl-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Chevrolet Corvette ZR1"
+    },
+    {
+      "id": "img:e0e8b38c36",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/upcoming/2026-hp1-reveal/2026-corvette-lt7-3lz-gka-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "Corvette ZR1X"
+    },
+    {
+      "id": "img:c1779f13ce",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/performance/performance-global-nav/corvette-jelly-nav-v3.jpg?imwidth=1200",
+      "alt": "Corvette Lineup"
+    },
+    {
+      "id": "img:b48205958a",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/performance/performance-global-nav/nav-blackoutline-crossflags.png?imwidth=1200",
+      "alt": "Corvette logo"
+    },
+    {
+      "id": "img:ccb94a4a06",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/vans-and-commercial/2025-commercial-colorado/2025-colorado-4wt-gaz-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Colorado Commercial"
+    },
+    {
+      "id": "img:497393ad1d",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/vans-and-commercial/2025-silverado-ld/mov/jelly/2024-silverado1500-1wt-gaz-driver-front-3quarter-nav1.jpg?imwidth=1200",
+      "alt": "2025 Silverado LD Commercial"
+    },
+    {
+      "id": "img:249c7afc12",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/build-and-price/2025-images/2025-silverado-2500-1wt-gaz-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Commercial Silverado HD"
+    },
+    {
+      "id": "img:9ce303562b",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/build-and-price/2025-images/2025-silveradoev-8wt-gaz-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Silverado EV Commercial"
+    },
+    {
+      "id": "img:0bc2410d0e",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/build-and-price/2025-images/2025-express-1wt-gaz-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2025 Express Vans"
+    },
+    {
+      "id": "img:aa6e1c1db7",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/vans-and-commercial/2024-silverado-3500-hd-chassis-cab/nav-jelly/2020-silverado-3500-chassis-1wt-gaz-driver-front-3quarter-nav.jpg?imwidth=1200",
+      "alt": "2024 Equinox"
+    },
+    {
+      "id": "img:4b32452a9c",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/simplified-nav/01-images/25-brightdrop-nav-flyout.png?imwidth=1200",
+      "alt": "2025 Brightdrop"
+    },
+    {
+      "id": "img:eaf908f589",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/us/english/index/shared-assets/ev-icon.svg?imwidth=1200",
+      "alt": "ev icon"
+    },
+    {
+      "id": "img:16eb47af13",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/2025-silverado-hd/SilveradoHD-MY-25-NavJelly.png?imwidth=1200",
+      "alt": "2025 Silverado HD"
+    },
+    {
+      "id": "img:eed50e88a9",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/us/english/testing-folder/jessica/ref-partial-test-assets/fixed-space.png?imwidth=1200",
+      "alt": "transparent bg"
+    },
+    {
+      "id": "img:536d6b2c99",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/mastead/2025-ldretail-mh-01-v2.jpg?imwidth=960",
+      "alt": "Video of a 2025 Chevrolet Silverado LD driving off-road."
+    },
+    {
+      "id": "img:11a837ef5b",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/trucks/visid/02-images/2025/25-VDS-Most-Awarded-for-Trucks-Chevrolet.png?imwidth=1920",
+      "alt": "J.D Power"
+    },
+    {
+      "id": "img:3d1362da86",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/2025-silverado-ck10543-1wt-gaz-trimselector.png?imwidth=960",
+      "alt": "WT Jelly"
+    },
+    {
+      "id": "img:6782afbae5",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/backgrounds/2025-ldretail-trims-wt-backplate.png?imwidth=960",
+      "alt": "Construction site background for 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:3a07ea7943",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/2025-silverado-ck10543-1cx-g7c-trimselector.png?imwidth=960",
+      "alt": "Custom Jelly"
+    },
+    {
+      "id": "img:a03c807627",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/backgrounds/2025-ldretail-trims-custom-backplatee.png?imwidth=960",
+      "alt": "Night city road background for 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:a6b3bd2c88",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/2025-silverado-ck10543-1lt-gxd-trimselector.png?imwidth=960",
+      "alt": "Green field background for 2025 Chevrolet Silverado LD LT."
+    },
+    {
+      "id": "img:cfa0e78bdc",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/backgrounds/2025-ldretail-trims-lt-backplate.png?imwidth=960",
+      "alt": "Green field background for 2025 Chevrolet Silverado LD LT."
+    },
+    {
+      "id": "img:403f6e5bb8",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/2025-silverado-ck10543-1sp-gno-trimselector.png?imwidth=960",
+      "alt": "RST Jelly"
+    },
+    {
+      "id": "img:c43f71c5ff",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/backgrounds/2025-ldretail-trims-rst-backplate.png?imwidth=960",
+      "alt": "Night city background for 2025 Chevrolet Silverado LD RST."
+    },
+    {
+      "id": "img:1f4b3d40bb",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/2025-silverado-ck10543-2cx-gaz-trimselector.png?imwidth=960",
+      "alt": "Custom Trail Boss Jelly"
+    },
+    {
+      "id": "img:959ab7c2d2",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/backgrounds/2025-ldretail-trims-ctb-backplate.png?imwidth=960",
+      "alt": "Desert background for 2025 Chevrolet Silverado LD Trail Boss."
+    },
+    {
+      "id": "img:f9aca30679",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/2025-silverado-ck10543-1lz-gnt-trimselector.png?imwidth=960",
+      "alt": "LTZ Jelly"
+    },
+    {
+      "id": "img:c414081a62",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/backgrounds/2025-ldretail-trims-ltz-backplate.png?imwidth=960",
+      "alt": "Front of a house background for 2025 Chevrolet Silverado LD LTZ."
+    },
+    {
+      "id": "img:70d851f1b8",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/2025-silverado-ck10543-2lt-gbd-trimselector.png?imwidth=960",
+      "alt": "LT Trail Boss Jelly"
+    },
+    {
+      "id": "img:fd00bde6eb",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/backgrounds/2025-ldretail-trims-lt-tb-backplate.png?imwidth=960",
+      "alt": "Beautiful nature background for 2025 Chevrolet Silverado LD Trail Boss."
+    },
+    {
+      "id": "img:fb36d620ea",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/2025-silverado-ck10543-3lz-g1w-trimselector.png?imwidth=960",
+      "alt": "High Country Jelly"
+    },
+    {
+      "id": "img:b056dd6881",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/backgrounds/2025-ldretail-trims-hc-backplate.png?imwidth=960",
+      "alt": "Front of a house background for 2025 Chevrolet Silverado LD High Country."
+    },
+    {
+      "id": "img:bafee353bd",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/2025-silverado-ck10543-3lt-gjv-trimselector.png?imwidth=960",
+      "alt": "ZR2 Jelly"
+    },
+    {
+      "id": "img:5ca8967861",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/jellies/backgrounds/2025-ldretail-trims-zr2-backplate_2.png?imwidth=960",
+      "alt": "Rocky terrain background for 2025 Chevrolet Silverado LD ZR2."
+    },
+    {
+      "id": "img:0eb0fdd262",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-performance-01.png?imwidth=960",
+      "alt": "Close-up of a Chevy Silverado Engine"
+    },
+    {
+      "id": "img:6f6fb5331f",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-performance-02.png?imwidth=960",
+      "alt": "Close-up of a Chevy Silverado Engine"
+    },
+    {
+      "id": "img:7d64108f8e",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-performance-3.png?imwidth=960",
+      "alt": "A Black Duramax 3.0L Turbo-Diesel I-6 Engine"
+    },
+    {
+      "id": "img:eaf41c9c12",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/2025-ldretail-midnightedition-v02.png?imwidth=1200",
+      "alt": "A black 2025 Chevrolet Silverado LD driving with a trailer surrounded by snow-covered land."
+    },
+    {
+      "id": "img:3e8bc3ff5d",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/2025-ldretail-advtechnologies-posterframe.png?imwidth=960",
+      "alt": "A person's hand holding the steering wheel of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:f018ffc6b9",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-advtechnologies-02.png?imwidth=1200",
+      "alt": "A person's thumb on the Super Cruise activator button of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:9d8cbf4511",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-advtechnologies-03.png?imwidth=1200",
+      "alt": "Super Cruise light symbol on the steering wheel of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:dd10991b56",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-advtechnologies-04.png?imwidth=1200",
+      "alt": "Front view of the steering wheel and display dashboard of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:f2ef1f9878",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-interior-01.png?imwidth=1200",
+      "alt": "Two people in the front seats of the 2025 Chevrolet Silverado LD viewing the map on the display screen."
+    },
+    {
+      "id": "img:dd5ee4c025",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-interior-02.png?imwidth=1200",
+      "alt": "Close-up view of the 2025 Chevrolet Silverado LD display screen with built-in maps."
+    },
+    {
+      "id": "img:ad14f9f2ba",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-interior-03.png?imwidth=1200",
+      "alt": "A person enjoying the Connected Services Technology of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:5f0080f062",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/exterior/2025-ldretail-gallery-ext-15-v2.jpg?imwidth=960",
+      "alt": "Front-side view of the 2025 Chevrolet Silverado LD parked alone on a sunny day."
+    },
+    {
+      "id": "img:4d8ee2f50e",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/zr2/2025-ldretail-zr2-02v2.jpg?imwidth=1200",
+      "alt": "Front grille of a blue 2025 Chevrolet Silverado LD parked on a muddy terrain."
+    },
+    {
+      "id": "img:0a9cedcc31",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-zr2-03.png?imwidth=1200",
+      "alt": "Worms-eye view of the 2025 Chevrolet Silverado LD's reinforced chassis."
+    },
+    {
+      "id": "img:ded55d9f2b",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-highcountry.jpg?imwidth=1200",
+      "alt": "2025-ldretail-highcountry-xs.jpg"
+    },
+    {
+      "id": "img:ea70770433",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-specialeditions-01.png?imwidth=1200",
+      "alt": "2025-ldretail-specialeditions-01.png"
+    },
+    {
+      "id": "img:7d6739dcb4",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/special-editions/2025-ldretail-specialeditions-02-v3.jpg?imwidth=1200",
+      "alt": "Side view of a grey 2025 Chevrolet Silverado LD parked in a garage."
+    },
+    {
+      "id": "img:f46682ecb6",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/special-editions/2025-ldretail-specialeditions-03-v3.jpg?imwidth=1200",
+      "alt": "The 2025 Chevrolet Silverado LD parked near the mountains on a snow- covered ground."
+    },
+    {
+      "id": "img:1d868dd430",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-zr2bisonedition.png?imwidth=1200",
+      "alt": "2025-ldretail-zr2bisonedition.png"
+    },
+    {
+      "id": "img:a41d8079d8",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-redlineedition.png?imwidth=1200",
+      "alt": "2025-ldretail-redlineedition.png"
+    },
+    {
+      "id": "img:2240a34b82",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/special-editions/2025-ldretail-midnightedition-v02.png?imwidth=1200",
+      "alt": "Black Chevy Silverado Midnight Edition towing a trailer on a road in front of a sunset"
+    },
+    {
+      "id": "img:53c618517c",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/special-editions/24CHSLLD35021_V2.png?imwidth=1200",
+      "alt": "2025 Silverado LD"
+    },
+    {
+      "id": "img:6979b423ca",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-rallyedition.png?imwidth=1200",
+      "alt": "2025-ldretail-rallyedition.png"
+    },
+    {
+      "id": "img:18c8af8486",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-durabed-multiflex-07.png?imwidth=1200",
+      "alt": "A person putting wood and other equipment on the trunk of a 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:aa518cb94d",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2024-silverado-multiflex-primary.png",
+      "alt": "Multiflex Primary Gate icon of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:250a0f1d2e",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2024-silverado-multiflex-primaryload.png",
+      "alt": "Multiflex Easy Access icon of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:d33da46f1e",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2024-silverado-multiflex-easyaccess.png",
+      "alt": "Multiflex Full-Width Step icon of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:ea772efb73",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2024-silverado-multiflex-fullwidth.png",
+      "alt": "Multiflex Full-Width Step icon of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:13e7be43b2",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2024-silverado-multiflex-innergatestop.png",
+      "alt": "Multiflex Inner Gate Load Stop icon of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:006b8766de",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2024-silverado-multiflex-innergatesurface.png",
+      "alt": "Multiflex Inner Gate Work Surface icon of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:d9c206b1bf",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-line-art-crew-cab.png?imwidth=1200",
+      "alt": "A Side View of a Blueprint for 2025 Chevrolet Silverado LD Pickup Truck."
+    },
+    {
+      "id": "img:433f894a5a",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-line-art-double-cab.png?imwidth=1200",
+      "alt": "A Side View of a Line art drawing for a 2025 Chevrolet Silverado LD Double Cab Pickup Truck."
+    },
+    {
+      "id": "img:ddd18146d9",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-line-art-regular-cab.png?imwidth=1200",
+      "alt": "A Side View of a Line art drawing  for a 2025 Chevrolet Silverado LD Regular Cab Pickup Truck."
+    },
+    {
+      "id": "img:a368519194",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/preview/2025-ldretail-gallerypre-01.jpg?imwidth=960",
+      "alt": "Front passenger's view of the interiors of the 2025 Chevrolet Silverado LD with its door open. "
+    },
+    {
+      "id": "img:c31ac07d7b",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/preview/2025-ldretail-gallerypre-02.png?imwidth=960",
+      "alt": "Close-up of the Chevrolet logo on a 2025 Chevrolet Silverado LD grille."
+    },
+    {
+      "id": "img:2dbedba198",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/preview/2025-ldretail-gallerypre-03.png?imwidth=960",
+      "alt": "Three quarters view of a silver 2025 Chevrolet Silverado LD Pickup Truck parked during a sunny day."
+    },
+    {
+      "id": "img:f894be83d6",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/preview/2025-ldretail-gallerypre-04.png?imwidth=960",
+      "alt": "Front view of the steering wheel and dashboard of the 2025 Chevrolet Silverado LD Pickup Truck."
+    },
+    {
+      "id": "img:d5692d9ac7",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/preview/2025-ldretail-gallerypre-05.png?imwidth=960",
+      "alt": "Three quarters view of a white 2025 Chevrolet Silverado LD driving on a desert plain."
+    },
+    {
+      "id": "img:042fc96ddf",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/preview/2025-ldretail-gallerypre-06-v2.jpg?imwidth=960",
+      "alt": "Front view of a 2025 Chevrolet Silverado LD Pickup Truck kicking up dirt on a sunny day."
+    },
+    {
+      "id": "img:01e38c2c89",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/safety/2024-silverado-safety-pf-01.jpg?imwidth=960",
+      "alt": "Forward Collision Alert and Automatic Emergency Braking video of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:15ff090a97",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/safety/2024-silverado-safety-pf-02.jpg?imwidth=960",
+      "alt": "Front Pedestrian Braking video of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:1c87c00103",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/safety/2024-silverado-safety-pf-03.jpg?imwidth=960",
+      "alt": "Lane Keep Assist video of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:c998694c6a",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/silverado-2025-ld/gallery/safety/2024-silverado-safety-pf-04.jpg?imwidth=960",
+      "alt": "Following Distance Indicator video of the 2025 Chevrolet Silverado LD."
+    },
+    {
+      "id": "img:7390f01d47",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/us/english/index/vehicle-groups/commercial-pages/business-elite/01-images/2024-chevy-business-elite-h-outline-rgb_a.png",
+      "alt": "Business Elite Logo"
+    },
+    {
+      "id": "img:4215e83897",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/index/pickups-and-trucks/2025-silverado-ld/mov/01-images/2025-ldretail-exploretrucks-01.png?imwidth=1200",
+      "alt": "2025-ldretail-exploretrucks-01.png"
+    },
+    {
+      "id": "img:8dc3f5f766",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/trucks/2025-silverado-hd/gallery/2025-hdretail-galleryint-02.png?imwidth=960",
+      "alt": "w"
+    },
+    {
+      "id": "img:475789ab4e",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/simplified-nav/01-images/icons-footer/together-lets-drive-logo.png?imwidth=1200",
+      "alt": "together-lets-drive-logo.png"
+    },
+    {
+      "id": "img:5be6e80d16",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/simplified-nav/01-images/icons-footer/search-icon.svg",
+      "alt": "Search"
+    },
+    {
+      "id": "img:beab6610a6",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/simplified-nav/01-images/icons-footer/facebook.png",
+      "alt": "Facebook"
+    },
+    {
+      "id": "img:7a8014e788",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/simplified-nav/01-images/icons-footer/instagram.png",
+      "alt": "Instagram"
+    },
+    {
+      "id": "img:ddc3b1271d",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/simplified-nav/01-images/icons-footer/youtube.png",
+      "alt": "YouTube"
+    },
+    {
+      "id": "img:624b7862e3",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/simplified-nav/01-images/icons-footer/2022-mychevrolet-fallback-applestore.svg?imwidth=1200",
+      "alt": "2022-mychevrolet-fallback-applestore."
+    },
+    {
+      "id": "img:c12c8a648a",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/na/canada/english/index/simplified-nav/01-images/icons-footer/2022-mychevrolet-fallback-googleplay.svg?imwidth=1200",
+      "alt": "2022-mychevrolet-fallback-googleplay."
+    },
+    {
+      "id": "img:3c30ecc199",
+      "type": "image",
+      "url": "https://www.chevrolet.ca/content/dam/chevrolet/global/us/english/portable-nav/interim-unified/footer/ad-choices-icon.png",
+      "alt": "ad-choices-icon.png"
+    }
+  ],
+  "sections": [
+    {
+      "id": "sec:chevrolet-earned-more-dependability-awards-for-trucks-than-any-other-brand",
+      "model_id": "silverado-1500",
+      "title": "CHEVROLET EARNED MORE DEPENDABILITY AWARDS FOR TRUCKS THAN ANY OTHER BRAND *",
+      "body": "-J.D Power, 2025 U.S Vehicle Dependability Study\n-J.D Power, 2025 U.S Vehicle Dependability Study",
+      "disclosure_ids": [],
+      "source_url": "https://www.chevrolet.ca/en/trucks/silverado-1500"
+    },
+    {
+      "id": "sec:towing-tenacity",
+      "model_id": "silverado-1500",
+      "title": "Towing tenacity",
+      "body": "With proven trailering technology and eight available cameras * offering up to 14 views, * Silverado provides everything you need for a long day of towing.\nWith proven trailering technology and eight available cameras * offering up to 14 views, * Silverado provides everything you need for a long day of towing.\nFrom hitching to driving to parking, Silverado offers advanced camera technologies that are designed to help make your towing job easier from start to finish. Available on Silverado LT, RST, LT Trail Boss, LTZ, ZR2 and High Country.\nTrailer Side Blind Zone Alert is a trailering feature that provides visual side-mirror alerts when a moving vehicle is detected in a side blind zone that is extended to trailer lengths.",
+      "disclosure_ids": [
+        "disc:d8c27f9999",
+        "disc:26117bef69"
+      ],
+      "source_url": "https://www.chevrolet.ca/en/trucks/silverado-1500"
+    },
+    {
+      "id": "sec:super-cruise-capability-3-year-trial-period-included",
+      "model_id": "silverado-1500",
+      "title": "Super Cruise capability (3-year trial period included)",
+      "body": "Available on High Country, Super Cruise TM capability * (3-year trial period included) * offers hands-free driver assistance, managing speed and steering to keep you refreshed during your adventures — even while towing. Enjoy exploring more kilometres of compatible highways with the most advanced hands-free driving system in its class. *\nAvailable on High Country, Super Cruise TM capability * (3-year trial period included) * offers hands-free driver assistance, managing speed and steering to keep you refreshed during your adventures — even while towing. Enjoy exploring more kilometres of compatible highways with the most advanced hands-free driving system in its class. *\nSuper Cruise with Trailering * Allows you to tow your heavy load hands-free. No other competitor offers a hands-free driving system with towing capability.*\nSuper Cruise with Trailering * Allows you to tow your heavy load hands-free. No other competitor offers a hands-free driving system with towing capability.*\nAutomatic comfort and convenience Automatically adjusts the gap between you and the vehicle ahead for extra stopping distance.\nAutomatic comfort and convenience Automatically adjusts the gap between you and the vehicle ahead for extra stopping distance.\nTurn on Activate Super Cruise when the white Super Cruise icon appears on the instrument cluster.\nTurn on Activate Super Cruise when the white Super Cruise icon appears on the instrument cluster.\nLights on When the Super Cruise symbol and steering wheel indicator turn green, you’re ready to go hands-free.\nLights on When the Super Cruise symbol and steering wheel indicator turn green, you’re ready to go hands-free.\nHands off Let go of the wheel and enjoy the largest mapped hands-free driving network in North America.\nHands off Let go of the wheel and enjoy the largest mapped hands-free driving network in North America.",
+      "disclosure_ids": [
+        "disc:a4e320c6f1",
+        "disc:4b515987a8",
+        "disc:242a741eca",
+        "disc:84a2db44ab"
+      ],
+      "source_url": "https://www.chevrolet.ca/en/trucks/silverado-1500"
+    },
+    {
+      "id": "sec:additional-safety-and-driver-assistance-features",
+      "model_id": "silverado-1500",
+      "title": "Additional Safety and Driver Assistance Features",
+      "body": "There’s a lot more to the Chevrolet story and we’re committed to making sure you can start every drive with some peace of mind.\nThere’s a lot more to the Chevrolet story and we’re committed to making sure you can start every drive with some peace of mind.",
+      "disclosure_ids": [],
+      "source_url": "https://www.chevrolet.ca/en/trucks/silverado-1500"
+    }
+  ],
+  "trims": [
+    {
+      "id": "silverado-1500:wt",
+      "model_id": "silverado-1500",
+      "name": "WT",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "51,433",
+          "as_shown_price": "61,333",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "BC",
+          "from_price": "51,430",
+          "as_shown_price": "61,330",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NS",
+          "from_price": "51,425",
+          "as_shown_price": "61,325",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NT",
+          "from_price": "51,398",
+          "as_shown_price": "61,298",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NU",
+          "from_price": "51,398",
+          "as_shown_price": "61,298",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "default",
+          "from_price": "51,398",
+          "as_shown_price": "61,298",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "QC",
+          "from_price": "51,425",
+          "as_shown_price": "61,325",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NB",
+          "from_price": "51,470",
+          "as_shown_price": "61,370",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "MB",
+          "from_price": "51,418",
+          "as_shown_price": "61,318",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "PE",
+          "from_price": "51,422",
+          "as_shown_price": "61,322",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "SK",
+          "from_price": "51,423",
+          "as_shown_price": "61,323",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "YT",
+          "from_price": "51,433",
+          "as_shown_price": "61,333",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NL",
+          "from_price": "51,416",
+          "as_shown_price": "61,316",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "ON",
+          "from_price": "51,433",
+          "as_shown_price": "61,333",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        }
+      ],
+      "tagline": "The workday workhorse",
+      "features": [
+        "40/20/40 split-bench front seat with covered armrest storage and underseat storage",
+        "Available Adaptive Cruise Control *",
+        "Available 5.3L EcoTec3 V8 engine",
+        "Available 10-speed automatic transmission",
+        "Durabed featuring class-leading cargo volume and 12 standard tie-downs*"
+      ]
+    },
+    {
+      "id": "silverado-1500:custom",
+      "model_id": "silverado-1500",
+      "name": "Custom",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "58,233",
+          "as_shown_price": "64,533",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "BC",
+          "from_price": "58,230",
+          "as_shown_price": "64,530",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NS",
+          "from_price": "58,225",
+          "as_shown_price": "64,525",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NT",
+          "from_price": "58,198",
+          "as_shown_price": "64,498",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NU",
+          "from_price": "58,198",
+          "as_shown_price": "64,498",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "default",
+          "from_price": "58,198",
+          "as_shown_price": "64,498",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "QC",
+          "from_price": "58,225",
+          "as_shown_price": "64,525",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NB",
+          "from_price": "58,270",
+          "as_shown_price": "64,570",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "MB",
+          "from_price": "58,218",
+          "as_shown_price": "64,518",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "PE",
+          "from_price": "58,222",
+          "as_shown_price": "64,522",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "SK",
+          "from_price": "58,223",
+          "as_shown_price": "64,523",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "YT",
+          "from_price": "58,233",
+          "as_shown_price": "64,533",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NL",
+          "from_price": "58,216",
+          "as_shown_price": "64,516",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "ON",
+          "from_price": "58,233",
+          "as_shown_price": "64,533",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        }
+      ],
+      "tagline": "Value-driven capability",
+      "features": [
+        "TurboMax™ engine with 430 lb.-ft. of torque",
+        "20-inch Bright Silver-painted aluminum wheels",
+        "Trailering Package, remote vehicle starter system, and EZ Lift power lock and release tailgate",
+        "10-way power driver seat including lumbar control and 40/20/40 split-bench front seat with covered armrest storage and under-seat storage",
+        "Chevrolet Safety Assist *"
+      ]
+    },
+    {
+      "id": "silverado-1500:lt",
+      "model_id": "silverado-1500",
+      "name": "LT",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "63,033",
+          "as_shown_price": "68,533",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "BC",
+          "from_price": "63,030",
+          "as_shown_price": "68,530",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NS",
+          "from_price": "63,025",
+          "as_shown_price": "68,525",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NT",
+          "from_price": "62,998",
+          "as_shown_price": "68,498",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NU",
+          "from_price": "62,998",
+          "as_shown_price": "68,498",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "default",
+          "from_price": "62,998",
+          "as_shown_price": "68,498",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "QC",
+          "from_price": "63,025",
+          "as_shown_price": "68,525",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NB",
+          "from_price": "63,070",
+          "as_shown_price": "68,570",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "MB",
+          "from_price": "63,018",
+          "as_shown_price": "68,518",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "PE",
+          "from_price": "63,022",
+          "as_shown_price": "68,522",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "SK",
+          "from_price": "63,023",
+          "as_shown_price": "68,523",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "YT",
+          "from_price": "63,033",
+          "as_shown_price": "68,533",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NL",
+          "from_price": "63,016",
+          "as_shown_price": "68,516",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "ON",
+          "from_price": "63,033",
+          "as_shown_price": "68,533",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        }
+      ],
+      "tagline": "Strength and style — all day, every day",
+      "features": [
+        "13.4-inch diagonal colour touch-screen display and 12.3-inch diagonal reconfigurable Driver Information Centre",
+        "Front 40/20/40 split-bench seat and 10-way power driver seat",
+        "Available 20-inch painted-aluminum wheels with machined-face and Grazen-painted pockets",
+        "LED reflector headlamps and signature daytime running lamps",
+        "Chevrolet Safety Assist *"
+      ]
+    },
+    {
+      "id": "silverado-1500:rst",
+      "model_id": "silverado-1500",
+      "name": "RST",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "69,933",
+          "as_shown_price": "70,428",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "BC",
+          "from_price": "69,930",
+          "as_shown_price": "70,426",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NS",
+          "from_price": "69,925",
+          "as_shown_price": "70,420",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NT",
+          "from_price": "69,898",
+          "as_shown_price": "70,393",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NU",
+          "from_price": "69,898",
+          "as_shown_price": "70,393",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "default",
+          "from_price": "69,898",
+          "as_shown_price": "70,393",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "QC",
+          "from_price": "69,925",
+          "as_shown_price": "70,420",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NB",
+          "from_price": "69,970",
+          "as_shown_price": "70,465",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "MB",
+          "from_price": "69,918",
+          "as_shown_price": "70,413",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "PE",
+          "from_price": "69,922",
+          "as_shown_price": "70,417",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "SK",
+          "from_price": "69,923",
+          "as_shown_price": "70,418",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "YT",
+          "from_price": "69,933",
+          "as_shown_price": "70,428",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NL",
+          "from_price": "69,916",
+          "as_shown_price": "70,411",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "ON",
+          "from_price": "69,933",
+          "as_shown_price": "70,428",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        }
+      ],
+      "tagline": "Bold and sporty with street-inspired design",
+      "features": [
+        "Available 5.3L V8, Class- Duramax 3.0L Turbo-Diesel engine, or 6.2L V8 engine Exclusive *",
+        "Body-colour centre grille bar, bumpers and door handles",
+        "13.4-inch diagonal colour touch-screen display and 12.3-inch diagonal reconfigurable Driver Information Centre",
+        "Available 20-inch high-gloss Black wheels",
+        "Available sport mode-enabled active exhaust",
+        "Front 40/20/40 split-bench seat and 10-way power driver seat",
+        "Chevrolet Safety Assist *"
+      ]
+    },
+    {
+      "id": "silverado-1500:custom-trail-boss",
+      "model_id": "silverado-1500",
+      "name": "Custom Trail Boss",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "67,533",
+          "as_shown_price": "67,533",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "BC",
+          "from_price": "67,530",
+          "as_shown_price": "67,530",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NS",
+          "from_price": "67,525",
+          "as_shown_price": "67,525",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NT",
+          "from_price": "67,498",
+          "as_shown_price": "67,498",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NU",
+          "from_price": "67,498",
+          "as_shown_price": "67,498",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "default",
+          "from_price": "67,498",
+          "as_shown_price": "67,498",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "QC",
+          "from_price": "67,525",
+          "as_shown_price": "67,525",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NB",
+          "from_price": "67,570",
+          "as_shown_price": "67,570",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "MB",
+          "from_price": "67,518",
+          "as_shown_price": "67,518",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "PE",
+          "from_price": "67,522",
+          "as_shown_price": "67,522",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "SK",
+          "from_price": "67,523",
+          "as_shown_price": "67,523",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "YT",
+          "from_price": "67,533",
+          "as_shown_price": "67,533",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NL",
+          "from_price": "67,516",
+          "as_shown_price": "67,516",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "ON",
+          "from_price": "67,533",
+          "as_shown_price": "67,533",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        }
+      ],
+      "tagline": "Ready to take on every off-road adventure",
+      "features": [
+        "Available 5.3L V8 engine or Class- Duramax 3.0L Turbo-Diesel engine Exclusive *",
+        "2-inch factory suspension lift and Z71 Off-Road Package",
+        "Autotrac® 2-speed transfer case, automatic locking rear differential and skid plates",
+        "18-inch high-gloss Black-painted wheels with Goodyear Wrangler Territory® MT tires",
+        "Raised hood with styled Black insert",
+        "Chevrolet Safety Assist *"
+      ]
+    },
+    {
+      "id": "silverado-1500:ltz",
+      "model_id": "silverado-1500",
+      "name": "LTZ",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "78,033",
+          "as_shown_price": "82,428",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "BC",
+          "from_price": "78,030",
+          "as_shown_price": "82,426",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NS",
+          "from_price": "78,025",
+          "as_shown_price": "82,420",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NT",
+          "from_price": "77,998",
+          "as_shown_price": "82,393",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NU",
+          "from_price": "77,998",
+          "as_shown_price": "82,393",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "default",
+          "from_price": "77,998",
+          "as_shown_price": "82,393",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "QC",
+          "from_price": "78,025",
+          "as_shown_price": "82,420",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NB",
+          "from_price": "78,070",
+          "as_shown_price": "82,465",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "MB",
+          "from_price": "78,018",
+          "as_shown_price": "82,413",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "PE",
+          "from_price": "78,022",
+          "as_shown_price": "82,417",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "SK",
+          "from_price": "78,023",
+          "as_shown_price": "82,418",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "YT",
+          "from_price": "78,033",
+          "as_shown_price": "82,428",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NL",
+          "from_price": "78,016",
+          "as_shown_price": "82,411",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "ON",
+          "from_price": "78,033",
+          "as_shown_price": "82,428",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        }
+      ],
+      "tagline": "Premium style and capability",
+      "features": [
+        "13.4-inch diagonal colour touch-screen display and 12.3-inch diagonal enhanced multicolour reconfigurable Driver Information Centre",
+        "Perforated leather-appointed front seating surfaces",
+        "Front bucket seats with centre console",
+        "20-inch painted-aluminum wheels",
+        "Offering 8 cameras with up to 14 views *",
+        "Chevrolet Safety plus additional advanced safety and driver assistance technologies Assist *"
+      ]
+    },
+    {
+      "id": "silverado-1500:lt-trail-boss",
+      "model_id": "silverado-1500",
+      "name": "LT Trail Boss",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "74,533",
+          "as_shown_price": "75,028",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "BC",
+          "from_price": "74,530",
+          "as_shown_price": "75,026",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NS",
+          "from_price": "74,525",
+          "as_shown_price": "75,020",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NT",
+          "from_price": "74,498",
+          "as_shown_price": "74,993",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NU",
+          "from_price": "74,498",
+          "as_shown_price": "74,993",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "default",
+          "from_price": "74,498",
+          "as_shown_price": "74,993",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "QC",
+          "from_price": "74,525",
+          "as_shown_price": "75,020",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NB",
+          "from_price": "74,570",
+          "as_shown_price": "75,065",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "MB",
+          "from_price": "74,518",
+          "as_shown_price": "75,013",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "PE",
+          "from_price": "74,522",
+          "as_shown_price": "75,017",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "SK",
+          "from_price": "74,523",
+          "as_shown_price": "75,018",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "YT",
+          "from_price": "74,533",
+          "as_shown_price": "75,028",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NL",
+          "from_price": "74,516",
+          "as_shown_price": "75,011",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "ON",
+          "from_price": "74,533",
+          "as_shown_price": "75,028",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        }
+      ],
+      "tagline": "Iconic appearance with off-road authority",
+      "features": [
+        "Available 5.3L V8, Class- Duramax 3.0L Turbo-Diesel engine, or 6.2L V8 engine Exclusive *",
+        "2-inch factory suspension lift with Z71 Off-Road Package",
+        "Autotrac® 2-speed transfer case and automatic locking rear differential",
+        "20-inch High Gloss Black Painted Aluminum Wheels",
+        "13.4-inch diagonal colour touch-screen display and 12.3-inch diagonal enhanced multicolour reconfigurable",
+        "Driver Information Centre",
+        "Chevrolet Safety Assist *"
+      ]
+    },
+    {
+      "id": "silverado-1500:high-country",
+      "model_id": "silverado-1500",
+      "name": "High Country",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "88,833",
+          "as_shown_price": "90,028",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "BC",
+          "from_price": "88,830",
+          "as_shown_price": "90,026",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NS",
+          "from_price": "88,825",
+          "as_shown_price": "90,020",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NT",
+          "from_price": "88,798",
+          "as_shown_price": "89,993",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NU",
+          "from_price": "88,798",
+          "as_shown_price": "89,993",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "default",
+          "from_price": "88,798",
+          "as_shown_price": "89,993",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "QC",
+          "from_price": "88,825",
+          "as_shown_price": "90,020",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NB",
+          "from_price": "88,870",
+          "as_shown_price": "90,065",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "MB",
+          "from_price": "88,818",
+          "as_shown_price": "90,013",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "PE",
+          "from_price": "88,822",
+          "as_shown_price": "90,017",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "SK",
+          "from_price": "88,823",
+          "as_shown_price": "90,018",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "YT",
+          "from_price": "88,833",
+          "as_shown_price": "90,028",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NL",
+          "from_price": "88,816",
+          "as_shown_price": "90,011",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "ON",
+          "from_price": "88,833",
+          "as_shown_price": "90,028",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        }
+      ],
+      "tagline": "You’ve reached the top",
+      "features": [
+        "Available Class- Duramax 3.0L Turbo-Diesel engine or available 6.2L V8 engine Exclusive *",
+        "Premium leather seating surfaces with exclusive custom perforation and stitching pattern and authentic open-pore wood trim",
+        "13.4-inch diagonal colour touch-screen display and 12.3-inch diagonal enhanced multicolour reconfigurable Driver Information Centre",
+        "Available Super driver assistance capability with trailering (3-year trial period Cruise TM* included * )",
+        "Available power-retractable assist steps",
+        "Available sport mode-enabled active exhaust",
+        "Offering 8 cameras with up to 14 views *",
+        "Chevrolet Safety plus additional advanced safety and driver assistance technologies Assist *"
+      ]
+    },
+    {
+      "id": "silverado-1500:zr2",
+      "model_id": "silverado-1500",
+      "name": "ZR2",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "91,933",
+          "as_shown_price": "91,933",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "BC",
+          "from_price": "91,930",
+          "as_shown_price": "91,930",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NS",
+          "from_price": "91,925",
+          "as_shown_price": "91,925",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NT",
+          "from_price": "91,898",
+          "as_shown_price": "91,898",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NU",
+          "from_price": "91,898",
+          "as_shown_price": "91,898",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "default",
+          "from_price": "91,898",
+          "as_shown_price": "91,898",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "QC",
+          "from_price": "91,925",
+          "as_shown_price": "91,925",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NB",
+          "from_price": "91,970",
+          "as_shown_price": "91,970",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "MB",
+          "from_price": "91,918",
+          "as_shown_price": "91,918",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "PE",
+          "from_price": "91,922",
+          "as_shown_price": "91,922",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "SK",
+          "from_price": "91,923",
+          "as_shown_price": "91,923",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "YT",
+          "from_price": "91,933",
+          "as_shown_price": "91,933",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "NL",
+          "from_price": "91,916",
+          "as_shown_price": "91,916",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        },
+        {
+          "region": "ON",
+          "from_price": "91,933",
+          "as_shown_price": "91,933",
+          "currency": "CAD",
+          "disclosure_ids": [],
+          "source": "models"
+        }
+      ],
+      "tagline": "The peak off-road performer",
+      "features": [
+        "Standard Class- Duramax 3.0L Turbo-Diesel engine or available 6.2L V8 engine Exclusive *",
+        "Multimatic DSSV™ dampers and front and rear E-lockers",
+        "Off-road cut front bumper and large underbody aluminum skid plates",
+        "33-inch Goodyear Wrangler Territory® MT tires",
+        "13.4-inch diagonal colour touch-screen display and 12.3-inch diagonal enhanced multicolour reconfigurable Driver Information Centre",
+        "Chevrolet Safety plus additional advanced safety and driver assistance technologies Assist *"
+      ]
+    }
+  ],
+  "related_models": [
+    {
+      "id": "equinox-ev",
+      "name": "Equinox EV",
+      "canonical_url": "https://www.chevrolet.ca/en/electric/equinox-ev",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "48,433",
+          "as_shown_price": "56,903",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "48,430",
+          "as_shown_price": "56,900",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "48,418",
+          "as_shown_price": "56,888",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "48,470",
+          "as_shown_price": "56,940",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "48,416",
+          "as_shown_price": "56,886",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "48,425",
+          "as_shown_price": "56,895",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "48,398",
+          "as_shown_price": "56,868",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "48,398",
+          "as_shown_price": "56,868",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "48,433",
+          "as_shown_price": "56,903",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "48,422",
+          "as_shown_price": "56,892",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "48,425",
+          "as_shown_price": "56,895",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "48,423",
+          "as_shown_price": "56,893",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "48,433",
+          "as_shown_price": "56,903",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "48,398",
+          "as_shown_price": "56,868",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/equinox-ev/2025/equinox-ev/trims",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "blazer-ev",
+      "name": "Blazer EV",
+      "canonical_url": "https://www.chevrolet.ca/en/electric/blazer-ev",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "57,933",
+          "as_shown_price": "65,728",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "57,930",
+          "as_shown_price": "65,726",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "57,918",
+          "as_shown_price": "65,713",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "57,970",
+          "as_shown_price": "65,765",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "57,916",
+          "as_shown_price": "65,711",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "57,925",
+          "as_shown_price": "65,720",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "57,898",
+          "as_shown_price": "65,693",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "57,898",
+          "as_shown_price": "65,693",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "57,933",
+          "as_shown_price": "65,728",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "57,922",
+          "as_shown_price": "65,717",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "57,925",
+          "as_shown_price": "65,720",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "57,923",
+          "as_shown_price": "65,718",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "57,933",
+          "as_shown_price": "65,728",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "57,898",
+          "as_shown_price": "65,693",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/blazer-ev/2025/blazer-ev/trims",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "silverado-ev",
+      "name": "Silverado EV",
+      "canonical_url": "https://www.chevrolet.ca/en/electric/silverado-ev",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "67,633",
+          "as_shown_price": "117,828",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "67,630",
+          "as_shown_price": "117,826",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "67,618",
+          "as_shown_price": "117,813",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "67,670",
+          "as_shown_price": "117,865",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "67,616",
+          "as_shown_price": "117,811",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "67,625",
+          "as_shown_price": "117,820",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "67,598",
+          "as_shown_price": "117,793",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "67,598",
+          "as_shown_price": "117,793",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "67,633",
+          "as_shown_price": "117,828",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "67,622",
+          "as_shown_price": "117,817",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "67,625",
+          "as_shown_price": "117,820",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "67,623",
+          "as_shown_price": "117,818",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "67,633",
+          "as_shown_price": "117,828",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "67,598",
+          "as_shown_price": "117,793",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/silverado-ev/2025/silverado-ev/trims",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": "https://www.chevrolet.ca/en/inventory/SearchResults/?model=Silverado+EV&year=2025",
+          "type": "internal"
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "trax",
+      "name": "Trax",
+      "canonical_url": "https://www.chevrolet.ca/en/suvs/trax",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "27,833",
+          "as_shown_price": "32,828",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "27,830",
+          "as_shown_price": "32,826",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "27,818",
+          "as_shown_price": "32,813",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "27,870",
+          "as_shown_price": "32,865",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "27,816",
+          "as_shown_price": "32,811",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "27,825",
+          "as_shown_price": "32,820",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "27,798",
+          "as_shown_price": "32,793",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "27,798",
+          "as_shown_price": "32,793",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "27,833",
+          "as_shown_price": "32,828",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "27,822",
+          "as_shown_price": "32,817",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "27,825",
+          "as_shown_price": "32,820",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "27,823",
+          "as_shown_price": "32,818",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "27,833",
+          "as_shown_price": "32,828",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "27,798",
+          "as_shown_price": "32,793",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/trax/2025/trax/trims",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "previous-year-trailblazer",
+      "name": "Trailblazer",
+      "canonical_url": "https://www.chevrolet.ca/en/suvs/previous-year-trailblazer",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "31,033",
+          "as_shown_price": "37,728",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "31,030",
+          "as_shown_price": "37,726",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "31,018",
+          "as_shown_price": "37,713",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "31,070",
+          "as_shown_price": "37,765",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "31,016",
+          "as_shown_price": "37,711",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "31,025",
+          "as_shown_price": "37,720",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "30,998",
+          "as_shown_price": "37,693",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "30,998",
+          "as_shown_price": "37,693",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "31,033",
+          "as_shown_price": "37,728",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "31,022",
+          "as_shown_price": "37,717",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "31,025",
+          "as_shown_price": "37,720",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "31,023",
+          "as_shown_price": "37,718",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "31,033",
+          "as_shown_price": "37,728",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "30,998",
+          "as_shown_price": "37,693",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": null,
+          "type": null
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "previous-year-equinox",
+      "name": "Equinox",
+      "canonical_url": "https://www.chevrolet.ca/en/suvs/previous-year-equinox",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "36,733",
+          "as_shown_price": "46,673",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "36,730",
+          "as_shown_price": "46,670",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "36,718",
+          "as_shown_price": "46,658",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "36,770",
+          "as_shown_price": "46,710",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "36,716",
+          "as_shown_price": "46,656",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "36,725",
+          "as_shown_price": "46,665",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "36,698",
+          "as_shown_price": "46,638",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "36,698",
+          "as_shown_price": "46,638",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "36,733",
+          "as_shown_price": "46,673",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "36,722",
+          "as_shown_price": "46,662",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "36,725",
+          "as_shown_price": "46,665",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "36,723",
+          "as_shown_price": "46,663",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "36,733",
+          "as_shown_price": "46,673",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "36,698",
+          "as_shown_price": "46,638",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": null,
+          "type": null
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "blazer",
+      "name": "Blazer",
+      "canonical_url": "https://www.chevrolet.ca/en/suvs/blazer",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "47,133",
+          "as_shown_price": "59,173",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "47,130",
+          "as_shown_price": "59,170",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "47,118",
+          "as_shown_price": "59,158",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "47,170",
+          "as_shown_price": "59,210",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "47,116",
+          "as_shown_price": "59,156",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "47,125",
+          "as_shown_price": "59,165",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "47,098",
+          "as_shown_price": "59,138",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "47,098",
+          "as_shown_price": "59,138",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "47,133",
+          "as_shown_price": "59,173",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "47,122",
+          "as_shown_price": "59,162",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "47,125",
+          "as_shown_price": "59,165",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "47,123",
+          "as_shown_price": "59,163",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "47,133",
+          "as_shown_price": "59,173",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "47,098",
+          "as_shown_price": "59,138",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/blazer-ev/2025/blazer-ev/trims",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "traverse",
+      "name": "Traverse",
+      "canonical_url": "https://www.chevrolet.ca/en/suvs/traverse",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "54,333",
+          "as_shown_price": "60,833",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "54,330",
+          "as_shown_price": "60,830",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "54,318",
+          "as_shown_price": "60,818",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "54,370",
+          "as_shown_price": "60,870",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "54,316",
+          "as_shown_price": "60,816",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "54,325",
+          "as_shown_price": "60,825",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "54,298",
+          "as_shown_price": "60,798",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "54,298",
+          "as_shown_price": "60,798",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "54,333",
+          "as_shown_price": "60,833",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "54,322",
+          "as_shown_price": "60,822",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "54,325",
+          "as_shown_price": "60,825",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "54,323",
+          "as_shown_price": "60,823",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "54,333",
+          "as_shown_price": "60,833",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "54,298",
+          "as_shown_price": "60,798",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/traverse/2025/traverse/trims",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "tahoe",
+      "name": "Tahoe",
+      "canonical_url": "https://www.chevrolet.ca/en/suvs/tahoe",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "79,933",
+          "as_shown_price": "92,928",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "79,930",
+          "as_shown_price": "92,926",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "79,918",
+          "as_shown_price": "92,913",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "79,970",
+          "as_shown_price": "92,965",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "79,916",
+          "as_shown_price": "92,911",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "79,925",
+          "as_shown_price": "92,920",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "79,898",
+          "as_shown_price": "92,893",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "79,898",
+          "as_shown_price": "92,893",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "79,933",
+          "as_shown_price": "92,928",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "79,922",
+          "as_shown_price": "92,917",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "79,925",
+          "as_shown_price": "92,920",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "79,923",
+          "as_shown_price": "92,918",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "79,933",
+          "as_shown_price": "92,928",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "79,898",
+          "as_shown_price": "92,893",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/tahoe/2025/tahoe/trims",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "suburban",
+      "name": "Suburban",
+      "canonical_url": "https://www.chevrolet.ca/en/suvs/suburban",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "83,433",
+          "as_shown_price": "114,321",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "83,430",
+          "as_shown_price": "114,318",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "83,418",
+          "as_shown_price": "114,306",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "83,470",
+          "as_shown_price": "114,358",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "83,416",
+          "as_shown_price": "114,304",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "83,425",
+          "as_shown_price": "114,313",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "83,398",
+          "as_shown_price": "114,286",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "83,398",
+          "as_shown_price": "114,286",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "83,433",
+          "as_shown_price": "114,321",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "83,422",
+          "as_shown_price": "114,310",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "83,425",
+          "as_shown_price": "114,313",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "83,423",
+          "as_shown_price": "114,311",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "83,433",
+          "as_shown_price": "114,321",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "83,398",
+          "as_shown_price": "114,286",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/suburban/2025/suburban/trims",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "colorado",
+      "name": "Colorado",
+      "canonical_url": "https://www.chevrolet.ca/en/trucks/colorado",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "42,433",
+          "as_shown_price": "64,128",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "42,430",
+          "as_shown_price": "64,126",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "42,418",
+          "as_shown_price": "64,113",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "42,470",
+          "as_shown_price": "64,165",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "42,416",
+          "as_shown_price": "64,111",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "42,425",
+          "as_shown_price": "64,120",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "42,398",
+          "as_shown_price": "64,093",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "42,398",
+          "as_shown_price": "64,093",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "42,433",
+          "as_shown_price": "64,128",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "42,422",
+          "as_shown_price": "64,117",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "42,425",
+          "as_shown_price": "64,120",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "42,423",
+          "as_shown_price": "64,118",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "42,433",
+          "as_shown_price": "64,128",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "42,398",
+          "as_shown_price": "64,093",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/colorado/2025/colorado/trims",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "silverado-1500",
+      "name": "Silverado 1500",
+      "canonical_url": "https://www.chevrolet.ca/en/trucks/silverado-1500",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "51,433",
+          "as_shown_price": "92,083",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "51,430",
+          "as_shown_price": "92,080",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "51,418",
+          "as_shown_price": "92,068",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "51,470",
+          "as_shown_price": "92,120",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "51,416",
+          "as_shown_price": "92,066",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "51,425",
+          "as_shown_price": "92,075",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "51,398",
+          "as_shown_price": "92,048",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "51,398",
+          "as_shown_price": "92,048",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "51,433",
+          "as_shown_price": "92,083",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "51,422",
+          "as_shown_price": "92,072",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "51,425",
+          "as_shown_price": "92,075",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "51,423",
+          "as_shown_price": "92,073",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "51,433",
+          "as_shown_price": "92,083",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "51,398",
+          "as_shown_price": "92,048",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/silverado/2025/silverado-1500/config",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": "https://www.chevrolet.ca/en/inventory/SearchResults/?model=Silverado%2CSilverado+1500&year=2025",
+          "type": "internal"
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "silverado-hd",
+      "name": "Silverado HD",
+      "canonical_url": "https://www.chevrolet.ca/en/trucks/silverado-hd",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "66,933",
+          "as_shown_price": "111,348",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "66,930",
+          "as_shown_price": "111,346",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "66,918",
+          "as_shown_price": "111,333",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "66,970",
+          "as_shown_price": "111,385",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "66,916",
+          "as_shown_price": "111,331",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "66,925",
+          "as_shown_price": "111,340",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "66,898",
+          "as_shown_price": "111,313",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "66,898",
+          "as_shown_price": "111,313",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "66,933",
+          "as_shown_price": "111,348",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "66,922",
+          "as_shown_price": "111,337",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "66,925",
+          "as_shown_price": "111,340",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "66,923",
+          "as_shown_price": "111,338",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "66,933",
+          "as_shown_price": "111,348",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "66,898",
+          "as_shown_price": "111,313",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/en/trucks/silverado-hd/select",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": "https://www.chevrolet.ca/en/inventory/SearchResults/?model=Silverado+HD&year=2025&evar25=ch_2025-silverado-3500-chassis-cab_mov_nav",
+          "type": "internal"
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "corvette",
+      "name": "Corvette Stingray",
+      "canonical_url": "https://www.chevrolet.ca/en/performance/corvette",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "91,133",
+          "as_shown_price": "93,903",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "91,130",
+          "as_shown_price": "93,900",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "91,118",
+          "as_shown_price": "93,888",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "91,170",
+          "as_shown_price": "93,940",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "91,116",
+          "as_shown_price": "93,886",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "91,125",
+          "as_shown_price": "93,895",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "91,098",
+          "as_shown_price": "93,868",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "91,098",
+          "as_shown_price": "93,868",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "91,133",
+          "as_shown_price": "93,903",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "91,122",
+          "as_shown_price": "93,892",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "91,125",
+          "as_shown_price": "93,895",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "91,123",
+          "as_shown_price": "93,893",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "91,133",
+          "as_shown_price": "93,903",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "91,098",
+          "as_shown_price": "93,868",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/corvette/2025/corvette/config",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "corvette-z06",
+      "name": "Corvette Z06",
+      "canonical_url": "https://www.chevrolet.ca/en/performance/corvette-z06",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "170,727",
+          "as_shown_price": "216,657",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "170,724",
+          "as_shown_price": "216,654",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "170,712",
+          "as_shown_price": "216,642",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "170,764",
+          "as_shown_price": "216,694",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "170,710",
+          "as_shown_price": "216,640",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "170,719",
+          "as_shown_price": "216,649",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "170,692",
+          "as_shown_price": "216,622",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "170,692",
+          "as_shown_price": "216,622",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "170,727",
+          "as_shown_price": "216,657",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "170,716",
+          "as_shown_price": "216,646",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "170,719",
+          "as_shown_price": "216,649",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "170,717",
+          "as_shown_price": "216,647",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "170,727",
+          "as_shown_price": "216,657",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "170,692",
+          "as_shown_price": "216,622",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/corvette/2025/corvette-z06/config",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "corvette-eray",
+      "name": "Corvette E-Ray",
+      "canonical_url": "https://www.chevrolet.ca/en/performance/corvette-eray",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "161,727",
+          "as_shown_price": "182,355",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "161,724",
+          "as_shown_price": "182,352",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "161,712",
+          "as_shown_price": "182,340",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "161,764",
+          "as_shown_price": "182,392",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "161,710",
+          "as_shown_price": "182,338",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "161,719",
+          "as_shown_price": "182,347",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "161,692",
+          "as_shown_price": "182,320",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "161,692",
+          "as_shown_price": "182,320",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "161,727",
+          "as_shown_price": "182,355",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "161,716",
+          "as_shown_price": "182,344",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "161,719",
+          "as_shown_price": "182,347",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "161,717",
+          "as_shown_price": "182,345",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "161,727",
+          "as_shown_price": "182,355",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "161,692",
+          "as_shown_price": "182,320",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/corvette/2025/corvette-eray/config",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "corvette-zr1",
+      "name": "New Corvette ZR1",
+      "canonical_url": "https://www.chevrolet.ca/en/performance/corvette-zr1",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "266,790",
+          "as_shown_price": "297,233",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "266,788",
+          "as_shown_price": "297,230",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "266,775",
+          "as_shown_price": "297,218",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "266,827",
+          "as_shown_price": "297,270",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "266,773",
+          "as_shown_price": "297,216",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "266,782",
+          "as_shown_price": "297,225",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "266,755",
+          "as_shown_price": "297,198",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "266,755",
+          "as_shown_price": "297,198",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "266,790",
+          "as_shown_price": "297,233",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "266,779",
+          "as_shown_price": "297,222",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "266,782",
+          "as_shown_price": "297,225",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "266,780",
+          "as_shown_price": "297,223",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "266,790",
+          "as_shown_price": "297,233",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "266,755",
+          "as_shown_price": "297,198",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/corvette/2025/corvette-zr1/config",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "2026-corvette-zr1x",
+      "name": "Corvette ZR1X",
+      "canonical_url": "https://www.chevrolet.ca/en/upcoming-vehicles/2026-corvette-zr1x",
+      "prices": [],
+      "links": {
+        "build_and_price": {
+          "url": null,
+          "type": null
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "corvette-lineup",
+      "name": "Explore New 2026 Corvette",
+      "canonical_url": "https://www.chevrolet.ca/en/corvette-lineup",
+      "prices": [],
+      "links": {
+        "build_and_price": {
+          "url": null,
+          "type": null
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "2026-corvette",
+      "name": "Explore Corvette Lineup",
+      "canonical_url": "https://www.chevrolet.ca/en/upcoming-vehicles/2026-corvette",
+      "prices": [],
+      "links": {
+        "build_and_price": {
+          "url": null,
+          "type": null
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "silverado",
+      "name": "Silverado 1500",
+      "canonical_url": "https://www.chevrolet.ca/en/commercial/silverado",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "51,433",
+          "as_shown_price": "61,333",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "51,430",
+          "as_shown_price": "61,330",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "51,418",
+          "as_shown_price": "61,318",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "51,470",
+          "as_shown_price": "61,370",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "51,416",
+          "as_shown_price": "61,316",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "51,425",
+          "as_shown_price": "61,325",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "51,398",
+          "as_shown_price": "61,298",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "51,398",
+          "as_shown_price": "61,298",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "51,433",
+          "as_shown_price": "61,333",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "51,422",
+          "as_shown_price": "61,322",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "51,425",
+          "as_shown_price": "61,325",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "51,423",
+          "as_shown_price": "61,323",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "51,433",
+          "as_shown_price": "61,333",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "51,398",
+          "as_shown_price": "61,298",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/byo-vc/client/en/CA/chevrolet/silverado-ev/2025/silverado-ev/trims",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": "https://www.chevrolet.ca/en/inventory/SearchResults/?model=Silverado%2CSilverado+1500&year=2025",
+          "type": "internal"
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "express",
+      "name": "Express Vans",
+      "canonical_url": "https://www.chevrolet.ca/en/commercial/express",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "56,033",
+          "as_shown_price": "56,033",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "56,030",
+          "as_shown_price": "56,030",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "56,018",
+          "as_shown_price": "56,018",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "56,070",
+          "as_shown_price": "56,070",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "56,016",
+          "as_shown_price": "56,016",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "56,025",
+          "as_shown_price": "56,025",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "55,998",
+          "as_shown_price": "55,998",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "55,998",
+          "as_shown_price": "55,998",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "56,033",
+          "as_shown_price": "56,033",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "56,022",
+          "as_shown_price": "56,022",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "56,025",
+          "as_shown_price": "56,025",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "56,023",
+          "as_shown_price": "56,023",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "56,033",
+          "as_shown_price": "56,033",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "55,998",
+          "as_shown_price": "55,998",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": "https://www.chevrolet.ca/en/commercial/express/select",
+          "type": "internal"
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "silverado-3500hd-chassis-cab",
+      "name": "Silverado 3500HD Chassis Cab",
+      "canonical_url": "https://www.chevrolet.ca/en/commercial/silverado-3500hd-chassis-cab",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "67,333",
+          "as_shown_price": "66,333",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "67,330",
+          "as_shown_price": "66,330",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "67,318",
+          "as_shown_price": "66,318",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "67,370",
+          "as_shown_price": "66,370",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "67,316",
+          "as_shown_price": "66,316",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "67,325",
+          "as_shown_price": "66,325",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "67,298",
+          "as_shown_price": "66,298",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "67,298",
+          "as_shown_price": "66,298",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "67,333",
+          "as_shown_price": "66,333",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "67,322",
+          "as_shown_price": "66,322",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "67,325",
+          "as_shown_price": "66,325",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "67,323",
+          "as_shown_price": "66,323",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "67,333",
+          "as_shown_price": "66,333",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "67,298",
+          "as_shown_price": "66,298",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": null,
+          "type": null
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "brightdrop",
+      "name": "BrightDrop",
+      "canonical_url": "https://www.chevrolet.ca/en/commercial/brightdrop",
+      "prices": [
+        {
+          "region": "AB",
+          "from_price": "111,599",
+          "as_shown_price": "114,099",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "BC",
+          "from_price": "111,596",
+          "as_shown_price": "114,096",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "MB",
+          "from_price": "111,584",
+          "as_shown_price": "114,084",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NB",
+          "from_price": "111,636",
+          "as_shown_price": "114,136",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NL",
+          "from_price": "111,582",
+          "as_shown_price": "114,082",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NS",
+          "from_price": "111,591",
+          "as_shown_price": "114,091",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NT",
+          "from_price": "111,564",
+          "as_shown_price": "114,064",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "NU",
+          "from_price": "111,564",
+          "as_shown_price": "114,064",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "ON",
+          "from_price": "111,599",
+          "as_shown_price": "114,099",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "PE",
+          "from_price": "111,588",
+          "as_shown_price": "114,088",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "QC",
+          "from_price": "111,591",
+          "as_shown_price": "114,091",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "SK",
+          "from_price": "111,589",
+          "as_shown_price": "114,089",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "YT",
+          "from_price": "111,599",
+          "as_shown_price": "114,099",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        },
+        {
+          "region": "default",
+          "from_price": "111,564",
+          "as_shown_price": "114,064",
+          "currency": "CAD",
+          "disclosure_ids": [
+            "disc:d4d4005221"
+          ],
+          "source": "navbar"
+        }
+      ],
+      "links": {
+        "build_and_price": {
+          "url": null,
+          "type": null
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    },
+    {
+      "id": "bolt-stay-tuned",
+      "name": "Bolt EV",
+      "canonical_url": "https://www.chevrolet.ca/en/electric/bolt-stay-tuned",
+      "prices": [],
+      "links": {
+        "build_and_price": {
+          "url": null,
+          "type": null
+        },
+        "inventory": {
+          "url": null,
+          "type": null
+        },
+        "find_dealer": {
+          "url": "https://www.chevrolet.ca/en/dealer/dealer-locator/",
+          "type": "internal"
+        }
+      }
+    }
+  ],
+  "awards": [
+    {
+      "id": "awd:chevrolet-earned-more-dependability-awards-for-trucks-than-any-other-brand",
+      "model_id": "silverado-1500",
+      "title": "CHEVROLET EARNED MORE DEPENDABILITY AWARDS FOR TRUCKS THAN ANY OTHER BRAND *",
+      "summary": "-J.D Power, 2025 U.S Vehicle Dependability Study\n-J.D Power, 2025 U.S Vehicle Dependability Study",
+      "disclosure_ids": [],
+      "source_url": "https://www.chevrolet.ca/en/trucks/silverado-1500"
+    }
+  ]
+}

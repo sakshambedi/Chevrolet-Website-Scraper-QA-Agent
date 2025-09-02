@@ -1,6 +1,54 @@
-# Chevrolet Silverado 1500 Semantic Scraper
+# Chevrolet Silverado 1500 Semantic Scraper & Q&A Agent
 
-A Scrapy-based spider that converts selected parts of chevrolet.ca’s Silverado 1500 page into a compact, semantically meaningful JSON structure. It supports two modes: DEV (offline, deterministic, fixture-based) and PROD (live site, optionally browser-rendered). It also injects official disclosure content when present on the page.
+## Quickstart (End-to-End)
+
+1) Configure OpenAI and basics
+
+- Run `python setup.py` and follow prompts for `OPENAI_API_KEY` and optional `OPENAI_PROJECT`.
+- Or create `.env` from `.env.example` and set:
+  - `OPENAI_API_KEY=...`
+  - `OPENAI_PROJECT=...` (recommended when using admin/org keys)
+  - `EMBED_MODEL=text-embedding-3-small`
+  - `CHAT_MODEL=gpt-4o-mini`
+  - `GRAPH_PATH=output_embedding/embedding.json`
+
+2) Scrape a website → semantic JSON
+
+- DEV (uses local HTML fixture):
+  - `python scrap.py --dev --log-level INFO`
+  - Produces `output_DEV.json`.
+- PROD (fetches live site, enables Playwright):
+  - `python scrap.py --prod --log-level INFO`
+  - Produces `output_PROD.json`.
+- Optional multi-page crawl:
+  - Discover vehicle URLs: `python scrap.py --prod --discover-vehicles --category trucks`
+  - Or pass a file: `python scrap.py --prod --urls-file path/to/urls.json`
+
+3) Build embedding artifacts
+
+- Option A: JSONL + graph
+  - `python -m embedding.chevy_embed --input output_DEV.json --output embeddings/chevy_embeddings.jsonl --normalized-json output_embedding/embedding.json`
+  - Artifacts:
+    - `embeddings/chevy_embeddings.jsonl` (id, text, metadata, embedding=None)
+    - `output_embedding/embedding.json` (normalized graph of models/prices/sections/assets/disclosures/awards)
+- Option B: Graph only (skip JSONL)
+  - `python -m embedding.chevy_embed --input output_DEV.json --skip-jsonl --normalized-json output_embedding/embedding.json`
+  - Artifact:
+    - `output_embedding/embedding.json`
+
+4) Run the Q&A agent
+
+- `python agent.py`
+- The agent indexes `GRAPH_PATH`. If unset, it prefers `output_embedding/embedding.json`, falling back to `embedding.json`.
+
+Notes
+
+- Install dependencies: `pip install -r requirements.txt` (and `pip install openai python-dotenv rich` if needed).
+- For PROD scraping with Playwright: `pip install scrapy-playwright` then `python -m playwright install chromium`.
+
+A Scrapy-based spider that converts selected parts of chevrolet.ca's Silverado 1500 page into a compact, semantically meaningful JSON structure. It supports two modes: DEV (offline, deterministic, fixture-based) and PROD (live site, optionally browser-rendered). It also injects official disclosure content when present on the page.
+
+The project also includes a Q&A Agent that uses OpenAI embeddings and chat models to answer questions about the Chevrolet Silverado based on the scraped data.
 
 This README covers how to run the project, the high-level architecture, and the key design choices.
 
@@ -40,6 +88,9 @@ Notes:
 - `scrapper/disclosure.py` — `DisclosureScrapper` and `load_disclosures` utility (fetch/parse disclosures; optional CLI to refresh `samples`)
 - `samples/` — DEV fixtures: `silverado1500.html`, `disclosurespurejson.json` (+ optional split sections)
 - `utils/logger.py` — Minimal, configurable logger
+- `embedding/embedding.py` — Embedding orchestrator (`BaseEmbedder`, `EmbeddingConfig`, `Record`)
+- `embedding/gm_base.py` — Shared GM embedder logic (prices/sections/assets/links/related models/awards)
+- `embedding/chevy_embed.py` — Chevy-specific embedder subclass (trims, CLI)
 
 ## Running
 
@@ -67,6 +118,11 @@ Logging
 Where output goes
 
 - `scrapper/scrapper.py` sets FEEDS to write JSON to `output_DEV.json` or `output_PROD.json` in the project root.
+
+Embedding output
+
+- Run: `python -m embedding.chevy_embed --input output_DEV.json --output embeddings/chevy_embeddings.jsonl`
+- Also writes `embedding.json` (normalized graph: models/prices/disclosures/assets/sections/awards)
 
 Mode selection caveat
 
@@ -167,6 +223,8 @@ Refresh DEV disclosures
 - Disclosures missing: ensure the ID exists in `samples/disclosurespurejson.json` (DEV) or that the remote endpoint is reachable (PROD)
 - HTML not saved: `--save-html` works only in PROD; files are timestamped under `samples/`
 - Mode mismatch: set env var on launch to align Playwright/FEEDS with CLI flags, e.g., `DEV=false python main.py --prod ...`
+- Q&A Agent embedding error: verify you have the correct embedding model specified in `.env` (default is `text-embedding-3-small`)
+- Q&A Agent API key error: make sure you have a valid OpenAI API key in your `.env` file
 
 ## Why DEV and PROD Modes
 
@@ -174,3 +232,54 @@ Refresh DEV disclosures
 - PROD: validates against the live site with dynamic rendering and current disclosures
 
 This separation keeps iteration fast while ensuring the extractor stays faithful to production reality.
+
+## Q&A Agent
+
+The project includes an interactive Q&A Agent that can answer questions about the Chevrolet Silverado 1500 based on the extracted data.
+
+### Setup for Q&A Agent
+
+1. Create a `.env` file in the project root with your OpenAI API key (you can copy from `.env.example`):
+
+   ```
+   OPENAI_API_KEY=your_openai_api_key_here
+   # If using a new admin/org key, set the project to route requests:
+   # OPENAI_API_KEY_ADMIN=your_admin_api_key_here
+   # OPENAI_PROJECT=your_project_id_or_slug
+   EMBED_MODEL=text-embedding-3-small
+   CHAT_MODEL=gpt-4o-mini
+   GRAPH_PATH=output_embedding/embedding.json
+   ```
+
+2. Generate the embedding graph from your scraped data:
+
+   - JSONL + graph:
+     ```
+     python -m embedding.chevy_embed --input output_DEV.json --output embeddings/chevy_embeddings.jsonl --normalized-json output_embedding/embedding.json
+     ```
+
+   - Graph only (no JSONL):
+     ```
+     python -m embedding.chevy_embed --input output_DEV.json --skip-jsonl --normalized-json output_embedding/embedding.json
+     ```
+
+   The agent will automatically pick up `output_embedding/embedding.json` when `GRAPH_PATH` is not set.
+
+3. Run the Q&A Agent:
+
+   ```
+   python agent.py
+   ```
+
+### Using the Q&A Agent
+
+- The agent will load and index the data from `embedding.json` using the OpenAI embedding model.
+- Once loaded, you can ask questions about the Chevrolet Silverado 1500.
+- The agent will search for relevant context in the indexed data and use OpenAI's chat model to generate answers.
+- Type 'exit' or press Ctrl+C to quit the agent.
+
+### Customizing the Agent
+
+- Change the embedding model: Set `EMBED_MODEL` in `.env` or modify the default in `agent.py`
+- Change the chat model: Set `CHAT_MODEL` in `.env` or modify the default in `agent.py`
+- Adjust the number of context documents: Modify the `k` parameter in the `retrieve` function call in `agent.py`
