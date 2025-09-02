@@ -211,12 +211,6 @@ Refresh DEV disclosures
   - We transform multiple DOM regions into a structured JSON schema and enrich content with remote disclosures—best done with a framework that manages the crawl lifecycle and item flow.
   - Scrapy lets us keep DEV mode fast and deterministic (fixtures) while keeping PROD mode robust for live runs.
 
-## Extending
-
-- Scrape a different page: update `prod_url` in `ChevyScapper` and provide a corresponding DEV fixture in `samples/`
-- Add new component serializers: implement a serializer and register it in `get_native()`
-- Change DOM regions: adjust the XPaths in `parse()`
-
 ## Troubleshooting
 
 - No output file: verify FEEDS in `Scrapper.custom_settings` or override with `CrawlerProcess(settings=...)`
@@ -254,11 +248,13 @@ The project includes an interactive Q&A Agent that can answer questions about th
 2. Generate the embedding graph from your scraped data:
 
    - JSONL + graph:
+
      ```
      python -m embedding.chevy_embed --input output_DEV.json --output embeddings/chevy_embeddings.jsonl --normalized-json output_embedding/embedding.json
      ```
 
    - Graph only (no JSONL):
+
      ```
      python -m embedding.chevy_embed --input output_DEV.json --skip-jsonl --normalized-json output_embedding/embedding.json
      ```
