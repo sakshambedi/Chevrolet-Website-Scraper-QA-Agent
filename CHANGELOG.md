@@ -40,4 +40,3 @@ Getting started
 - PROD crawl (single page): `python3 scrap.py --prod --url <vehicle-url> --log-level INFO`
 - Build graph: `make embed-latest`
 - Run agent: `python3 agent.py`
-
