@@ -1,9 +1,7 @@
 """
 Chevrolet Silverado 1500 embedding builder.
 
-Reads a semantic JSON/JSONL dump and writes:
-- JSONL (id, text, metadata, embedding=None) unless --skip-jsonl
-- Normalized graph JSON for downstream use
+Reads a semantic JSON/JSONL dump and writes a normalized graph JSON for downstream use.
 """
 
 from __future__ import annotations
@@ -13,7 +11,9 @@ import json
 
 import click
 
-from embedding.embedding import EmbeddingConfig
+from typing import Any, Dict, Iterable
+
+from embedding.embedding import EmbeddingConfig, Record
 from embedding.gm_base import GMBaseEmbedder
 
 
@@ -35,6 +35,25 @@ class ChevyEmbedder(GMBaseEmbedder):
         "ZR2",
     ]
 
+    def extract_records(self, item: Dict[str, Any], index: int) -> Iterable[Record]:
+        """Override to include full page metadata from the source JSON.
+
+        We reuse the GM normalization/doc building, then attach the original
+        top-level `item["metadata"]` under `page_metadata` for each record.
+        This preserves all existing computed fields while exposing the raw
+        page metadata alongside them in the embedding table.
+        """
+        norm = self._normalize_item(item)
+        docs = self._build_docs(norm)
+        page_meta = item.get("metadata") or {}
+
+        for d in docs:
+            meta = dict(d.get("metadata") or {})
+            # Attach the full source page metadata without overwriting computed keys
+            # Use a nested key to avoid collisions and keep structure intact.
+            meta["page_metadata"] = page_meta
+            yield Record(id=d["id"], text=d["text"], metadata=meta)
+
 
 @click.command()
 @click.option(
@@ -44,14 +63,6 @@ class ChevyEmbedder(GMBaseEmbedder):
     default=Path("output_DEV.json"),
     show_default=True,
     help="Path to input JSON/JSONL.",
-)
-@click.option(
-    "--output",
-    "output_path",
-    type=click.Path(path_type=Path),
-    default=Path("embeddings/chevy_embeddings.jsonl"),
-    show_default=True,
-    help="Path to write JSONL embedding table.",
 )
 @click.option(
     "--model",
@@ -68,27 +79,18 @@ class ChevyEmbedder(GMBaseEmbedder):
     show_default=True,
     help="Path to write the normalized graph (models/prices/disclosures/assets/sections/awards).",
 )
-@click.option(
-    "--skip-jsonl",
-    is_flag=True,
-    default=False,
-    help="Skip writing the JSONL table and only write the normalized graph.",
-)
 def main(
     input_path: Path,
-    output_path: Path,
     model: str,
     chunk_size: int,
     chunk_overlap: int,
     normalized_json: Path,
-    skip_jsonl: bool,
 ) -> None:
-    """Build a JSONL embedding table from Chevy's semantic JSON.
+    """Build a normalized graph from Chevy's semantic JSON.
 
-    The script reads a semantic JSON/JSONL dump produced by the scraper and
-    writes two artifacts:
-    - A JSONL embedding table at `--output` with rows: id, text, metadata, embedding=None
-    - A normalized graph JSON at `--normalized-json` for inspection/reuse
+    The script reads a semantic JSON or JSONL dump produced by the scraper
+    and writes a single normalized graph JSON at `--normalized-json` for
+    inspection and use by the agent.
     """
     cfg = EmbeddingConfig(
         model=model,
@@ -96,14 +98,10 @@ def main(
         chunk_overlap=chunk_overlap,
         id_prefix="chevy",
     )
-    embedder = ChevyEmbedder(input_path=input_path, output_path=output_path, config=cfg)
-    if skip_jsonl:
-        # Build table but do not write JSONL
-        _ = embedder.load_input()  # ensure file exists/valid
-        click.echo("Skipping JSONL output as requested (--skip-jsonl).")
-    else:
-        out = embedder.run()
-        click.echo(f"Wrote embedding table: {out}")
+    # Validate input and proceed without writing JSONL
+    embedder = ChevyEmbedder(input_path=input_path, output_path=Path("/dev/null"), config=cfg)
+    _ = embedder.load_input()
+    click.echo("Building normalized graph…")
 
     # Also emit the normalized graph for inspection/use
     data = embedder.load_input()

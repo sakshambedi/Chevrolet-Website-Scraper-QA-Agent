@@ -1,12 +1,12 @@
 # 🚗 Chevrolet Website - Scraper + Q&A Agent
 
-Scrape the Silverado 1500 website, turn it into clean semantic JSON, build embedding artifacts, and ask questions with a local Q&A agent.
+Scrape Chevrolet vehicle pages (any model/URL), turn them into clean semantic JSON, build embedding artifacts, and ask questions with a local Q&A agent.
 
 ## ✨ What You Get
 
 - 🕷️ Scraper (Scrapy) → `output_DEV.json` / `output_PROD.json`
-- 🧱 Normalized graph → `output_embedding/embedding.json`
-- 🧠 Optional JSONL table → `embeddings/chevy_embeddings.jsonl`
+- 🧱 Normalized graph → `output_embedding/embedding.json` (primary artifact used by the agent)
+- 🧠 Embedding output is a single normalized JSON graph (no JSONL).
 - 🤖 Q&A Agent (OpenAI) → `agent.py`
 
 ## ⚙️ Prerequisites
@@ -35,32 +35,66 @@ python scrap.py --dev --log-level INFO # returns output_DEV.json
 
 - PROD (live):
 
- ```bash
- python scrap.py --prod --log-level INFO # returns output_PROD.json
- ```
+```bash
+# Single page (recommended)
+python scrap.py --prod --url https://www.chevrolet.ca/en/suvs/previous-year-equinox --log-level INFO
 
-- Multi-page options:
-  - Discover: `python scrap.py --prod --discover-vehicles --category trucks`
-  - File: `python scrap.py --prod --urls-file urls.json`
+# Discover vehicles by category
+python scrap.py --prod --discover-vehicles --category crossovers-suvs --log-level INFO
+```
 
-1. Build embedding artifacts
+Dynamic URL behavior:
 
-- JSONL + graph:
+- Use `--url` for a single Chevrolet vehicle page (no hardcoded Silverado default).
+- Discovery mode crawls simplified nav and filters by category.
+
+3. Build embedding artifacts (graph)
+
+- Make target from latest crawl:
 
 ```bash
-  python -m embedding.chevy_embed --input output_DEV.json --output embeddings/chevy_embeddings.jsonl --normalized-json output_embedding/embedding.json
+make embed-latest  # picks newest output_*.json and writes output_embedding/embedding.json
 ```
 
-- Graph only (skip JSONL):
+- Manual graph build:
 
-``` bash
-python -m embedding.chevy_embed --input output_DEV.json --skip-jsonl --normalized-json output_embedding/embedding.json`
+```bash
+python -m embedding.chevy_embed \
+  --input output_PROD.json \
+  --normalized-json output_embedding/embedding.json
 ```
+
+ 
 
 4. Ask questions
 
 - `python agent.py`
-- The agent uses **GRAPH_PATH** if set; otherwise it looks for `output_embedding/embedding.json`.
+- The agent uses `GRAPH_PATH` if set; otherwise it looks for `output_embedding/embedding.json`.
+
+## 🧭 DEV vs PROD
+
+- DEV mode:
+  - Parses local HTML fixture(s) from `samples/` via `file://`.
+  - No browser automation; fast and offline.
+  - Output file: `output_DEV.json`.
+  - Run: `python scrap.py --dev --log-level INFO`.
+- PROD mode:
+  - Fetches live Chevrolet pages; uses Playwright for JS-rendered content.
+  - Supports `--url` for a single page or `--discover-vehicles` to crawl by category.
+  - Output file: `output_PROD.json`.
+  - Run: `python scrap.py --prod --log-level INFO`.
+- After either mode:
+  - `make embed-latest` selects the newest `output_*.json` and writes `output_embedding/embedding.json` (the agent’s default). Override with `GRAPH_PATH` in `.env`.
+
+### Notes
+
+- Each document in the normalized graph includes `metadata.page_metadata` (the page’s `<head>` metadata: title, description, canonical, language, OpenGraph, Twitter) nested to avoid clobbering computed fields like `model_id`, `section_title`, and `region`.
+- You can set `CHEVY_START_URL` to override the default PROD start page when not passing `--url`.
+- Crawl outputs land in the repo root as `output_DEV.json` or `output_PROD.json` (depending on mode). The `make embed-latest` target automatically picks the most recent `output_*.json` and writes the normalized graph to `output_embedding/embedding.json` (the default path the agent uses). You can override with `GRAPH_PATH` in your `.env`.
+
+### Output format
+
+- The embedding step produces a single normalized graph at `output_embedding/embedding.json` used by the agent.
 
 ### Example Usage
 
@@ -118,7 +152,7 @@ The agent follows these steps for each question:
 ## 📜 Copy/Paste Commands
 
 - DEV scrape: `python scrap.py --dev --log-level INFO`
-- PROD scrape: `python scrap.py --prod --log-level INFO`
-- Build JSONL + graph: `python -m embedding.chevy_embed --input output_DEV.json --output embeddings/chevy_embeddings.jsonl --normalized-json output_embedding/embedding.json`
-- Graph only: `python -m embedding.chevy_embed --input output_DEV.json --skip-jsonl --normalized-json output_embedding/embedding.json`
+- PROD scrape (single page): `python scrap.py --prod --url https://www.chevrolet.ca/en/suvs/previous-year-equinox --log-level INFO`
+- Build graph: `python -m embedding.chevy_embed --input output_PROD.json --normalized-json output_embedding/embedding.json`
+
 - Run agent: `python agent.py`

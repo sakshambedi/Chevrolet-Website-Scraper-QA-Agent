@@ -1,20 +1,32 @@
 
-.PHONY: run scrap scrapd embed agent setup
+.PHONY: run scrap scrapd embed embed-latest agent setup setup-and-run
 
 scrap:
-	python scrap.py
+	python3 scrap.py
 
 scrapd:
-	python scrap.py -l INFO
+	python3 scrap.py -l INFO
 
 embed:
-	python -m embedding.chevy_embed --input output_DEV.json
+	python3 -m embedding.chevy_embed --input output_DEV.json
+
+# Build normalized graph from the most recent crawl output (output_*.json)
+embed-latest:
+	@set -e; \
+	SRC=$$(ls -t output_*.json 2>/dev/null | head -n1); \
+	if [ -z "$$SRC" ]; then \
+		echo "No crawl outputs found (expected files matching output_*.json)." 1>&2; \
+		echo "Run 'make scrapd' or 'python3 scrap.py --prod' first." 1>&2; \
+		exit 1; \
+	fi; \
+	echo "Using latest crawl: $$SRC"; \
+	python3 -m embedding.chevy_embed --input "$$SRC" --normalized-json output_embedding/embedding.json
 
 agent:
-	python agent.py
+	python3 agent.py
 
 setup:
-	python setup.py
+	python3 setup.py
 
 setup-and-run:
-	python setup.py --run-agent
+	python3 setup.py --run-agent

@@ -33,6 +33,7 @@ class GMBaseEmbedder(BaseEmbedder):
 
     # Optional: subclasses may provide a static list of known trims
     TRIM_NAMES: List[str] = []
+    SCHEMA_VERSION: str = "1.1"
 
     def extract_records(self, item: Dict[str, Any], index: int) -> Iterable[Record]:
         norm = self._normalize_item(item)
@@ -100,6 +101,8 @@ class GMBaseEmbedder(BaseEmbedder):
                     }
                 )
 
+        # Include the original page <head> metadata on the model so it can be
+        # propagated into downstream docs (best-practice for traceability).
         models = [
             {
                 "id": model_id,
@@ -114,6 +117,7 @@ class GMBaseEmbedder(BaseEmbedder):
                 "title": title,
                 "description": description,
                 "links": model_links,
+                "page_metadata": meta,
             }
         ]
 
@@ -806,6 +810,7 @@ class GMBaseEmbedder(BaseEmbedder):
         canonical = model.get("canonical_url")
         locale = model.get("locale")
         model_asset_ids = model.get("asset_ids") or []
+        page_meta = model.get("page_metadata")
 
         disc_map = {d["id"]: d["text"] for d in norm.get("disclosures", [])}
         prices = norm.get("prices", [])
@@ -927,6 +932,7 @@ class GMBaseEmbedder(BaseEmbedder):
         )
         if overview_text:
             ov_text = _clean_text(overview_text)
+            ov_words = len((ov_text or "").split())
             docs.append(
                 {
                     "id": f"doc:{model_id}:overview",
@@ -940,9 +946,16 @@ class GMBaseEmbedder(BaseEmbedder):
                         "doc_type": "overview",
                         "locale": locale,
                         "asset_ids": model_asset_ids,
+                        "page_metadata": page_meta,
+                        "schema_version": self.SCHEMA_VERSION,
+                        "chunk_index": 1,
+                        "chunk_count": 1,
+                        "n_chars": len(ov_text or ""),
+                        "n_words": ov_words,
                         "last_scraped_at": _now_iso(),
                         "content_hash": _hash_text(ov_text),
                         "source_url": canonical,
+                        "source_domain": (urlparse(canonical).hostname if canonical else None),
                     },
                 }
             )
@@ -971,6 +984,7 @@ class GMBaseEmbedder(BaseEmbedder):
                 lines.append("[See disclosures]")
             if lines:
                 p_text = _clean_text("\n".join(lines), disc_ids)
+                p_words = len((p_text or "").split())
                 docs.append(
                     {
                         "id": f"doc:{model_id}:pricing:{r}",
@@ -987,9 +1001,16 @@ class GMBaseEmbedder(BaseEmbedder):
                             "asset_ids": model_asset_ids,
                             "price_ids": [p["id"] for p in plist],
                             "disclosure_ids": disc_ids,
+                            "page_metadata": page_meta,
+                            "schema_version": self.SCHEMA_VERSION,
+                            "chunk_index": 1,
+                            "chunk_count": 1,
+                            "n_chars": len(p_text or ""),
+                            "n_words": p_words,
                             "last_scraped_at": _now_iso(),
                             "content_hash": _hash_text(p_text),
                             "source_url": canonical,
+                            "source_domain": (urlparse(canonical).hostname if canonical else None),
                         },
                     }
                 )
@@ -1065,6 +1086,7 @@ class GMBaseEmbedder(BaseEmbedder):
             section_chunks = chunk_text(base_text)
             for idx, chunk in enumerate(section_chunks, start=1):
                 c_hash = _hash_text(chunk)
+                n_words = len((chunk or "").split())
                 meta = {
                     "model_id": model_id,
                     "model_name": model_name,
@@ -1076,9 +1098,16 @@ class GMBaseEmbedder(BaseEmbedder):
                     "locale": locale,
                     "asset_ids": model_asset_ids,
                     "disclosure_ids": dis_ids,
+                    "page_metadata": page_meta,
+                    "schema_version": self.SCHEMA_VERSION,
+                    "chunk_index": idx,
+                    "chunk_count": len(section_chunks),
+                    "n_chars": len(chunk or ""),
+                    "n_words": n_words,
                     "last_scraped_at": _now_iso(),
                     "content_hash": c_hash,
                     "source_url": s.get("source_url") or canonical,
+                    "source_domain": (urlparse(canonical).hostname if canonical else None),
                 }
                 if trim_matches:
                     ids = [f"{model_id}:{self._slug(n)}" for n in trim_matches]
@@ -1097,6 +1126,7 @@ class GMBaseEmbedder(BaseEmbedder):
             dis_ids = a.get("disclosure_ids") or []
             a_text = _clean_text(a_text, dis_ids)
             a_hash = _hash_text(a_text)
+            a_words = len((a_text or "").split())
             docs.append(
                 {
                     "id": f"doc:{model_id}:{a['id'].split(':',1)[1]}",
@@ -1112,9 +1142,16 @@ class GMBaseEmbedder(BaseEmbedder):
                         "locale": locale,
                         "asset_ids": model_asset_ids,
                         "disclosure_ids": dis_ids,
+                        "page_metadata": page_meta,
+                        "schema_version": self.SCHEMA_VERSION,
+                        "chunk_index": 1,
+                        "chunk_count": 1,
+                        "n_chars": len(a_text or ""),
+                        "n_words": a_words,
                         "last_scraped_at": _now_iso(),
                         "content_hash": a_hash,
                         "source_url": a.get("source_url") or canonical,
+                        "source_domain": (urlparse(canonical).hostname if canonical else None),
                     },
                 }
             )

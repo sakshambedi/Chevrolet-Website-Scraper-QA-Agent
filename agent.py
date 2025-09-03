@@ -156,9 +156,25 @@ def format_context(docs: List[IndexedDoc]) -> str:
     for i, d in enumerate(docs, start=1):
         title = d.metadata.get("section_title") or d.metadata.get("doc_type") or "Context"
         src = d.metadata.get("source_url")
+        region = d.metadata.get("region")
+        doc_type = d.metadata.get("doc_type")
+        model = d.metadata.get("model_name")
+        meta_bits = []
+        if model:
+            meta_bits.append(f"model={model}")
+        if doc_type:
+            meta_bits.append(f"type={doc_type}")
+        if region:
+            meta_bits.append(f"region={region}")
+        idx = d.metadata.get("chunk_index")
+        cnt = d.metadata.get("chunk_count")
+        if idx and cnt:
+            meta_bits.append(f"chunk={idx}/{cnt}")
         header = f"[Doc {i}] {title} — {d.id}"
         if src:
             header += f"\nSource: {src}"
+        if meta_bits:
+            header += f"\nMeta: {'; '.join(meta_bits)}"
         parts.append(f"{header}\n{d.text}".strip())
     return "\n\n---\n\n".join(parts)
 
@@ -166,12 +182,19 @@ def format_context(docs: List[IndexedDoc]) -> str:
 def stream_chat_answer(query: str, context: str, model: str = "gpt-4o-mini") -> str:
     client = get_openai_client()
     system_text = (
-        "You are a helpful assistant for Chevrolet Silverado product info. "
-        "Use ONLY the provided context to answer accurately. If uncertain, say you don't know. "
-        "Prefer concise, factual answers. Include numbers/units as stated."
+        "You are Chevy Q&A Agent. Answer strictly from the provided context. "
+        "If the answer is not in context, say: 'Not in the provided context.' "
+        "Guidelines: \n"
+        "- Be concise and factual.\n"
+        "- Preserve units/currency as shown (e.g., CAD $XX,XXX).\n"
+        "- For pricing, include region codes and both 'From' and 'As shown' when present.\n"
+        "- If disclosures are referenced, add: 'See disclosures.' without inventing details.\n"
+        "- Do not speculate or use outside knowledge."
     )
     user_text = (
-        "Answer the question using the context.\n\n" f"Question: {query}\n\n" f"Context:\n{context}"
+        "Use the context below to answer the question.\n\n"
+        f"Question: {query}\n\n"
+        f"Context:\n{context}"
     )
 
     # Stream tokens to the console
@@ -291,13 +314,23 @@ def main() -> None:
         console.print(Panel(str(e), title="Indexing Error", border_style="red"))
         sys.exit(1)
 
+    # Dynamic prompt message based on model in the graph
+    model_name = None
+    for d in index:
+        try:
+            model_name = str(d.metadata.get("model_name") or "").strip()
+        except Exception:
+            model_name = None
+        if model_name:
+            break
+    if model_name:
+        ready_text = f"Ready. Ask a question about Chevrolet {model_name}.\nType 'exit' or press Ctrl+C to quit."
+    else:
+        ready_text = "Ready. Ask a question about Chevrolet vehicles.\nType 'exit' or press Ctrl+C to quit."
+
     console.print(
         Panel(
-            Text(
-                "Ready. Ask a question about Chevrolet Silverado 1500.\n"
-                "Type 'exit' or press Ctrl+C to quit.",
-                style="green",
-            ),
+            Text(ready_text, style="green"),
             title="Interactive Mode",
             border_style="green",
         )

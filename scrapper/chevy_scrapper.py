@@ -21,7 +21,7 @@ class ChevyScapper(Scrapper):
 
     @property
     def spider_name(self) -> str:
-        return "chevy_spider" + ("_DEV" if self.DEV_MODE else "_PROD")
+        return "chevy_spider" + ("_DEV" if getattr(self, "dev_mode", False) else "_PROD")
 
     @property
     def local_url(self) -> str:
@@ -33,19 +33,21 @@ class ChevyScapper(Scrapper):
 
     @property
     def prod_url(self) -> str:
-        return self.chevy_website + "/en/trucks/silverado-1500"
+        # Allow overriding the default PROD URL via env var; falls back to Silverado page
+        return os.environ.get("CHEVY_START_URL", self.chevy_website + "/en/trucks/silverado-1500")
 
     def parse(self, response):
-        self.logger.info(f"DEV_MODE: {self.DEV_MODE}")
+        self.logger.info(f"DEV_MODE: {self.dev_mode}")
         self.logger.info(f"Processing {response.url} in ChevyScapper")
         self.logger.info(
-            f"Local URL: {self.local_url}" if self.DEV_MODE else f"Prod URL: {self.prod_url}"
+            f"Local URL: {self.local_url}" if self.dev_mode else f"Requested URL: {response.url}"
         )
 
-        if self.save_html and not self.DEV_MODE:
-            self.save_response_html(response, self.prod_url)
+        if self.save_html and not self.dev_mode:
+            # Save using the actual response URL so filenames are meaningful per page
+            self.save_response_html(response, response.url)
 
-        if not self.DEV_MODE and "playwright_page" in response.meta:
+        if not self.dev_mode and "playwright_page" in response.meta:
             page = response.meta["playwright_page"]
             page.close()
 
@@ -77,7 +79,7 @@ class ChevyScapper(Scrapper):
 
         self.logger.info("Starting with provided seed URLs (multi-page crawl)")
         for url in self._seed_urls:
-            if self.DEV_MODE and url.startswith("/"):
+            if self.dev_mode and url.startswith("/"):
                 file_url = f"file://{os.path.abspath(url)}"
                 self.logger.info(f"Using local file: {file_url}")
                 yield Request(file_url, callback=self.parse)
@@ -86,7 +88,7 @@ class ChevyScapper(Scrapper):
                     url,
                     callback=self.parse,
                     meta={
-                        "playwright": not self.DEV_MODE,
+                        "playwright": not self.dev_mode,
                         "playwright_context": "default",
                         "playwright_context_kwargs": {
                             "viewport": {"width": 1366, "height": 768},

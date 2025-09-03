@@ -2,7 +2,6 @@ import datetime
 import os
 from abc import ABC, abstractmethod
 
-from dotenv import load_dotenv
 from scrapy import Request
 from scrapy.spiders import Spider
 from scrapy_playwright.page import PageMethod
@@ -16,45 +15,47 @@ class Scrapper(Spider, ABC):
 
     chevy_website = "https://www.chevrolet.ca"
 
-    load_dotenv()
-    DEV_MODE = os.getenv("DEV", "False").lower() == "true"
-
-    custom_settings = {
-        "FEEDS": {
-            f"output_{'DEV' if DEV_MODE else 'PROD'}.json": {
-                "format": "json",
-                "overwrite": True,
-            }
-        },
-        "ROBOTSTXT_OBEY": True,
-        "DEFAULT_REQUEST_HEADERS": {
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "Accept-Language": "en-CA,en;q=0.9",
-        },
-        "USER_AGENT": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/125.0 Safari/537.36",
-    }
-
-    # In production mode, we use Playwright to handle dynamic content loading
-    if not DEV_MODE:
-        custom_settings.update(
-            {
-                "DOWNLOAD_HANDLERS": {
-                    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-                    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-                },
-                "TWISTED_REACTOR": "twisted.internet.asyncioreactor.AsyncioSelectorReactor",
-                "PLAYWRIGHT_BROWSER_TYPE": "chromium",
-                "PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT": 60000,
-                "AUTOTHROTTLE_ENABLED": True,
-                "AUTOTHROTTLE_START_DELAY": 1.0,
-                "AUTOTHROTTLE_MAX_DELAY": 10.0,
-                "CONCURRENT_REQUESTS": 1,
-            }
-        )
     # Logging is configured at the application entrypoint; Scrapy's
     # LOG_LEVEL is passed via CrawlerProcess(settings=...).
+
+    @classmethod
+    def settings_for_mode(cls, dev_mode: bool) -> dict:
+        """Return Scrapy settings for the requested mode (DEV or PROD)."""
+        settings: dict = {
+            "FEEDS": {
+                f"output_{'DEV' if dev_mode else 'PROD'}.json": {
+                    "format": "json",
+                    "overwrite": True,
+                }
+            },
+            "ROBOTSTXT_OBEY": True,
+            "DEFAULT_REQUEST_HEADERS": {
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                "Accept-Language": "en-CA,en;q=0.9",
+            },
+            "USER_AGENT": (
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/125.0 Safari/537.36"
+            ),
+        }
+        if not dev_mode:
+            settings.update(
+                {
+                    "DOWNLOAD_HANDLERS": {
+                        "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+                        "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+                    },
+                    "TWISTED_REACTOR": "twisted.internet.asyncioreactor.AsyncioSelectorReactor",
+                    "PLAYWRIGHT_BROWSER_TYPE": "chromium",
+                    "PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT": 60000,
+                    "AUTOTHROTTLE_ENABLED": True,
+                    "AUTOTHROTTLE_START_DELAY": 1.0,
+                    "AUTOTHROTTLE_MAX_DELAY": 10.0,
+                    "CONCURRENT_REQUESTS": 1,
+                }
+            )
+        return settings
 
     @property
     @abstractmethod
@@ -74,8 +75,13 @@ class Scrapper(Spider, ABC):
         """Production URL - must be implemented by child classes"""
         pass
 
-    def __init__(self, save_html=False, *args, **kwargs):
-        # Set spider name before calling super().__init__
+    def __init__(self, save_html: bool = False, dev_mode: bool | None = None, *args, **kwargs):
+        # Determine mode per-instance
+        if dev_mode is None:
+            dev_mode = os.getenv("DEV", "false").lower() == "true"
+        self.dev_mode = bool(dev_mode)
+
+        # Set spider name based on mode before calling super().__init__
         if not hasattr(self, "name"):
             self.name = self.spider_name
 
@@ -85,22 +91,17 @@ class Scrapper(Spider, ABC):
     @property
     def start_urls(self):
         """Get the list of URLs to start crawling from"""
-        if self.DEV_MODE:
-            return [self.local_url]
-        else:
-            return [self.prod_url]
+        return [self.local_url] if self.dev_mode else [self.prod_url]
 
     async def start(self):
         """Generate initial requests (supports local files in DEV)."""
         self.logger.info("Starting requests")
         for url in self.start_urls:
-            if self.DEV_MODE:
-                # Convert to file:// URL format for local HTML
+            if self.dev_mode:
                 file_url = f"file://{os.path.abspath(url)}"
                 self.logger.info(f"Using local file: {file_url}")
                 yield Request(file_url, callback=self.parse)
             else:
-                # In production, enable Playwright for dynamic content
                 yield Request(
                     url,
                     callback=self.parse,

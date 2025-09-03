@@ -49,7 +49,7 @@ class DisclosureScrapper(Scrapper):
         In DEV, load from the local projected JSON file so code can read it.
         In PROD, fetch from the remote endpoint and parse it.
         """
-        if self.DEV_MODE:
+        if self.dev_mode:
             path = self.local_url
             file_url = f"file://{os.path.abspath(path)}"
             self.logger.info(f"DEV mode: loading disclosures from {file_url}")
@@ -175,7 +175,7 @@ def load_disclosures(
     """
     # Resolve mode
     if dev_mode is None:
-        dev_mode = Scrapper.DEV_MODE
+        dev_mode = os.getenv("DEV", "false").lower() == "true"
 
     # DEV: read local JSON file
     if dev_mode:

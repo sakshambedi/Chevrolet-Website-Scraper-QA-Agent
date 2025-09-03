@@ -21,11 +21,11 @@ logger = Logger(__name__).get_logger()
     help="Set the logging level",
 )
 @click.option(
-    "--save-html",
-    "-s",
-    type=click.Choice([True, False], case_sensitive=False),
+    "--save-html/--no-save-html",
+    "-s/ ",
+    is_flag=True,
     default=False,
-    help="If you want to save the html from the website",
+    help="When set, save fetched HTML to the samples folder",
 )
 @click.option(
     "--dev/--prod",
@@ -33,10 +33,10 @@ logger = Logger(__name__).get_logger()
     help="Run in DEV mode (use local files) or PROD mode (fetch live site)",
 )
 @click.option(
-    "--urls-file",
-    type=click.Path(exists=True, dir_okay=False),
+    "--url",
+    type=str,
     default=None,
-    help="Optional file with JSON array of vehicle URLs to crawl.",
+    help="Optional single Chevrolet vehicle URL to crawl (overrides default).",
 )
 @click.option(
     "--discover-vehicles",
@@ -53,10 +53,11 @@ logger = Logger(__name__).get_logger()
     default="all",
     help="Optional filter when discovering vehicles.",
 )
-def main(save_html, log_level, dev, urls_file, discover_vehicles, category) -> None:
+def main(save_html, log_level, dev, url, discover_vehicles, category) -> None:
     """Entry point that calls the Click CLI."""
     Logger.configure(log_level=log_level.upper())
 
+    # Set mode explicitly (used for external helpers), but spider now reads mode dynamically
     os.environ["DEV"] = "true" if dev else "false"
     logger.info(f"Mode: {'DEV' if dev else 'PROD'}")
 
@@ -72,15 +73,9 @@ def main(save_html, log_level, dev, urls_file, discover_vehicles, category) -> N
 
     # Optional: collect seed URLs
     seed_urls = None
-    if urls_file:
-        import json
-
-        with open(urls_file, "r", encoding="utf-8") as f:
-            arr = json.load(f)
-        if not isinstance(arr, list):
-            raise click.ClickException("--urls-file must contain a JSON array of URLs")
-        seed_urls = [str(u) for u in arr if isinstance(u, str)]
-        logger.info(f"Loaded {len(seed_urls)} URLs from file")
+    if url:
+        seed_urls = [url]
+        logger.info(f"Using single URL: {url}")
 
     if discover_vehicles:
         import re
@@ -140,16 +135,18 @@ def main(save_html, log_level, dev, urls_file, discover_vehicles, category) -> N
         logger.info(f"Discovered {len(seeds)} vehicle URLs (category={category})")
         seed_urls = (seed_urls or []) + seeds
 
-    process = CrawlerProcess(
-        settings={
-            "LOG_LEVEL": log_level.upper(),
-        }
-    )
+    # Build Scrapy settings for the requested mode
+    from scrapper.scrapper import Scrapper
+
+    settings = Scrapper.settings_for_mode(dev_mode=dev)
+    settings["LOG_LEVEL"] = log_level.upper()
+    process = CrawlerProcess(settings=settings)
     process.crawl(
         ChevyScapper,
         disclosures=disclosures,
         save_html=save_html,
         seed_urls=seed_urls,
+        dev_mode=dev,
     )
     process.start()
 
