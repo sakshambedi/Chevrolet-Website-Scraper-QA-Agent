@@ -85,6 +85,10 @@ Scrape Chevrolet vehicle pages, produce a clean JSON, build a normalized embeddi
 
 - Models: set `EMBED_MODEL` and `CHAT_MODEL` in `.env` (defaults provided).
 - Override graph path with `GRAPH_PATH` in `.env`.
+- Embedding cache (speeds up repeated runs):
+  - `EMBED_CACHE_PATH` (default: `output_embedding/embeddings_cache.jsonl`)
+  - `EMBED_BATCH_SIZE` (default: `100`)
+  - The agent incrementally appends cached vectors and resumes after interrupts.
 
 ## 🧭 Handy Commands
 

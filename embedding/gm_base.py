@@ -61,9 +61,7 @@ class GMBaseEmbedder(BaseEmbedder):
                 disc_map[disc_id] = str(text).strip()
             return disc_id
 
-        prices, _ = self._extract_prices(
-            item, canonical, model_id, reg_disc
-        )
+        prices, _ = self._extract_prices(item, canonical, model_id, reg_disc)
 
         sections = self._extract_sections(item, model_id, canonical, reg_disc)
 
@@ -75,9 +73,7 @@ class GMBaseEmbedder(BaseEmbedder):
         related_models = self._extract_related_models(item, reg_disc)
 
         links_global = self._collect_links(item)
-        model_links = self._select_links_for_model(
-            links_global, model_id, model_name, canonical
-        )
+        model_links = self._select_links_for_model(links_global, model_id, model_name, canonical)
         for rm in related_models:
             rm["links"] = self._select_links_for_model(
                 links_global, rm.get("id"), rm.get("name"), canonical
@@ -122,8 +118,7 @@ class GMBaseEmbedder(BaseEmbedder):
         ]
 
         disclosures = [
-            {"id": k, "text": v}
-            for k, v in sorted(disc_map.items(), key=lambda x: x[0])
+            {"id": k, "text": v} for k, v in sorted(disc_map.items(), key=lambda x: x[0])
         ]
 
         return {
@@ -148,7 +143,7 @@ class GMBaseEmbedder(BaseEmbedder):
                 break
         model = re.sub(r"\s+", " ", model)
         return year, model
-    
+
     def _extract_prices(
         self,
         item: Dict[str, Any],
@@ -193,9 +188,7 @@ class GMBaseEmbedder(BaseEmbedder):
                             if disc_id:
                                 disc_ids_local.append(disc_id)
                 # block template cues
-                p_texts = [
-                    t.get("p") for t in text_nodes if isinstance(t, dict) and t.get("p")
-                ]
+                p_texts = [t.get("p") for t in text_nodes if isinstance(t, dict) and t.get("p")]
                 para = " ".join(p_texts).lower()
                 if "from:" in para or "starting" in para:
                     for region, vals in ri.items():
@@ -217,9 +210,7 @@ class GMBaseEmbedder(BaseEmbedder):
                     "from_price": from_map.get(r),
                     "as_shown_price": shown_map.get(r),
                     "currency": self.DEFAULT_CURRENCY,
-                    "disclosure_ids": list(dict.fromkeys(disc_ids_local))
-                    if disc_ids_local
-                    else [],
+                    "disclosure_ids": list(dict.fromkeys(disc_ids_local)) if disc_ids_local else [],
                     "source": "navbar",
                 }
                 price_entries.append(entry)
@@ -246,9 +237,7 @@ class GMBaseEmbedder(BaseEmbedder):
             if not cur.get("as_shown_price") and e.get("as_shown_price"):
                 cur["as_shown_price"] = e["as_shown_price"]
             cur["disclosure_ids"] = list(
-                dict.fromkeys(
-                    (cur.get("disclosure_ids") or []) + (e.get("disclosure_ids") or [])
-                )
+                dict.fromkeys((cur.get("disclosure_ids") or []) + (e.get("disclosure_ids") or []))
             )
 
         return list(best.values()), list(dict.fromkeys(price_disc_ids))
@@ -283,9 +272,7 @@ class GMBaseEmbedder(BaseEmbedder):
                         for ch in t.get("content") or []:
                             if isinstance(ch, dict) and ch.get("gb-disclosure"):
                                 dt = ch["gb-disclosure"]
-                                disc_text = (
-                                    dt if isinstance(dt, str) else dt.get("text")
-                                )
+                                disc_text = dt if isinstance(dt, str) else dt.get("text")
                                 disc_id = reg_disc(disc_text, key="section")
                                 if disc_id:
                                     discs.append(disc_id)
@@ -367,9 +354,7 @@ class GMBaseEmbedder(BaseEmbedder):
                     continue
                 seen.add(url)
                 aid = f"img:{self._short_hash(url)}"
-                assets.append(
-                    {"id": aid, "type": "image", "url": url, "alt": node.get("alt")}
-                )
+                assets.append({"id": aid, "type": "image", "url": url, "alt": node.get("alt")})
         return assets
 
     def _find_models_slider(self, item: Dict[str, Any]) -> Any:
@@ -382,9 +367,7 @@ class GMBaseEmbedder(BaseEmbedder):
                         return cand
         return body
 
-    def _extract_trims(
-        self, item: Dict[str, Any], model_id: str
-    ) -> List[Dict[str, Any]]:
+    def _extract_trims(self, item: Dict[str, Any], model_id: str) -> List[Dict[str, Any]]:
         if not self.TRIM_NAMES:
             return []
         found: Dict[str, Dict[str, Any]] = {}
@@ -396,11 +379,7 @@ class GMBaseEmbedder(BaseEmbedder):
                 text = node.get("p", "").strip()
                 if text in candidates:
                     name = text
-            elif (
-                isinstance(node, dict)
-                and "heading" in node
-                and isinstance(node["heading"], str)
-            ):
+            elif isinstance(node, dict) and "heading" in node and isinstance(node["heading"], str):
                 text = node.get("heading", "").strip()
                 if text in candidates:
                     name = text
@@ -496,11 +475,7 @@ class GMBaseEmbedder(BaseEmbedder):
             if isinstance(node, dict) and node.get("gb-dynamic-text"):
                 gbd = node["gb-dynamic-text"]
                 text_nodes = (gbd or {}).get("content") or []
-                if (
-                    text_nodes
-                    and isinstance(text_nodes[0], dict)
-                    and text_nodes[0].get("p")
-                ):
+                if text_nodes and isinstance(text_nodes[0], dict) and text_nodes[0].get("p"):
                     name = canon_name(text_nodes[0].get("p") or "")
                     if name:
                         current_trim = name
@@ -509,11 +484,7 @@ class GMBaseEmbedder(BaseEmbedder):
                 if current_trim:
                     name = current_trim
                     para = " ".join(
-                        [
-                            t.get("p")
-                            for t in text_nodes
-                            if isinstance(t, dict) and t.get("p")
-                        ]
+                        [t.get("p") for t in text_nodes if isinstance(t, dict) and t.get("p")]
                     ).lower()
                     ri = (gbd or {}).get("regional_information") or {}
                     disc_ids_local: List[str] = []
@@ -521,9 +492,7 @@ class GMBaseEmbedder(BaseEmbedder):
                         for ch in t.get("content") or []:
                             if isinstance(ch, dict) and ch.get("gb-disclosure"):
                                 dt = ch["gb-disclosure"]
-                                disc_text = (
-                                    dt if isinstance(dt, str) else dt.get("text")
-                                )
+                                disc_text = dt if isinstance(dt, str) else dt.get("text")
                                 disc_id = reg_disc(disc_text, key="trimprice")
                                 if disc_id:
                                     disc_ids_local.append(disc_id)
@@ -532,9 +501,7 @@ class GMBaseEmbedder(BaseEmbedder):
                     if "starting" in para:
                         prices = tr.setdefault("prices", [])
                         for r, vals in ri.items():
-                            sp = self._normalize_price(
-                                (vals or {}).get("startingPrice")
-                            )
+                            sp = self._normalize_price((vals or {}).get("startingPrice"))
                             if not sp:
                                 continue
                             prices.append(
@@ -553,15 +520,12 @@ class GMBaseEmbedder(BaseEmbedder):
                             ap = self._normalize_price((vals or {}).get("asShownPrice"))
                             if not ap:
                                 continue
-                            match = next(
-                                (p for p in prices if p.get("region") == r), None
-                            )
+                            match = next((p for p in prices if p.get("region") == r), None)
                             if match:
                                 match["as_shown_price"] = ap
                                 match["disclosure_ids"] = list(
                                     dict.fromkeys(
-                                        (match.get("disclosure_ids") or [])
-                                        + disc_ids_local
+                                        (match.get("disclosure_ids") or []) + disc_ids_local
                                     )
                                 )
                             else:
@@ -593,11 +557,7 @@ class GMBaseEmbedder(BaseEmbedder):
             if isinstance(node, dict) and node.get("gb-dynamic-text"):
                 gbd = node["gb-dynamic-text"]
                 text_nodes = (gbd or {}).get("content") or []
-                if (
-                    text_nodes
-                    and isinstance(text_nodes[0], dict)
-                    and text_nodes[0].get("p")
-                ):
+                if text_nodes and isinstance(text_nodes[0], dict) and text_nodes[0].get("p"):
                     nm = canon_name(text_nodes[0].get("p") or "")
                     if nm:
                         current_trim = nm
@@ -606,12 +566,7 @@ class GMBaseEmbedder(BaseEmbedder):
                         ensure_trim(nm)
                         continue
                     ptext = (text_nodes[0].get("p") or "").strip()
-                    if (
-                        in_trim_block
-                        and current_trim
-                        and ptext
-                        and ":" not in ptext.lower()
-                    ):
+                    if in_trim_block and current_trim and ptext and ":" not in ptext.lower():
                         pending_tagline = ptext
                         tr = ensure_trim(current_trim)
                         if "tagline" not in tr:
@@ -639,9 +594,7 @@ class GMBaseEmbedder(BaseEmbedder):
                 out.append(t)
         return out
 
-    def _extract_related_models(
-        self, item: Dict[str, Any], reg_disc
-    ) -> List[Dict[str, Any]]:
+    def _extract_related_models(self, item: Dict[str, Any], reg_disc) -> List[Dict[str, Any]]:
         related: List[Dict[str, Any]] = []
         seen: set[str] = set()
 
@@ -662,9 +615,7 @@ class GMBaseEmbedder(BaseEmbedder):
                             disc_id = reg_disc(disc_text, key="price")
                             if disc_id:
                                 disc_ids.append(disc_id)
-                p_texts = [
-                    t.get("p") for t in text_nodes if isinstance(t, dict) and t.get("p")
-                ]
+                p_texts = [t.get("p") for t in text_nodes if isinstance(t, dict) and t.get("p")]
                 para = " ".join(p_texts).lower()
                 if "from:" in para or "starting" in para:
                     for r, vals in ri.items():
@@ -692,9 +643,7 @@ class GMBaseEmbedder(BaseEmbedder):
 
             content = node.get("content") or []
             headings = [
-                c.get("heading")
-                for c in content
-                if isinstance(c, dict) and c.get("heading")
+                c.get("heading") for c in content if isinstance(c, dict) and c.get("heading")
             ]
             name = None
             if headings:
@@ -757,9 +706,7 @@ class GMBaseEmbedder(BaseEmbedder):
                 find_dealer_url = href
             if "build" in txt and "price" in txt:
                 build_price_links.append(href)
-            if (
-                "inventory" in txt or "view inventory" in txt
-            ) or "SearchResults" in href:
+            if ("inventory" in txt or "view inventory" in txt) or "SearchResults" in href:
                 inventory_links.append(href)
 
         return {
@@ -789,10 +736,7 @@ class GMBaseEmbedder(BaseEmbedder):
             if "SearchResults" not in u:
                 continue
             lu = u.lower()
-            if (
-                any(t in lu for t in tokens)
-                or f"model={name.replace(' ', '+')}".lower() in lu
-            ):
+            if any(t in lu for t in tokens) or f"model={name.replace(' ', '+')}".lower() in lu:
                 inv = u
                 break
         dealer = links.get("find_dealer_url")
@@ -867,9 +811,7 @@ class GMBaseEmbedder(BaseEmbedder):
                 num = m.group("num")
                 unit = m.group("unit")
                 try:
-                    val = float(
-                        num.replace(",", "").replace("\u202f", "").replace("\u00a0", "")
-                    )
+                    val = float(num.replace(",", "").replace("\u202f", "").replace("\u00a0", ""))
                 except Exception:
                     return m.group(0)
                 kg = val * 0.45359237
@@ -884,9 +826,7 @@ class GMBaseEmbedder(BaseEmbedder):
                 num = m.group("num")
                 unit = m.group("unit")
                 try:
-                    val = float(
-                        num.replace(",", "").replace("\u202f", "").replace("\u00a0", "")
-                    )
+                    val = float(num.replace(",", "").replace("\u202f", "").replace("\u00a0", ""))
                 except Exception:
                     return m.group(0)
                 lbs = val / 0.45359237
@@ -927,9 +867,7 @@ class GMBaseEmbedder(BaseEmbedder):
             return _dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
 
         # Overview
-        overview_text = "\n".join(
-            t for t in [model.get("title"), model.get("description")] if t
-        )
+        overview_text = "\n".join(t for t in [model.get("title"), model.get("description")] if t)
         if overview_text:
             ov_text = _clean_text(overview_text)
             ov_words = len((ov_text or "").split())
@@ -1037,9 +975,7 @@ class GMBaseEmbedder(BaseEmbedder):
                         trim_matches.append(nm)
 
             # Chunk long sections into 200–350 token pieces
-            def chunk_text(
-                text: str, target_tokens: int = 280, overlap: int = 40
-            ) -> List[str]:
+            def chunk_text(text: str, target_tokens: int = 280, overlap: int = 40) -> List[str]:
                 parts = [t.strip() for t in text.split("\n") if t.strip()]
                 chunks: List[str] = []
                 cur: List[str] = []
@@ -1167,9 +1103,7 @@ class GMBaseEmbedder(BaseEmbedder):
             for el in obj:
                 yield from self._iter_nodes(el)
 
-    def _iter_nodes_with_parent(
-        self, obj: Any, parent: Any = None
-    ) -> Iterator[tuple[Any, Any]]:
+    def _iter_nodes_with_parent(self, obj: Any, parent: Any = None) -> Iterator[tuple[Any, Any]]:
         if isinstance(obj, dict):
             yield obj, parent
             for v in obj.values():
