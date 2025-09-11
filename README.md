@@ -16,14 +16,14 @@ Scrape Chevrolet vehicle pages, produce a clean JSON, build a normalized embeddi
 
 ## 🚀 Quickstart
 
-1) Configure environment
+1. Configure environment
 
 - Run `python setup.py` and enter your keys, or copy `.env.example` to `.env` and set:
   - `OPENAI_API_KEY=...`
   - `OPENAI_PROJECT=...` (optional)
   - `GRAPH_PATH=output_embedding/embedding.json`
 
-2) Scrape
+2. Scrape
 
 - DEV (uses local fixtures):
   - `python scrap.py --dev --log-level INFO` → writes `output_DEV.json`
@@ -31,12 +31,12 @@ Scrape Chevrolet vehicle pages, produce a clean JSON, build a normalized embeddi
   - Single page: `python scrap.py --prod --url https://www.chevrolet.ca/en/suvs/previous-year-equinox --log-level INFO`
   - Discover by category: `python scrap.py --prod --discover-vehicles --category crossovers-suvs --log-level INFO`
 
-3) Build the embedding graph
+3. Build the embedding graph
 
 - From the newest crawl: `make embed-latest`
 - Or explicitly: `python -m embedding.chevy_embed --input output_PROD.json --normalized-json output_embedding/embedding.json`
 
-4) Ask questions
+4. Ask questions
 
 - `python agent.py`
 - The agent reads `GRAPH_PATH` (or defaults to `output_embedding/embedding.json`).
